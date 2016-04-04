@@ -13,9 +13,9 @@
 NAME 		= 	ft_printf
 
 CC			= 	gcc
-CFLAGS		= 	-Wall -Werror -Wextra
+# CFLAGS		= 	-Wall -Werror -Wextra
 
-SRC 		= 	main.c ft_printf.c
+SRC 		= 	main.c ft_printf.c utilities.c
 
 LIB			=	-Llibft -lft
 

@@ -1,36 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.h                                        :+:      :+:    :+:   */
+/*   utilities.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: quroulon <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/31 15:19:17 by quroulon          #+#    #+#             */
-/*   Updated: 2016/03/31 15:19:18 by quroulon         ###   ########.fr       */
+/*   Created: 2016/04/04 14:14:46 by quroulon          #+#    #+#             */
+/*   Updated: 2016/04/04 14:14:48 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FT_PRINTF_H
-# define FT_PRINTF_H
+#include "ft_printf.h"
 
-#include "libft/libft.h"
-#include <stdarg.h>
-
-typedef struct		s_arg
+void			ft_error(t_env *env)
 {
-	void			*elem;
-	struct s_arg	*next;
-	struct s_arg	*prev;
-}					t_arg;
-
-typedef struct		s_env
-{
-	char			*str;
-	int				nb_arg;
-	struct s_arg	arg;
-}					t_env;
-
-int					ft_printf(const char *format, ...);
-void				ft_error(t_env *env);
-
-#endif
+	if (env == NULL)
+	{
+		ft_putendl("Error");
+		exit(EXIT_FAILURE);
+	}
+	else
+	{
+		ft_putendl("Error");
+		exit(EXIT_FAILURE);
+	}
+}
