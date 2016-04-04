@@ -12,39 +12,10 @@
 
 #include "ft_printf.h"
 
-static t_arg		*ft_argnew(void)
-{
-	t_arg		*new_arg;
-
-	if (!(new_arg = (t_arg*)malloc(sizeof(t_arg))))
-		ft_error(NULL);
-	new_arg->next = NULL;
-	new_arg->prev = NULL;
-	return (new_arg);
-}
-
-static void			ft_argpush(t_arg **arg)
-{
-	t_arg		*tmp_arg;
-	t_arg		*prev_arg;
-
-	tmp_arg = *arg;
-	if (tmp_arg)
-	{
-		while (tmp_arg->next)
-			tmp_arg = tmp_arg->next;
-		prev_arg = tmp_arg;
-		tmp_arg->next = ft_argnew();
-		tmp_arg = tmp_arg->next;
-		tmp_arg->prev = prev_arg;
-	}
-	else
-		*arg = ft_argnew();
-}
-
 void				ft_read(const char *format, int i, t_env env, t_arg *arg)
 {
 	int				j;
+	t_help			help;
 
 	env.nb_arg = 0;
 	while (format[i])
@@ -53,22 +24,26 @@ void				ft_read(const char *format, int i, t_env env, t_arg *arg)
 		{
 			i++;
 			j = i;
-			while(format[j] && (format[j] != 's' || formart[j] != 'S' || 
-				formart[j] != 'p' || formart[j] != 'D' || formart[j] != 'i' ||
-				formart[j] != 'o' || formart[j] != 'O' || formart[j] != 'u' ||
-				formart[j] != 'U' || formart[j] != 'x' || formart[j] != 'X' ||
-				formart[j] != 'c' || formart[j] != 'C' || formart[j] != '#' ||
-				formart[j] != '0' || formart[j] != '-' || formart[j] != '+' ||
-				formart[j] != ' ' ) // manque h hh l ll j z
+			ft_initflag(format, &help, &j);
+			if (format[j] && (format[j] == 's' || format[j] == 'S' || 
+				format[j] == 'p' || format[j] == 'D' || format[j] == 'i' ||
+				format[j] == 'o' || format[j] == 'O' || format[j] == 'u' ||
+				format[j] == 'U' || format[j] == 'x' || format[j] == 'X' ||
+				format[j] == 'c' || format[j] == 'C')) // manque h hh l ll j z
 			{
-				j++;
 				env.nb_arg++;
-				ft_argpush(&arg);
+				arg->conv = format[j];
+				ft_argpush(&arg, help);
+				j++;
 			}
 			i = j;
 		}
+		else if (format[i])
+			ft_putchar(format[i]);
 		i++;
 	}
+	if (env.nb_arg != 0)
+		ft_initlstend(&arg);
 }
 
 int					ft_printf(const char *format, ...)

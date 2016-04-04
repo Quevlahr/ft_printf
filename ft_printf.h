@@ -16,11 +16,28 @@
 #include "libft/libft.h"
 #include <stdarg.h>
 
+typedef struct 		s_help
+{
+	int				flag_dz;
+	int				flag_zr;
+	int				flag_ms;
+	int				flag_ps;
+	int				flag_sp;
+	char			conv;
+}					t_help;
+
 typedef struct		s_arg
 {
-	void			*elem;
+	int				flag_dz;
+	int				flag_zr;
+	int				flag_ms;
+	int				flag_ps;
+	int				flag_sp;
+	char			conv;
 	struct s_arg	*next;
 	struct s_arg	*prev;
+	struct s_arg	*start;
+	struct s_arg	*end;
 }					t_arg;
 
 typedef struct		s_env
@@ -31,6 +48,13 @@ typedef struct		s_env
 }					t_env;
 
 int					ft_printf(const char *format, ...);
+
 void				ft_error(t_env *env);
+
+void				ft_initlstend(t_arg **arg);
+t_arg				*ft_argnew(t_help help);
+void				ft_argpush(t_arg **arg, t_help help);
+
+void				ft_initflag(const char *format, t_help *help, int *j);
 
 #endif

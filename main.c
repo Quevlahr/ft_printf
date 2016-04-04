@@ -26,17 +26,13 @@
 // 	return (0);
 // }
 
-#include "ft_printf.h"
-
 int	main()
 {
 	int	i;
 	int	j;
 
-	i = 0;
-	// i = ft_printf("Bonjour, %c, %d\n", 'h', 42);
-	ft_printf("\n\n\n");
-	j = printf("Bonjour, %bnalc, %-0 d\n", 'h', 42);
+	i = ft_printf("Bonjour\n");
+	j = printf("Bonjour\n");
 	printf("\n%d vs %d\n", i, j);
 
 return (0);
