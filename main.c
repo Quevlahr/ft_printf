@@ -31,8 +31,8 @@ int	main()
 	int	i;
 	int	j;
 
-	i = ft_printf("Bonjour\n");
-	j = printf("Bonjour\n");
+	i = ft_printf("Bonjour %0d\n", 42);
+	j = printf("Bonjour %0d\n", 42);
 	printf("\n%d vs %d\n", i, j);
 
 return (0);

@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-void				ft_read(const char *format, int i, t_env env, t_arg *arg)
+void				ft_read(const char *format, int i, t_env env, t_arg **arg)
 {
 	int				j;
 	t_help			help;
@@ -26,14 +26,15 @@ void				ft_read(const char *format, int i, t_env env, t_arg *arg)
 			j = i;
 			ft_initflag(format, &help, &j);
 			if (format[j] && (format[j] == 's' || format[j] == 'S' || 
-				format[j] == 'p' || format[j] == 'D' || format[j] == 'i' ||
-				format[j] == 'o' || format[j] == 'O' || format[j] == 'u' ||
-				format[j] == 'U' || format[j] == 'x' || format[j] == 'X' ||
-				format[j] == 'c' || format[j] == 'C')) // manque h hh l ll j z
+				format[j] == 'p' || format[j] == 'd' || format[j] == 'D' ||
+				format[j] == 'i' || format[j] == 'o' || format[j] == 'O' ||
+				format[j] == 'u' || format[j] == 'U' || format[j] == 'x' ||
+				format[j] == 'X' || format[j] == 'c' || format[j] == 'C')) // manque h hh l ll j z
 			{
 				env.nb_arg++;
-				arg->conv = format[j];
-				ft_argpush(&arg, help);
+				help.conv = format[j];
+				ft_argpush(arg, help);
+
 				j++;
 			}
 			i = j;
@@ -43,7 +44,12 @@ void				ft_read(const char *format, int i, t_env env, t_arg *arg)
 		i++;
 	}
 	if (env.nb_arg != 0)
-		ft_initlstend(&arg);
+	{
+		ft_initlstend(arg);
+		(*arg) = (*arg)->end;
+		ft_initlastarg(&help);
+		ft_argpush(arg, help);
+	}
 }
 
 int					ft_printf(const char *format, ...)
@@ -53,10 +59,11 @@ int					ft_printf(const char *format, ...)
 	t_env			env;
 	// char			*str;
 
-	arg = (t_arg*)malloc(sizeof(t_arg));
-	env.arg = *arg;
+	arg = NULL;
 	va_start(ap, format);
-	ft_read(format, 0, env, arg);
+	ft_read(format, 0, env, &arg);
+	env.arg = arg;
+	ft_useva(arg, env, ap);
 	// str = va_arg(ap, char *);
 	// str = va_arg(ap, char *);
 	// while (*format && *format != '%')

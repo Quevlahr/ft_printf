@@ -18,7 +18,11 @@ void			ft_initlstend(t_arg **arg)
 
 	tmp_arg = *arg;
 	while ((*arg)->next)
+	{
+	ft_putendl("fin?");
+
 		*arg = (*arg)->next;
+	}
 	tmp_arg = tmp_arg->start;
 	while (tmp_arg->next)
 	{
@@ -46,26 +50,24 @@ t_arg			*ft_argnew(t_help help)
 
 void			ft_argpush(t_arg **arg, t_help help)
 {
-	t_arg		*tmp_arg;
 	t_arg		*prev_arg;
 
-	tmp_arg = *arg;
-	if (tmp_arg)
+	if ((*arg))
 	{
-		while (tmp_arg->next)
-			tmp_arg = tmp_arg->next;
-		prev_arg = tmp_arg;
-		tmp_arg->next = ft_argnew(help);
-		tmp_arg = tmp_arg->next;
-		tmp_arg->prev = prev_arg;
-		tmp_arg->start = tmp_arg->next->start;
-		tmp_arg->end = tmp_arg;
-		prev_arg = prev_arg->start;
+		while ((*arg)->next)
+			(*arg) = (*arg)->next;
+		prev_arg = (*arg);
+		(*arg)->next = ft_argnew(help);
+		(*arg) = (*arg)->next;
+		(*arg)->prev = prev_arg;
+		(*arg)->start = prev_arg->start;
+		(*arg)->end = (*arg);
 	}
 	else
 	{
-		*arg = ft_argnew(help);
-		(*arg)->start = *arg;
-		(*arg)->end = *arg;
+		(*arg) = ft_argnew(help);
+		(*arg)->start = (*arg);
+		(*arg)->end = (*arg);
+		(*arg) = (*arg)->start;
 	}
 }

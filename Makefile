@@ -13,9 +13,11 @@
 NAME 		= 	ft_printf
 
 CC			= 	gcc
+
+CFLAGS		= -g
 # CFLAGS		= 	-Wall -Werror -Wextra
 
-SRC 		= 	main.c ft_printf.c utilities.c flags.c lstarg.c
+SRC 		= 	main.c ft_printf.c utilities.c flags.c lstarg.c va_list.c
 
 LIB			=	-Llibft -lft
 
@@ -46,4 +48,3 @@ fclean: clean
 	@echo "FCLEAN DONE"
 
 re: fclean all
-

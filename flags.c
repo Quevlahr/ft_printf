@@ -30,3 +30,13 @@ void			ft_initflag(const char *format, t_help *help, int *j)
 		(*j)++;
 	}
 }
+
+void			ft_initlastarg(t_help *help)
+{
+	help->conv = '0';
+	help->flag_dz = 0;
+	help->flag_zr = 0;
+	help->flag_ms = 0;
+	help->flag_ps = 0;
+	help->flag_sp = 0;
+}
