@@ -31,8 +31,12 @@ int	main()
 	int	i;
 	int	j;
 
-	i = ft_printf("Bonjour %0d\n", 42);
-	j = printf("Bonjour %0d\n", 42);
+	i = ft_printf("Bonjour %0d a %d %%#0.rs coucou\n%", 42, 1, "yoloswag");
+	ft_putchar('\n');
+	ft_putchar('\n');
+	ft_putchar('\n');
+	
+	j = printf("Bonjour %0d a %d %%#0.rs coucou\n%", 42, 1, "yoloswag");
 	printf("\n%d vs %d\n", i, j);
 
 return (0);

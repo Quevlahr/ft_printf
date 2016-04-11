@@ -12,25 +12,22 @@
 
 #include "ft_printf.h"
 
-void			flag_int(int a, t_arg *arg, t_env env, va_list ap)
+void			flag_int(int a, t_env *env, va_list ap)
 {
-	ft_putnbr(va_arg(ap, int));
-	env.nb_char++;
+	a = va_arg(ap, int);
+	ft_putnbr(a);
+	env->nb_char += ft_nbrlen(a);
 }
 
-void			flag_str(char *a, t_arg *arg, t_env env, va_list ap)
+void			flag_str(char *a, t_env *env, va_list ap)
 {
-	ft_putstr(va_arg(ap, char*));
-	env.nb_char++;
+	a = va_arg(ap, char*);
+	ft_putstr(a);
+	env->nb_char += ft_strlen(a);
 }
 
-void			ft_useva(t_arg *arg, t_env env, va_list ap)
+void			ft_useva(t_env *env, va_list ap, t_help *help)
 {
-	arg = arg->start;
-	while (arg->next)
-	{
-		(arg->conv == 'd') ? flag_int(0, arg, env, ap) : 0;
-		(arg->conv == 's') ? flag_str(NULL, arg, env, ap) : 0;
-		arg = arg->next;
-	}
+	(help->conv == 'd') ? flag_int(0, env, ap) : 0;
+	(help->conv == 's') ? flag_str(NULL, env, ap) : 0;
 }

@@ -25,21 +25,3 @@ void			ft_error(t_env *env)
 		exit(EXIT_FAILURE);
 	}
 }
-
-void			ft_print_details(t_arg *arg)
-{
-	arg = arg->start;
-	while (arg->next)
-	{
-		ft_putstr("Conversion = ");
-		ft_putchar(arg->conv);
-		ft_putendl(" : ");
-		arg->flag_dz == 1 ? ft_putendl("flag_dz"): 0;
-		arg->flag_zr == 1 ? ft_putendl("flag_zr"): 0;
-		arg->flag_ms == 1 ? ft_putendl("flag_ms"): 0;
-		arg->flag_ps == 1 ? ft_putendl("flag_ps"): 0;
-		arg->flag_sp == 1 ? ft_putendl("flag_sp"): 0;
-		ft_putchar('\n');
-		arg = arg->next;
-	}
-}

@@ -14,8 +14,8 @@ NAME 		= 	ft_printf
 
 CC			= 	gcc
 
-CFLAGS		= -g
-# CFLAGS		= 	-Wall -Werror -Wextra
+CFLAGS		=	-g
+# CFLAGS		= 	-Wall -Werror -Wextra -g
 
 SRC 		= 	main.c ft_printf.c utilities.c flags.c lstarg.c va_list.c
 
