@@ -19,6 +19,7 @@ void			ft_initflag(const char *format, t_help *help, int *i)
 	help->flag_ms = 0;
 	help->flag_ps = 0;
 	help->flag_sp = 0;
+	help->conv = '\0';
 	while (format[*i] && (format[*i] == '#' || format[*i] == '0' ||
 		format[*i] == '-' || format[*i] == '+' || format[*i] == ' ' ||
 		format[*i] == '.'))

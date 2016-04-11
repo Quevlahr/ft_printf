@@ -20,20 +20,22 @@ void				ft_read(const char *format, int i, t_env *env, va_list ap)
 	env->nb_char = 0;
 	while (format[i])
 	{
-			if (format[i] == '%' && format[i + 1] == '\0')
-			{
-				ft_putendl("YOLO");
-			}	
-
 		if (format[i] == '%' && format[i + 1] != '\0' && format[i + 1] != '%')
 		{
 			i++;
-			ft_putendl("wehf");
 			ft_initflag(format, &help, &i);
 			ft_initconv(&help, &i, env, ap);
 		}
 		else if (format[i])
 		{
+			// (format[i] == 'y') ? ft_putendl("ICITAMERE") : 0;
+			if (ft_strcmp(format + i, "yoloswag") == 0)
+			{
+				ft_putendl("format :");
+				ft_putendl(format);
+				ft_putchar('\n');
+				ft_putendl("fin format");
+			}
 			(format[i] == '%') ? i++ : 0;
 			env->nb_char++;
 			ft_putchar(format[i]);
