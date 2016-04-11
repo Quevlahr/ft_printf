@@ -20,15 +20,15 @@ void				ft_read(const char *format, int i, t_env *env, va_list ap)
 	env->nb_char = 0;
 	while (format[i])
 	{
+			if (format[i] == '%' && format[i + 1] == '\0')
+			{
+				ft_putendl("YOLO");
+			}	
 
 		if (format[i] == '%' && format[i + 1] != '\0' && format[i + 1] != '%')
 		{
-			if (format[i] == '%' && format[i + 1] == '\0')
-			{
-				i++;
-				ft_putendl("YOLO");
-			}	
 			i++;
+			ft_putendl("wehf");
 			ft_initflag(format, &help, &i);
 			ft_initconv(&help, &i, env, ap);
 		}
