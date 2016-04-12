@@ -15,6 +15,7 @@
 
 #include "libft/libft.h"
 #include <stdarg.h>
+#include <locale.h>
 
 typedef struct 		s_help
 {
@@ -23,6 +24,7 @@ typedef struct 		s_help
 	int				flag_ms;
 	int				flag_ps;
 	int				flag_sp;
+	int				nb_sp;
 	char			conv;
 }					t_help;
 
@@ -37,6 +39,7 @@ int					ft_printf(const char *format, ...);
 
 void				ft_error(t_env *env);
 
+void				ft_initdigit(const char *format, t_help *help, int *i);
 void				ft_initflag(const char *format, t_help *help, int *j);
 void				ft_initconv(t_help *help, int *i, t_env *env, va_list ap);
 

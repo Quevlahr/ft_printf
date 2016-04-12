@@ -15,13 +15,7 @@
 void			ft_error(t_env *env)
 {
 	if (env == NULL)
-	{
-		ft_putendl("Error");
 		exit(EXIT_FAILURE);
-	}
 	else
-	{
-		ft_putendl("Error");
 		exit(EXIT_FAILURE);
-	}
 }

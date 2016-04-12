@@ -32,4 +32,5 @@ void			ft_useva(t_env *env, va_list ap, t_help *help)
 	(help->conv == '\0') ? ft_error(NULL) : 0;
 	(help->conv == 'd') ? flag_int(0, env, ap) : 0;
 	(help->conv == 's') ? flag_str(NULL, env, ap) : 0;
+	(help->nb_sp != 0) ? flag_digit();
 }

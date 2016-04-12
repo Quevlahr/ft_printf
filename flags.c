@@ -12,6 +12,13 @@
 
 #include "ft_printf.h"
 
+void			ft_initdigit(const char *format, t_help *help, int *i)
+{
+	help->nb_sp = 0;
+	if (help->flag_zr == 1)
+		nb_sp = ft_atoi(format + *i);
+}
+
 void			ft_initflag(const char *format, t_help *help, int *i)
 {
 	help->flag_dz = 0;
@@ -22,7 +29,7 @@ void			ft_initflag(const char *format, t_help *help, int *i)
 	help->conv = '\0';
 	while (format[*i] && (format[*i] == '#' || format[*i] == '0' ||
 		format[*i] == '-' || format[*i] == '+' || format[*i] == ' ' ||
-		format[*i] == '.'))
+		format[*i] == '.' || ft_isdigit(format[*i]) == 1))
 	{
 		(format[*i] == '#') ? help->flag_dz = 1 : 0;
 		(format[*i] == '0') ? help->flag_zr = 1 : 0;

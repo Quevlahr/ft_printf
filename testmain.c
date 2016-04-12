@@ -13,9 +13,6 @@
 #include "ft_printf.h"
 #include <stdio.h>
 
-// setlocale(LC_ALL, "en_US.UTF-8");
-
-
 // int					main(int ac, char **av)
 // {
 // 	if (ac == 2)
@@ -28,15 +25,19 @@
 
 int	main()
 {
+	setlocale(LC_ALL, "en_US.UTF-8");
+	
 	int	i;
 	int	j;
 
-	i = ft_printf("Bonjour %0d a %d %s#0.rs coucou\n", 42, 1, "yoloswag");
+	i = ft_printf("%5%");
+	// i = ft_printf("Bon%5%jour %0d %s#0.rs\n", 42, "yoloswag");
 	ft_putchar('\n');
 	ft_putchar('\n');
 	ft_putchar('\n');
 	
-	j = printf("Bonjour %0d a %d %s#0.rs coucou\n", 42, 1, "yoloswag");
+	j = printf("%%");
+	// j = printf("Bon%5%jour %0d %s#0.rs\n", 42, "yoloswag");
 	printf("\n%d vs %d\n", i, j);
 
 return (0);
