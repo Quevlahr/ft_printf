@@ -20,7 +20,7 @@ void				ft_read(const char *format, int i, t_env *env, va_list ap)
 	env->nb_char = 0;
 	while (format[i])
 	{
-		if (format[i] == '%' && format[i + 1] != '\0' && format[i + 1] != '%')
+		if (format[i] == '%')
 		{
 			i++;
 			ft_initflag(format, &help, &i);
@@ -28,9 +28,6 @@ void				ft_read(const char *format, int i, t_env *env, va_list ap)
 		}
 		else if (format[i] != '\0')
 		{
-			if (i != 0 && format[i - 1] == '\0')
-				ft_putendl("OMG");
-			(format[i] == '%') ? i++ : 0;
 			env->nb_char++;
 			ft_putchar(format[i]);
 			i++;

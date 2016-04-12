@@ -48,7 +48,11 @@ void			ft_initconv(t_help *help, int *i, t_env *env, va_list ap)
 		help->conv = format[*i];
 		ft_useva(env, ap, help);
 		(*i)++;
-		if (format[*i] == '\0')
-			ft_putendl("PEUT ETRE LA");
+	}
+	else if (format[*i] == '%')
+	{
+		ft_putchar('%');
+		env->nb_char++;
+		(*i)++;
 	}
 }
