@@ -12,6 +12,42 @@
 
 #include "ft_printf.h"
 
+void			flag_digit(int a, t_env *env, t_help *help)
+{
+	if (help->flag_zr == 1 && help->flag_ms == 0)
+		while (a < help->nb_sp)
+		{
+			ft_putchar('0');
+			a++;
+			env->nb_char++;
+		}
+	else
+	{
+		if (help->flag_ms == 1)
+		{
+			env->nb_char++;
+			ft_putchar('%');
+		}
+		while (a < help->nb_sp)
+		{
+			ft_putchar(' ');
+			a++;
+			env->nb_char++;
+		}
+	}
+}
+
+void			flag_hexa(int a, t_env *env, va_list ap)
+{
+	char		*str;
+
+	a = va_arg(ap, int);
+	ft_itoabase(a, 16);
+	str = ft_itoa(a);
+	a = ft_atoihexa(str);
+	printf("%ld\n", a);
+}
+
 void			flag_int(int a, t_env *env, va_list ap)
 {
 	a = va_arg(ap, int);
@@ -32,5 +68,5 @@ void			ft_useva(t_env *env, va_list ap, t_help *help)
 	(help->conv == '\0') ? ft_error(NULL) : 0;
 	(help->conv == 'd') ? flag_int(0, env, ap) : 0;
 	(help->conv == 's') ? flag_str(NULL, env, ap) : 0;
-	(help->nb_sp != 0) ? flag_digit();
+	(help->conv == 'x') ? flag_hexa(0, env, ap) : 0;
 }

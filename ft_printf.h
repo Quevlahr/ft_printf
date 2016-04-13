@@ -39,10 +39,11 @@ int					ft_printf(const char *format, ...);
 
 void				ft_error(t_env *env);
 
-void				ft_initdigit(const char *format, t_help *help, int *i);
+void				ft_initdigit(const char *format, t_help *help, int *i, t_env *env);
 void				ft_initflag(const char *format, t_help *help, int *j);
 void				ft_initconv(t_help *help, int *i, t_env *env, va_list ap);
 
+void				flag_digit(int a, t_env *env, t_help *help);
 void				ft_useva(t_env *env, va_list ap, t_help *help);
 
 #endif

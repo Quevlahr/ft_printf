@@ -23,20 +23,20 @@
 // 	return (0);
 // }
 
-int	main()
+int				main(void)
 {
 	setlocale(LC_ALL, "en_US.UTF-8");
 	
 	int	i;
 	int	j;
 
-	i = ft_printf("%5%");
+	i = ft_printf("%x", 42);
 	// i = ft_printf("Bon%5%jour %0d %s#0.rs\n", 42, "yoloswag");
 	ft_putchar('\n');
 	ft_putchar('\n');
 	ft_putchar('\n');
 	
-	j = printf("%%");
+	j = printf("%x", 42);
 	// j = printf("Bon%5%jour %0d %s#0.rs\n", 42, "yoloswag");
 	printf("\n%d vs %d\n", i, j);
 

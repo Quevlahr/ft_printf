@@ -24,7 +24,7 @@ void				ft_read(const char *format, int i, t_env *env, va_list ap)
 		{
 			i++;
 			ft_initflag(format, &help, &i);
-			ft_initdigit(format, &help, &i);
+			ft_initdigit(format, &help, &i, env);
 			ft_initconv(&help, &i, env, ap);
 		}
 		else if (format[i] != '\0')
