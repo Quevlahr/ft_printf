@@ -37,12 +37,12 @@ void			flag_digit(int a, t_env *env, t_help *help)
 	}
 }
 
-void			flag_hexa(int a, t_env *env, va_list ap)
+void			flag_hexa(int a, t_env *env, va_list ap, int maj)
 {
 	char		*str;
 
 	a = va_arg(ap, int);
-	str = ft_itoabase(a, 16, 0);
+	str = ft_itoabase(a, 16, maj);
 	ft_putstr(str);
 	env->nb_char += ft_strlen(str);
 	ft_strdel(&str);
@@ -68,5 +68,6 @@ void			ft_useva(t_env *env, va_list ap, t_help *help)
 	(help->conv == '\0') ? ft_error(NULL) : 0;
 	(help->conv == 'd') ? flag_int(0, env, ap) : 0;
 	(help->conv == 's') ? flag_str(NULL, env, ap) : 0;
-	(help->conv == 'x') ? flag_hexa(0, env, ap) : 0;
+	(help->conv == 'x') ? flag_hexa(0, env, ap, 0) : 0;
+	(help->conv == 'X') ? flag_hexa(0, env, ap, 1) : 0;
 }

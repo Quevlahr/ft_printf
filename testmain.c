@@ -30,13 +30,13 @@ int				main(void)
 	int	i;
 	int	j;
 
-	i = ft_printf("%x", 42);
+	i = ft_printf("%x, %X\n", 42, 420);
 	// i = ft_printf("Bon%5%jour %0d %s#0.rs\n", 42, "yoloswag");
 	ft_putchar('\n');
 	ft_putchar('\n');
 	ft_putchar('\n');
 	
-	j = printf("%x", 42);
+	j = printf("%x, %X\n", 42, 420);
 	// j = printf("Bon%5%jour %0d %s#0.rs\n", 42, "yoloswag");
 	printf("\n%d vs %d\n", i, j);
 
