@@ -42,10 +42,10 @@ void			flag_hexa(int a, t_env *env, va_list ap)
 	char		*str;
 
 	a = va_arg(ap, int);
-	ft_itoabase(a, 16);
-	str = ft_itoa(a);
-	a = ft_atoihexa(str);
-	printf("%ld\n", a);
+	str = ft_itoabase(a, 16, 0);
+	ft_putstr(str);
+	env->nb_char += ft_strlen(str);
+	ft_strdel(&str);
 }
 
 void			flag_int(int a, t_env *env, va_list ap)
@@ -60,7 +60,7 @@ void			flag_str(char *a, t_env *env, va_list ap)
 	a = va_arg(ap, char*);
 	ft_putstr(a);
 	env->nb_char += ft_strlen(a);
-
+	ft_strdel(&a);
 }
 
 void			ft_useva(t_env *env, va_list ap, t_help *help)
