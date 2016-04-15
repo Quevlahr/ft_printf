@@ -12,40 +12,39 @@
 
 #include "ft_printf.h"
 
-void			ft_initdigit(const char *format, t_help *help, int *i, t_env *env)
+void			ft_initdigit(const char *format, t_env *env, int *i)
 {
-	help->nb_sp = 0;
-	help->nb_sp = ft_atoi(format + *i);
-	if (help->nb_sp != 0)
+	env->nb_sp = 0;
+	env->nb_sp = ft_atoi(format + *i);
+	if (env->nb_sp != 0)
 	{
 		env->nb_arg++;
-		(*i) += ft_nbrlen(help->nb_sp);
-		(help->nb_sp != 0) ? flag_digit(1, env, help) : 0;
+		(*i) += ft_nbrlen(env->nb_sp);
 	}
 }
 
-void			ft_initflag(const char *format, t_help *help, int *i)
+void			ft_initflag(const char *format, t_env *env, int *i)
 {
-	help->flag_dz = 0;
-	help->flag_zr = 0;
-	help->flag_ms = 0;
-	help->flag_ps = 0;
-	help->flag_sp = 0;
-	help->conv = '\0';
+	env->flag_dz = 0;
+	env->flag_zr = 0;
+	env->flag_ms = 0;
+	env->flag_ps = 0;
+	env->flag_sp = 0;
+	env->conv = '\0';
 	while (format[*i] && (format[*i] == '#' || format[*i] == '0' ||
 		format[*i] == '-' || format[*i] == '+' || format[*i] == ' ' ||
 		format[*i] == '.'))
 	{
-		(format[*i] == '#') ? help->flag_dz = 1 : 0;
-		(format[*i] == '0') ? help->flag_zr = 1 : 0;
-		(format[*i] == '-') ? help->flag_ms = 1 : 0;
-		(format[*i] == '+') ? help->flag_ps = 1 : 0;
-		(format[*i] == ' ') ? help->flag_sp = 1 : 0;
+		(format[*i] == '#') ? env->flag_dz = 1 : 0;
+		(format[*i] == '0') ? env->flag_zr = 1 : 0;
+		(format[*i] == '-') ? env->flag_ms = 1 : 0;
+		(format[*i] == '+') ? env->flag_ps = 1 : 0;
+		(format[*i] == ' ') ? env->flag_sp = 1 : 0;
 		(*i)++;
 	}
 }
 
-void			ft_initconv(t_help *help, int *i, t_env *env, va_list ap)
+void			ft_initconv(int *i, t_env *env, va_list ap)
 {
 	const char	*format;
 
@@ -57,11 +56,11 @@ void			ft_initconv(t_help *help, int *i, t_env *env, va_list ap)
 		format[*i] == 'X' || format[*i] == 'c' || format[*i] == 'C')) // manque h hh l ll j z
 	{
 		env->nb_arg++;
-		help->conv = format[*i];
-		ft_useva(env, ap, help);
+		env->conv = format[*i];
+		ft_useva(env, ap);
 		(*i)++;
 	}
-	else if (format[*i] == '%' && help->flag_ms == 0)
+	else if (format[*i] == '%' && env->flag_ms == 0)
 	{
 		ft_putchar('%');
 		env->nb_char++;

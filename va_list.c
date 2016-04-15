@@ -12,10 +12,10 @@
 
 #include "ft_printf.h"
 
-void			flag_digit(int a, t_env *env, t_help *help)
+void			flag_digit(int a, t_env *env)
 {
-	if (help->flag_zr == 1 && help->flag_ms == 0)
-		while (a < help->nb_sp)
+	if (env->flag_zr == 1 && env->flag_ms == 0)
+		while (a < env->nb_sp)
 		{
 			ft_putchar('0');
 			a++;
@@ -23,12 +23,12 @@ void			flag_digit(int a, t_env *env, t_help *help)
 		}
 	else
 	{
-		if (help->flag_ms == 1)
+		if (env->flag_ms == 1)
 		{
 			env->nb_char++;
 			ft_putchar('%');
 		}
-		while (a < help->nb_sp)
+		while (a < env->nb_sp)
 		{
 			ft_putchar(' ');
 			a++;
@@ -51,6 +51,8 @@ void			flag_hexa(int a, t_env *env, va_list ap, int maj)
 void			flag_int(int a, t_env *env, va_list ap)
 {
 	a = va_arg(ap, int);
+	if (a < 0)
+		env->nb_char++;
 	ft_putnbr(a);
 	env->nb_char += ft_nbrlen(a);
 }
@@ -63,11 +65,26 @@ void			flag_str(char *a, t_env *env, va_list ap)
 	ft_strdel(&a);
 }
 
-void			ft_useva(t_env *env, va_list ap, t_help *help)
+void			ft_useva(t_env *env, va_list ap)
 {
-	(help->conv == '\0') ? ft_error(NULL) : 0;
-	(help->conv == 'd') ? flag_int(0, env, ap) : 0;
-	(help->conv == 's') ? flag_str(NULL, env, ap) : 0;
-	(help->conv == 'x') ? flag_hexa(0, env, ap, 0) : 0;
-	(help->conv == 'X') ? flag_hexa(0, env, ap, 1) : 0;
+	if (env->flag_sp == 1)
+	{
+		ft_putchar(' ');
+		env->nb_char++;
+	}
+	if (env->flag_ms == 1)
+	{
+		(env->conv == '\0') ? ft_error(NULL) : 0;
+		(env->conv == 'd') ? flag_int(0, env, ap) : 0;
+		(env->conv == 's') ? flag_str(NULL, env, ap) : 0;
+		(env->conv == 'x') ? flag_hexa(0, env, ap, 0) : 0;
+		(env->conv == 'X') ? flag_hexa(0, env, ap, 1) : 0;
+		(env->nb_sp != 0) ? flag_digit(1, env) : 0;		
+	}
+	(env->conv == '\0') ? ft_error(NULL) : 0;
+	(env->conv == 'd') ? flag_int(0, env, ap) : 0;
+	(env->conv == 's') ? flag_str(NULL, env, ap) : 0;
+	(env->conv == 'x') ? flag_hexa(0, env, ap, 0) : 0;
+	(env->conv == 'X') ? flag_hexa(0, env, ap, 1) : 0;
+	(env->nb_sp != 0) ? flag_digit(1, env) : 0;
 }
