@@ -30,15 +30,13 @@ int				main(void)
 	int	i;
 	int	j;
 
-	ft_putchar('[');
-	i = ft_printf("%5%", 45);
-	ft_putchar(']');
+	i = ft_printf("[%5%]");
 	// i = ft_printf("Bon%5%jour %0d %s#0.rs\n", 42, "yoloswag");
 	ft_putchar('\n');
 	ft_putchar('\n');
 	ft_putchar('\n');
 	
-	j = printf("[%5%]", 45);
+	j = printf("[%5%]");
 	// j = printf("Bon%5%jour %0d %s#0.rs\n", 42, "yoloswag");
 	printf("\n%d vs %d\n", i, j);
 

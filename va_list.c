@@ -67,6 +67,16 @@ void			flag_str(char *a, t_env *env, va_list ap)
 
 void			ft_useva(t_env *env, va_list ap)
 {
+	if (env->nb_sp != 0)
+	{
+		int		i = 0;
+		while (i < env->nb_sp)
+		{
+			ft_putchar(' ');
+			i++;
+		}
+		env->nb_char += env->nb_sp;
+	}
 	// if (env->flag_sp == 1)
 	// {
 	// 	ft_putchar(' ');
