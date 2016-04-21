@@ -53,17 +53,18 @@ void			ft_initconv(int *i, t_env *env, va_list ap)
 		format[*i] == 'p' || format[*i] == 'd' || format[*i] == 'D' ||
 		format[*i] == 'i' || format[*i] == 'o' || format[*i] == 'O' ||
 		format[*i] == 'u' || format[*i] == 'U' || format[*i] == 'x' ||
-		format[*i] == 'X' || format[*i] == 'c' || format[*i] == 'C')) // manque h hh l ll j z
+		format[*i] == 'X' || format[*i] == 'c' || format[*i] == 'C' ||
+		format[*i] == '%')) // manque h hh l ll j z
 	{
 		env->nb_arg++;
 		env->conv = format[*i];
 		ft_useva(env, ap);
 		(*i)++;
 	}
-	else if (format[*i] == '%' && env->flag_ms == 0)
-	{
-		ft_putchar('%');
-		env->nb_char++;
-		(*i)++;
-	}
+	// else if (format[*i] == '%' && env->flag_ms == 0)
+	// {
+	// 	ft_putchar('%');
+	// 	env->nb_char++;
+	// 	(*i)++;
+	// }
 }
