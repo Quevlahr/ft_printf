@@ -25,7 +25,7 @@ void				ft_read(const char *format, int i, t_env *env, va_list ap)
 			ft_initdigit(format, env, &i);
 			ft_initconv(&i, env, ap);
 		}
-		else if (format[i] != '\0')
+		else
 		{
 			env->nb_char++;
 			ft_putchar(format[i]);

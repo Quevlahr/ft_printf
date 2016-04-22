@@ -19,3 +19,26 @@ void			ft_error(t_env *env)
 	else
 		exit(EXIT_FAILURE);
 }
+
+void			ft_print_env(t_env *env)
+{
+	ft_putstr("flag # = ");
+	ft_putnbrdl(env->flag_dz);
+	ft_putstr("flag 0 = ");
+	ft_putnbrdl(env->flag_zr);
+	ft_putstr("flag - = ");
+	ft_putnbrdl(env->flag_ms);
+	ft_putstr("flag + = ");
+	ft_putnbrdl(env->flag_ps);
+	ft_putstr("flag ' ' = ");
+	ft_putnbrdl(env->flag_sp);
+	ft_putstr("nb ' ' = ");
+	ft_putnbrdl(env->nb_sp);
+	ft_putstr("nb arg = ");
+	ft_putnbrdl(env->nb_arg);
+	ft_putstr("nb char = ");
+	ft_putnbrdl(env->nb_char);
+	ft_putstr("conversion = ");
+	ft_putnbrdl(env->conv);
+	ft_putchar('\n');
+}

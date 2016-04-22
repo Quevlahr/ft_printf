@@ -53,8 +53,8 @@ void			flag_int(int a, t_env *env, va_list ap)
 	a = va_arg(ap, int);
 	if (a < 0)
 		env->nb_char++;
-	ft_putnbr(a);
-	env->nb_char += ft_nbrlen(a);
+	ft_space_int(a, env, 0);
+
 }
 
 void			flag_str(char *a, t_env *env, va_list ap)
@@ -67,35 +67,15 @@ void			flag_str(char *a, t_env *env, va_list ap)
 
 void			ft_useva(t_env *env, va_list ap)
 {
-	if (env->nb_sp != 0)
-	{
-		int		i = 0;
-		while (i < env->nb_sp)
-		{
-			ft_putchar(' ');
-			i++;
-		}
-		env->nb_char += env->nb_sp;
-	}
-	// if (env->flag_sp == 1)
-	// {
-	// 	ft_putchar(' ');
-	// 	env->nb_char++;
-	// }
-	// if (env->flag_ms == 1)
-	// {
-	// 	(env->conv == '\0') ? ft_error(NULL) : 0;
-	// 	(env->conv == 'd') ? flag_int(0, env, ap) : 0;
-	// 	(env->conv == 's') ? flag_str(NULL, env, ap) : 0;
-	// 	(env->conv == 'x') ? flag_hexa(0, env, ap, 0) : 0;
-	// 	(env->conv == 'X') ? flag_hexa(0, env, ap, 1) : 0;
-	// 	(env->nb_sp != 0) ? flag_digit(1, env) : 0;		
-	// }
-	(env->conv == '\0') ? ft_error(NULL) : 0;
-	(env->conv == 'd') ? flag_int(0, env, ap) : 0;
+	// (env->conv == '\0') ? ft_error(NULL) : 0;
 	(env->conv == 's') ? flag_str(NULL, env, ap) : 0;
+	(env->conv == 'd') ? flag_int(0, env, ap) : 0;
 	(env->conv == 'x') ? flag_hexa(0, env, ap, 0) : 0;
 	(env->conv == 'X') ? flag_hexa(0, env, ap, 1) : 0;
-	(env->conv == '%') ? ft_putchar('%') : 0;
-	(env->nb_sp != 0) ? flag_digit(1, env) : 0;
+	if (env->conv == '%')
+	{
+		ft_space_int(0, env, 0);
+		ft_putchar('%');
+	}
+	// (env->nb_sp != 0) ? flag_digit(1, env) : 0;
 }

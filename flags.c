@@ -42,6 +42,7 @@ void			ft_initflag(const char *format, t_env *env, int *i)
 		(format[*i] == ' ') ? env->flag_sp = 1 : 0;
 		(*i)++;
 	}
+	(env->flag_ms == 1) ? env->flag_zr = 0 : 0;
 }
 
 void			ft_initconv(int *i, t_env *env, va_list ap)
