@@ -36,6 +36,7 @@ int					ft_printf(const char *format, ...);
 
 void				ft_error(t_env *env);
 void				ft_print_env(t_env *env);
+char				*ft_negative_hexa(char *s1, int maj);
 
 void				ft_initdigit(const char *format, t_env *env, int *i);
 void				ft_initflag(const char *format, t_env *env, int *j);
@@ -45,5 +46,6 @@ void				flag_digit(int a, t_env *env);
 void				ft_useva(t_env *env, va_list ap);
 
 void				ft_space_int(int a, t_env *env, int tmp);
+void				ft_space_str(char *str, t_env *env, int tmp);
 
 #endif
