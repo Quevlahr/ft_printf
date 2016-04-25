@@ -12,10 +12,35 @@
 
 #include "ft_printf.h"
 
+int			ft_atoi2(const char *str)
+{
+	long	res;
+	int		sign;
+	int		i;
+
+	sign = 1;
+	res = 0;
+	i = 0;
+	if (str[i] == '\0')
+		return (0);
+	if (str[i] == '+' || str[i] == '-')
+	{
+		if (str[i] == '-')
+			sign *= -1;
+		i++;
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		res = (res + (str[i] - '0')) * 10;
+		i++;
+	}
+	return ((res * sign) / 10);
+}
+
 void			ft_initdigit(const char *format, t_env *env, int *i)
 {
 	env->nb_sp = 0;
-	env->nb_sp = ft_atoi(format + *i);
+	env->nb_sp = ft_atoi2(format + *i);
 	if (env->nb_sp != 0)
 	{
 		env->nb_arg++;
@@ -43,6 +68,9 @@ void			ft_initflag(const char *format, t_env *env, int *i)
 		(*i)++;
 	}
 	(env->flag_ms == 1) ? env->flag_zr = 0 : 0;
+	(env->flag_sp == 1 && env->nb_sp == 0) ? env->nb_sp = 1 : 0;
+	if (env->flag_sp == 1)
+		ft_putendl("EXTRCYVUBINOM");
 }
 
 void			ft_initconv(int *i, t_env *env, va_list ap)
