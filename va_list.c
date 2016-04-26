@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static void		flag_hexa(long long a, t_env *env, va_list ap, int maj)
+static void		flag_hexa(long long a, t_env *env, va_list ap)
 {
 	char		*str;
 	char		*tmp;
@@ -26,7 +26,7 @@ static void		flag_hexa(long long a, t_env *env, va_list ap, int maj)
 	else if (env->flag_ll == 1)
 		a = va_arg(ap, long long);
 	value = a < 0 ? 4294967296 + (long long)a : (long long)a;
-	str = ft_itoabase_ull(value, 16, maj);
+	str = ft_itoabase_ull(value, 16, env->maj);
 	ft_space_str(str, env, 0);
 	ft_strdel(&str);
 }
@@ -71,8 +71,8 @@ void			ft_useva(t_env *env, va_list ap)
 	c[0] = '%';
 	(env->conv == 's') ? flag_str(env, ap) : 0;
 	(env->conv == 'd') ? flag_int(0, env, ap) : 0;
-	(env->conv == 'x') ? flag_hexa(0, env, ap, 0) : 0;
-	(env->conv == 'X') ? flag_hexa(0, env, ap, 1) : 0;
+	(env->conv == 'x') ? flag_hexa(0, env, ap) : 0;
+	(env->conv == 'X') ? flag_hexa(0, env, ap) : 0;
 	if (env->conv == '%')
 		ft_space_str(c, env, 0); // passe pas le moulitest avec &(env->conv)
 	ft_strdel(&c);

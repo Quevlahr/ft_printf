@@ -20,11 +20,11 @@ int				main(void)
 	int	i;
 	int	j;
 
-	i = ft_printf("[@moulitest: %lx]\n", 4294967296);
+	i = ft_printf("[@moulitest: %#lX]\n", 4294967296);
 	ft_putchar('\n');
 	ft_putchar('\n');
 	ft_putchar('\n');
-	j = printf("[@moulitest: %lx]\n", 4294967296);
+	j = printf("[@moulitest: %#lX]\n", 4294967296);
 	printf("\n%d vs %d\n", i, j);
 
 return (0);

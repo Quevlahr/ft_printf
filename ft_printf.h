@@ -31,11 +31,12 @@ typedef struct		s_env
 	int				flag_ms;
 	int				flag_ps;
 	int				flag_sp;
+
+	int				maj;
 	int				nb_sp;
 	char			conv;
-
-	int				nb_arg;
 	int				nb_char;
+	int				nb_arg;
 	const char		*str;
 }					t_env;
 
@@ -56,6 +57,8 @@ void				ft_space_ll(long long a, t_env *env, int tmp);
 void				ft_space_long(long a, t_env *env, int tmp);
 
 void				ft_null_str(t_env *env);
+
+void				flag_dz_app(t_env *env, char *str);
 
 
 

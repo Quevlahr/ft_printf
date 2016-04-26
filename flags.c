@@ -26,6 +26,7 @@ static void		ft_initenv(t_env *env)
 	env->flag_j = 0;
 	env->flag_z = 0;
 	env->flag_sp = 0;
+	env->maj = 0;
 	env->conv = '\0';
 }
 
@@ -99,6 +100,7 @@ void			ft_initconv(int *i, t_env *env, va_list ap)
 		format[*i] == 'X' || format[*i] == 'c' || format[*i] == 'C' ||
 		format[*i] == '%')) // manque h hh l ll j z
 	{
+		(format[*i] >= 'A' && format[*i] <= 'Z') ? env->maj = 1 : 0;
 		env->nb_arg++;
 		env->conv = format[*i];
 		ft_useva(env, ap);

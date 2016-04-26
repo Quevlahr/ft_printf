@@ -14,14 +14,19 @@
 
 void			ft_space_str(char *str, t_env *env, int tmp)
 {
-	if (ft_strlen(str) >= env->nb_sp)
+	int			diese;
+
+	diese = (env->flag_dz == 1) ? 2 : 0;
+	if (ft_strlen(str) + diese >= env->nb_sp)
 	{
+		flag_dz_app(env, str);
 		ft_putstr(str);
 		env->nb_char += ft_strlen(str);
 	}
 	else if (env->flag_ms == 0 && env->flag_zr == 1)
 	{
-		tmp = ft_strlen(str);
+		tmp = ft_strlen(str) + diese;
+		flag_dz_app(env, str);
 		while (tmp < env->nb_sp)
 		{
 			ft_putchar('0');
@@ -33,9 +38,10 @@ void			ft_space_str(char *str, t_env *env, int tmp)
 	}
 	else if (env->flag_ms == 1)
 	{
+		flag_dz_app(env, str);
 		ft_putstr(str);
 		env->nb_char += ft_strlen(str);
-		tmp = ft_strlen(str);
+		tmp = ft_strlen(str) + diese;
 		while (tmp < env->nb_sp)
 		{
 			ft_putchar(' ');
@@ -45,12 +51,13 @@ void			ft_space_str(char *str, t_env *env, int tmp)
 	}
 	else
 	{
-		while (tmp < (env->nb_sp - ft_strlen(str)))
+		while (tmp < (env->nb_sp - (ft_strlen(str) + diese)))
 		{
 			ft_putchar(' ');
 			tmp++;
 			env->nb_char++;
 		}
+		flag_dz_app(env, str);
 		ft_putstr(str);
 		env->nb_char += ft_strlen(str);
 	}

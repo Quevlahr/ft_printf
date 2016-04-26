@@ -12,7 +12,11 @@
 
 #include "ft_printf.h"
 
-void			flag_dz_app()
+void			flag_dz_app(t_env *env, char *str)
 {
-	
+	if (env->flag_dz == 1 && ft_strcmp(str, "0") != 0)
+	{
+		(env->maj == 1) ? ft_putstr("0X") : ft_putstr("0x");
+		env->nb_char += 2;
+	}
 }
