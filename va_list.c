@@ -19,20 +19,37 @@ static void		flag_hexa(int a, t_env *env, va_list ap, int maj)
 	long long	value;
 
 	tmp = NULL;
-	a = va_arg(ap, int);
+	if (env->flag_l == 0 && env->flag_ll == 0)
+		a = va_arg(ap, int);
+	else if (env->flag_l == 1)
+		a = va_arg(ap, long);
+	else if (env->flag_ll == 1)
+		a = va_arg(ap, long long);
 	value = a < 0 ? 4294967296 + (long long)a : (long long)a;
 	str = ft_itoabase_ull(value, 16, maj);
 	ft_space_str(str, env, 0);
 	ft_strdel(&str);
 }
 
-static void		flag_int(int a, t_env *env, va_list ap)
+static void		flag_int(long long a, t_env *env, va_list ap)
 {
-	a = va_arg(ap, int);
+	if (env->flag_l == 0 && env->flag_ll == 0)
+	{
+		a = va_arg(ap, int);
+		ft_space_int(a, env, 0);
+	}
+	else if (env->flag_l == 1)
+	{
+		a = va_arg(ap, long);
+		ft_space_long(a, env, 0);
+	}
+	else if (env->flag_ll == 1)
+	{
+		a = va_arg(ap, long long);
+		ft_space_ll(a, env, 0);
+	}
 	if (a < 0)
 		env->nb_char++;
-	ft_space_int(a, env, 0);
-
 }
 
 static void		flag_str(t_env *env, va_list ap)
@@ -40,7 +57,10 @@ static void		flag_str(t_env *env, va_list ap)
 	char		*a;
 
 	a = va_arg(ap, char *);
-	ft_space_str(a, env, 0);
+	if (a == NULL)
+		ft_null_str(env);
+	else
+		ft_space_str(a, env, 0);
 }
 
 void			ft_useva(t_env *env, va_list ap)

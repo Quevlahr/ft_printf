@@ -12,4 +12,8 @@
 
 #include "ft_printf.h"
 
-
+void			ft_null_str(t_env *env)
+{
+	ft_putstr("(null)");
+	env->nb_char += 6;
+}

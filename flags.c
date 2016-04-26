@@ -12,35 +12,27 @@
 
 #include "ft_printf.h"
 
-int			ft_atoi2(const char *str)
+static void		ft_initenv(t_env *env)
 {
-	long	res;
-	int		sign;
-	int		i;
-
-	sign = 1;
-	res = 0;
-	i = 0;
-	if (str[i] == '\0')
-		return (0);
-	if (str[i] == '+' || str[i] == '-')
-	{
-		if (str[i] == '-')
-			sign *= -1;
-		i++;
-	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		res = (res + (str[i] - '0')) * 10;
-		i++;
-	}
-	return ((res * sign) / 10);
+	env->flag_dz = 0;
+	env->flag_zr = 0;
+	env->flag_ms = 0;
+	env->flag_ps = 0;
+	env->flag_sp = 0;
+	env->flag_l = 0;
+	env->flag_ll = 0;
+	env->flag_h = 0;
+	env->flag_hh = 0;
+	env->flag_j = 0;
+	env->flag_z = 0;
+	env->flag_sp = 0;
+	env->conv = '\0';
 }
 
 void			ft_initdigit(const char *format, t_env *env, int *i)
 {
 	env->nb_sp = 0;
-	env->nb_sp = ft_atoi2(format + *i);
+	env->nb_sp = ft_atoi(format + *i);
 	if (env->nb_sp != 0)
 	{
 		env->nb_arg++;
@@ -50,27 +42,49 @@ void			ft_initdigit(const char *format, t_env *env, int *i)
 
 void			ft_initflag(const char *format, t_env *env, int *i)
 {
-	env->flag_dz = 0;
-	env->flag_zr = 0;
-	env->flag_ms = 0;
-	env->flag_ps = 0;
-	env->flag_sp = 0;
-	env->conv = '\0';
+	int			tmpl;
+	int			tmph;
+
+	tmpl = 0;
+	tmph = 0;
+	ft_initenv(env);
 	while (format[*i] && (format[*i] == '#' || format[*i] == '0' ||
 		format[*i] == '-' || format[*i] == '+' || format[*i] == ' ' ||
-		format[*i] == '.'))
+		format[*i] == '.' || format[*i] == 'l' || format[*i] == 'l' ||
+		format[*i] == 'j' || format[*i] == 'h' || format[*i] == 'h' || 
+		format[*i] == 'z'))
 	{
 		(format[*i] == '#') ? env->flag_dz = 1 : 0;
 		(format[*i] == '0') ? env->flag_zr = 1 : 0;
 		(format[*i] == '-') ? env->flag_ms = 1 : 0;
 		(format[*i] == '+') ? env->flag_ps = 1 : 0;
 		(format[*i] == ' ') ? env->flag_sp = 1 : 0;
+		if (format[*i] == 'l' && tmpl == 0)
+		{
+			env->flag_l = 1;
+			tmpl = 1;
+		}
+		if (format[*i] == 'l' && tmpl == 1 && format[*i - 1])
+		{
+			env->flag_ll = 1;
+			env->flag_l = 0;
+		}
+		if (format[*i] == 'h' && tmph == 0)
+		{
+			env->flag_h = 1;
+			tmph = 1;
+		}
+		if (format[*i] == 'h' && tmph == 1 && format[*i - 1])
+		{
+			env->flag_hh = 1;
+			env->flag_h = 0;	
+		}
+		(format[*i] == 'j') ? env->flag_j = 1 : 0;
+		(format[*i] == 'z') ? env->flag_z = 1 : 0;
 		(*i)++;
 	}
 	(env->flag_ms == 1) ? env->flag_zr = 0 : 0;
-	(env->flag_sp == 1 && env->nb_sp == 0) ? env->nb_sp = 1 : 0;
-	if (env->flag_sp == 1)
-		ft_putendl("EXTRCYVUBINOM");
+	// (env->flag_sp == 1 && env->nb_sp == 0) ? env->nb_sp = 1 : 0;
 }
 
 void			ft_initconv(int *i, t_env *env, va_list ap)

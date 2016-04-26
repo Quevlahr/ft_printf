@@ -99,3 +99,91 @@ void			ft_space_int(int a, t_env *env, int tmp)
 		env->nb_char += ft_nbrlen(a);
 	}
 }
+
+void			ft_space_ll(long long a, t_env *env, int tmp)
+{
+	if (ft_nbrlen_ll(a) >= env->nb_sp)
+	{
+		ft_putnbr_ll(a);
+		env->nb_char += ft_nbrlen_ll(a);
+	}
+	else if (env->flag_ms == 0 && env->flag_zr == 1)
+	{
+		tmp = ft_nbrlen_ll(a);
+		while (tmp < env->nb_sp)
+		{
+			ft_putchar('0');
+			tmp++;
+			env->nb_char++;
+		}
+		ft_putnbr_ll(a);
+		env->nb_char += ft_nbrlen_ll(a);
+	}
+	else if (env->flag_ms == 1)
+	{
+		ft_putnbr_ll(a);
+		env->nb_char += ft_nbrlen_ll(a);
+		tmp = ft_nbrlen_ll(a);
+		while (tmp < env->nb_sp)
+		{
+			ft_putchar(' ');
+			tmp++;
+			env->nb_char++;
+		}
+	}
+	else
+	{
+		while (tmp < (env->nb_sp - ft_nbrlen_ll(a)))
+		{
+			ft_putchar(' ');
+			tmp++;
+			env->nb_char++;
+		}
+		ft_putnbr_ll(a);
+		env->nb_char += ft_nbrlen_ll(a);
+	}
+}
+
+void			ft_space_long(long a, t_env *env, int tmp)
+{
+	if (ft_nbrlen_l(a) >= env->nb_sp)
+	{
+		ft_putnbr_l(a);
+		env->nb_char += ft_nbrlen_l(a);
+	}
+	else if (env->flag_ms == 0 && env->flag_zr == 1)
+	{
+		tmp = ft_nbrlen_l(a);
+		while (tmp < env->nb_sp)
+		{
+			ft_putchar('0');
+			tmp++;
+			env->nb_char++;
+		}
+		ft_putnbr_l(a);
+		env->nb_char += ft_nbrlen_l(a);
+	}
+	else if (env->flag_ms == 1)
+	{
+		ft_putnbr_l(a);
+		env->nb_char += ft_nbrlen_l(a);
+		tmp = ft_nbrlen_l(a);
+		while (tmp < env->nb_sp)
+		{
+			ft_putchar(' ');
+			tmp++;
+			env->nb_char++;
+		}
+	}
+	else
+	{
+		while (tmp < (env->nb_sp - ft_nbrlen_l(a)))
+		{
+			ft_putchar(' ');
+			tmp++;
+			env->nb_char++;
+		}
+		ft_putnbr_l(a);
+		env->nb_char += ft_nbrlen_l(a);
+	}
+}
