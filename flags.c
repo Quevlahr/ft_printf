@@ -64,7 +64,7 @@ void			ft_initflag(const char *format, t_env *env, int *i)
 			env->flag_l = 1;
 			tmpl = 1;
 		}
-		if (format[*i] == 'l' && tmpl == 1 && format[*i - 1])
+		else if (format[*i] == 'l' && tmpl == 1 && format[*i - 1] == 'l')
 		{
 			env->flag_ll = 1;
 			env->flag_l = 0;
@@ -74,7 +74,7 @@ void			ft_initflag(const char *format, t_env *env, int *i)
 			env->flag_h = 1;
 			tmph = 1;
 		}
-		if (format[*i] == 'h' && tmph == 1 && format[*i - 1])
+		else if (format[*i] == 'h' && tmph == 1 && format[*i - 1] == 'h')
 		{
 			env->flag_hh = 1;
 			env->flag_h = 0;	

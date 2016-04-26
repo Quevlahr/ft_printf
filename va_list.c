@@ -12,7 +12,7 @@
 
 #include "ft_printf.h"
 
-static void		flag_hexa(int a, t_env *env, va_list ap, int maj)
+static void		flag_hexa(long long a, t_env *env, va_list ap, int maj)
 {
 	char		*str;
 	char		*tmp;
@@ -76,5 +76,4 @@ void			ft_useva(t_env *env, va_list ap)
 	if (env->conv == '%')
 		ft_space_str(c, env, 0); // passe pas le moulitest avec &(env->conv)
 	ft_strdel(&c);
-	// (env->nb_sp != 0) ? flag_digit(1, env) : 0;
 }
