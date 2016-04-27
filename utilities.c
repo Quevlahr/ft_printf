@@ -39,6 +39,7 @@ void			ft_print_env(t_env *env)
 	ft_putstr("nb char = ");
 	ft_putnbrdl(env->nb_char);
 	ft_putstr("conversion = ");
-	ft_putnbrdl(env->conv);
+	ft_putchar(env->conv);
+	ft_putchar('\n');
 	ft_putchar('\n');
 }

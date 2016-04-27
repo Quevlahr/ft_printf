@@ -35,10 +35,7 @@ void			ft_initdigit(const char *format, t_env *env, int *i)
 	env->nb_sp = 0;
 	env->nb_sp = ft_atoi(format + *i);
 	if (env->nb_sp != 0)
-	{
-		env->nb_arg++;
 		(*i) += ft_nbrlen(env->nb_sp);
-	}
 }
 
 void			ft_initflag(const char *format, t_env *env, int *i)
@@ -85,6 +82,7 @@ void			ft_initflag(const char *format, t_env *env, int *i)
 		(*i)++;
 	}
 	(env->flag_ms == 1) ? env->flag_zr = 0 : 0;
+	(env->flag_ps == 1) ? env->flag_sp = 0 : 0;
 	// (env->flag_sp == 1 && env->nb_sp == 0) ? env->nb_sp = 1 : 0;
 }
 
@@ -106,10 +104,4 @@ void			ft_initconv(int *i, t_env *env, va_list ap)
 		ft_useva(env, ap);
 		(*i)++;
 	}
-	// else if (format[*i] == '%' && env->flag_ms == 0)
-	// {
-	// 	ft_putchar('%');
-	// 	env->nb_char++;
-	// 	(*i)++;
-	// }
 }

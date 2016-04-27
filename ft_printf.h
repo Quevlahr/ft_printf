@@ -51,15 +51,18 @@ void				ft_initconv(int *i, t_env *env, va_list ap);
 
 void				ft_useva(t_env *env, va_list ap);
 
-void				ft_space_int(int a, t_env *env, int tmp);
-void				ft_space_str(char *str, t_env *env, int tmp);
-void				ft_space_ll(long long a, t_env *env, int tmp);
-void				ft_space_long(long a, t_env *env, int tmp);
+void				ft_space_int(int a, t_env *env);
+void				ft_space_str(char *str, t_env *env);
+void				ft_space_ll(long long a, t_env *env);
+void				ft_space_long(long a, t_env *env);
 
 void				ft_null_str(t_env *env);
 
-void				flag_dz_app(t_env *env, char *str);
-
+void				flag_dz_str(t_env *env, char *str);
+void				ft_putarg_str(t_env *env, char *str);
+void				ft_putarg_int(t_env *env, int a);
+void				ft_putarg_long(t_env *env, long a);
+void				ft_putarg_ll(t_env *env, long long a);
 
 
 void				ft_putnbr_ll(long long nb);
