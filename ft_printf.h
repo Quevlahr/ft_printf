@@ -25,6 +25,7 @@ typedef struct		s_env
 	int				flag_hh;
 	int				flag_j;
 	int				flag_z;
+	int				flag_pt;
 
 	int				flag_dz;
 	int				flag_zr;

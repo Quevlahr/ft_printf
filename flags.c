@@ -26,6 +26,7 @@ static void		ft_initenv(t_env *env)
 	env->flag_j = 0;
 	env->flag_z = 0;
 	env->flag_sp = 0;
+	env->flag_pt = 0;
 	env->maj = 0;
 	env->conv = '\0';
 }
@@ -79,6 +80,13 @@ void			ft_initflag(const char *format, t_env *env, int *i)
 		}
 		(format[*i] == 'j') ? env->flag_j = 1 : 0;
 		(format[*i] == 'z') ? env->flag_z = 1 : 0;
+		if (format[*i] == '.')
+		{
+			(*i)++;
+			env->flag_pt = ft_atoi(format + (*i));
+			(*i) += ft_nbrlen(ft_atoi(format + (*i)));
+			(*i)--;
+		}
 		(*i)++;
 	}
 	(env->flag_ms == 1) ? env->flag_zr = 0 : 0;
