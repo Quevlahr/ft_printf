@@ -41,38 +41,55 @@ typedef struct		s_env
 	const char		*str;
 }					t_env;
 
+/*
+**	ft_printf.c
+*/
 int					ft_printf(const char *format, ...);
 
+/*
+**	utilities.c
+*/
 void				ft_error(t_env *env);
 void				ft_print_env(t_env *env);
 
+/*
+**	flags.c
+*/
 void				ft_initdigit(const char *format, t_env *env, int *i);
 void				ft_initflag(const char *format, t_env *env, int *j);
 void				ft_initconv(int *i, t_env *env, va_list ap);
 
+/*
+**	va_list.c
+*/
 void				ft_useva(t_env *env, va_list ap);
 
+/*
+**	ft_space.c
+*/
 void				ft_space_int(long long a, t_env *env);
 void				ft_space_str(char *str, t_env *env);
-void				ft_space_ll(long long a, t_env *env);
-void				ft_space_long(long long a, t_env *env);
 void				ft_space_char(char c, t_env *env);
 
+/*
+**	ft_null.c
+*/
 void				ft_null_str(t_env *env);
 
+/*
+**	flags_application.c
+*/
 void				flag_dz_str(t_env *env, char *str);
 void				ft_putarg_str(t_env *env, char *str);
-void				ft_putarg_int(t_env *env, int a);
-void				ft_putarg_long(t_env *env, long a);
 void				ft_putarg_ll(t_env *env, long long a);
 
-
+/*
+**	libft
+*/
 void				ft_putnbr_ll(long long nb);
 int					ft_nbrlen_ll(long long n);
-
 void				ft_putnbr_l(long nb);
 int					ft_nbrlen_l(long n);
-
 char				*ft_itoabase_ull(unsigned long long n, int base, int maj);
 
 #endif

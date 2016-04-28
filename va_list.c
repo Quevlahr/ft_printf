@@ -48,12 +48,12 @@ static void		flag_int(long long a, t_env *env, va_list ap)
 	else if (env->flag_l == 1)
 	{
 		a = va_arg(ap, long);
-		ft_space_long(a, env);
+		ft_space_int(a, env);
 	}
 	else if (env->flag_ll == 1)
 	{
 		a = va_arg(ap, long long);
-		ft_space_ll(a, env);
+		ft_space_int(a, env);
 	}
 	if (a < 0 || (a >= 0 && env->flag_ps == 1))
 		env->nb_char++;

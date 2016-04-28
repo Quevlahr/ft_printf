@@ -38,7 +38,7 @@ void			ft_putarg_str(t_env *env, char *str)
 	env->nb_char += ft_strlen(str);
 }
 
-void			ft_putarg_int(t_env *env, int a)
+void			ft_putarg_ll(t_env *env, long long a)
 {
 	int			i;
 	int			surplus;
@@ -47,8 +47,8 @@ void			ft_putarg_int(t_env *env, int a)
 	surplus = (env->flag_dz == 1) ? 2 : 0;
 	surplus += (a < 0 || (env->flag_ps == 1 && a >= 0)) ? 1 : 0;
 	surplus += (env->flag_pt > 0) ? env->flag_pt : 0;
-	if (ft_nbrlen(a) + surplus < env->nb_sp)
-		while (i < (env->nb_sp - (ft_nbrlen(a) + surplus)))
+	if (ft_nbrlen_ll(a) + surplus < env->nb_sp)
+		while (i < (env->nb_sp - (ft_nbrlen_ll(a) + surplus)))
 		{
 			(env->flag_zr == 1) ? ft_putchar('0') : ft_putchar(' ');
 			i++;
@@ -61,41 +61,5 @@ void			ft_putarg_int(t_env *env, int a)
 		i++;
 		env->nb_char++;
 	}
-	env->nb_char += ft_nbrlen(a);
-}
-
-void			ft_putarg_long(t_env *env, long a)
-{
-	int			i;
-	int			surplus;
-
-	i = 0;
-	surplus = (env->flag_dz == 1) ? 2 : 0;
-	surplus += (a < 0 || (env->flag_ps == 1 && a >= 0)) ? 1 : 0;
-	if (ft_nbrlen_l(a) + surplus < env->nb_sp)
-		while (i < (env->nb_sp - (ft_nbrlen_l(a) + surplus)))
-		{
-			(env->flag_zr == 1) ? ft_putchar('0') : ft_putchar(' ');
-			i++;
-			env->nb_char++;
-		}
-	env->nb_char += ft_nbrlen_l(a);
-}
-
-void			ft_putarg_ll(t_env *env, long long a)
-{
-	int			i;
-	int			surplus;
-
-	i = 0;
-	surplus = (env->flag_dz == 1) ? 2 : 0;
-	surplus += (a < 0 || (env->flag_ps == 1 && a >= 0)) ? 1 : 0;
-	if (ft_nbrlen_ll(a) + surplus < env->nb_sp)
-		while (i < (env->nb_sp - (ft_nbrlen_ll(a) + surplus)))
-		{
-			(env->flag_zr == 1) ? ft_putchar('0') : ft_putchar(' ');
-			i++;
-			env->nb_char++;
-		}
 	env->nb_char += ft_nbrlen_ll(a);
 }

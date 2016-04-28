@@ -12,25 +12,6 @@
 
 #include "ft_printf.h"
 
-static void		ft_initenv(t_env *env)
-{
-	env->flag_dz = 0;
-	env->flag_zr = 0;
-	env->flag_ms = 0;
-	env->flag_ps = 0;
-	env->flag_sp = 0;
-	env->flag_l = 0;
-	env->flag_ll = 0;
-	env->flag_h = 0;
-	env->flag_hh = 0;
-	env->flag_j = 0;
-	env->flag_z = 0;
-	env->flag_sp = 0;
-	env->flag_pt = 0;
-	env->maj = 0;
-	env->conv = '\0';
-}
-
 void			ft_initdigit(const char *format, t_env *env, int *i)
 {
 	env->nb_sp = 0;
