@@ -21,12 +21,12 @@ int				main(void)
 	int	j;
 
 	// i = ft_printf("[yo%clo]\n", 0);
-	i = ft_printf("[%10.5d]\n", 42);
+	i = ft_printf("[%5%]\n");
 	ft_putchar('\n');
 	ft_putchar('\n');
 	ft_putchar('\n');
 	// j = printf("[yo%clo]\n", 0);
-	j = printf("[%10.5d]\n", 42);
+	j = printf("[%5%]\n");
 	printf("\n%d vs %d\n", i, j);
 
 return (0);

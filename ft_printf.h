@@ -51,6 +51,7 @@ int					ft_printf(const char *format, ...);
 */
 void				ft_error(t_env *env);
 void				ft_print_env(t_env *env);
+int					ft_verifchar(char c);
 
 /*
 **	flags.c

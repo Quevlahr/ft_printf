@@ -20,13 +20,13 @@ void			ft_initflag(const char *format, t_env *env, int *i)
 	tmpl = 0;
 	tmph = 0;
 	ft_initenv(env);
-	while (format[*i] && (format[*i] == '#' || format[*i] == '0' ||
-		format[*i] == '-' || format[*i] == '+' || format[*i] == ' ' ||
-		format[*i] == '.' || format[*i] == 'l' || format[*i] == 'l' ||
-		format[*i] == 'j' || format[*i] == 'h' || format[*i] == 'h' || 
-		format[*i] == 'z' || ft_isdigit(format[*i]) == 1))
+	while (format[*i] && (ft_verifchar(format[*i]) == 2 || ft_isdigit(format[*i]) == 1))
 	{
-		ft_isdigit(format[*i]ft_initdigit(env, i) ? ;
+		if (ft_isdigit(format[*i]) == 1)
+		{
+			ft_initdigit(env, i);
+			(*i)--;
+		}
 		ft_verifbase(env, i);
 		ft_veriflh(env, i, &tmpl, &tmph);
 		if (format[*i] == '.')
@@ -40,7 +40,6 @@ void			ft_initflag(const char *format, t_env *env, int *i)
 	}
 	(env->flag_ms == 1) ? env->flag_zr = 0 : 0;
 	(env->flag_ps == 1) ? env->flag_sp = 0 : 0;
-	// (env->flag_sp == 1 && env->nb_sp == 0) ? env->nb_sp = 1 : 0;
 }
 
 void			ft_initconv(int *i, t_env *env, va_list ap)
@@ -48,12 +47,7 @@ void			ft_initconv(int *i, t_env *env, va_list ap)
 	const char	*format;
 
 	format = env->str;
-	if (format[*i] && (format[*i] == 's' || format[*i] == 'S' || 
-		format[*i] == 'p' || format[*i] == 'd' || format[*i] == 'D' ||
-		format[*i] == 'i' || format[*i] == 'o' || format[*i] == 'O' ||
-		format[*i] == 'u' || format[*i] == 'U' || format[*i] == 'x' ||
-		format[*i] == 'X' || format[*i] == 'c' || format[*i] == 'C' ||
-		format[*i] == '%'))
+	if (format[*i] && ft_verifchar(format[*i]) == 1)
 	{
 		(format[*i] >= 'A' && format[*i] <= 'Z') ? env->maj = 1 : 0;
 		env->nb_arg++;

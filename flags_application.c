@@ -24,17 +24,19 @@ void			flag_dz_str(t_env *env, char *str)
 void			ft_putarg_str(t_env *env, char *str)
 {
 	int			i;
-	int			diese;
+	int			surplus;
 
 	i = 0;
-	diese = (env->flag_dz == 1) ? 2 : 0;
-	if (ft_strlen(str) + diese < env->nb_sp)
-		while (i < (env->nb_sp - (ft_strlen(str) + diese)))
+	surplus = (env->flag_dz == 1) ? 2 : 0;
+	if (ft_strlen(str) + surplus < env->nb_sp)
+	{
+		while (i < (env->nb_sp - (ft_strlen(str) + surplus)))
 		{
 			(env->flag_zr == 1) ? ft_putchar('0') : ft_putchar(' ');
 			i++;
 			env->nb_char++;
 		}
+	}
 	env->nb_char += ft_strlen(str);
 }
 
