@@ -52,10 +52,11 @@ void				ft_initconv(int *i, t_env *env, va_list ap);
 
 void				ft_useva(t_env *env, va_list ap);
 
-void				ft_space_int(int a, t_env *env);
+void				ft_space_int(long long a, t_env *env);
 void				ft_space_str(char *str, t_env *env);
 void				ft_space_ll(long long a, t_env *env);
-void				ft_space_long(long a, t_env *env);
+void				ft_space_long(long long a, t_env *env);
+void				ft_space_char(char c, t_env *env);
 
 void				ft_null_str(t_env *env);
 

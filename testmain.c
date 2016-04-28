@@ -20,10 +20,12 @@ int				main(void)
 	int	i;
 	int	j;
 
+	// i = ft_printf("[yo%clo]\n", 0);
 	i = ft_printf("[%10.5d]\n", 42);
 	ft_putchar('\n');
 	ft_putchar('\n');
 	ft_putchar('\n');
+	// j = printf("[yo%clo]\n", 0);
 	j = printf("[%10.5d]\n", 42);
 	printf("\n%d vs %d\n", i, j);
 

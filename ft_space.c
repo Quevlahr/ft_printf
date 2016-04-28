@@ -40,7 +40,7 @@ void			ft_space_str(char *str, t_env *env)
 	}
 }
 
-void			ft_space_int(int a, t_env *env)
+void			ft_space_int(long long a, t_env *env)
 {
 	if (env->flag_sp == 1 && env->flag_ps == 0 && a > 0)
 	{
@@ -53,23 +53,23 @@ void			ft_space_int(int a, t_env *env)
 		(a < 0) ? ft_putchar('-') : ft_putchar('+');
 		ft_putarg_int(env, a);
 		(a < 0) ? a *= -1 : 0;
-		ft_putnbr(a);
+		ft_putnbr_ll(a);
 	}
 	else if (env->flag_ms == 1)
 	{
 		(env->flag_ps == 1 && a >= 0) ? ft_putchar('+') : 0;
-		ft_putnbr(a);
+		ft_putnbr_ll(a);
 		ft_putarg_int(env, a);
 	}
 	else
 	{
 		ft_putarg_int(env, a);
 		(env->flag_ps == 1 && a >= 0) ? ft_putchar('+') : 0;
-		ft_putnbr(a);
+		ft_putnbr_ll(a);
 	}
 }
 
-void			ft_space_long(long a, t_env *env)
+void			ft_space_long(long long a, t_env *env)
 {
 	if (env->flag_sp == 1 && env->flag_ps == 0 && a > 0)
 	{
@@ -82,19 +82,19 @@ void			ft_space_long(long a, t_env *env)
 		(a < 0) ? ft_putchar('-') : ft_putchar('+');
 		ft_putarg_long(env, a);
 		a *= (a < 0) ? -1 : 0;
-		ft_putnbr(a);
+		ft_putnbr_l(a);
 	}
 	else if (env->flag_ms == 1)
 	{
 		(env->flag_ps == 1 && a >= 0) ? ft_putchar('+') : 0;
-		ft_putnbr(a);
+		ft_putnbr_l(a);
 		ft_putarg_long(env, a);
 	}
 	else
 	{
 		ft_putarg_long(env, a);
 		(env->flag_ps == 1 && a >= 0) ? ft_putchar('+') : 0;
-		ft_putnbr(a);
+		ft_putnbr_ll(a);
 	}
 }
 
@@ -111,18 +111,24 @@ void			ft_space_ll(long long a, t_env *env)
 		(a < 0) ? ft_putchar('-') : ft_putchar('+');
 		ft_putarg_ll(env, a);
 		a *= (a < 0) ? -1 : 0;
-		ft_putnbr(a);
+		ft_putnbr_ll(a);
 	}
 	else if (env->flag_ms == 1)
 	{
 		(env->flag_ps == 1 && a >= 0) ? ft_putchar('+') : 0;
-		ft_putnbr(a);
+		ft_putnbr_ll(a);
 		ft_putarg_ll(env, a);
 	}
 	else
 	{
 		ft_putarg_ll(env, a);
 		(env->flag_ps == 1 && a >= 0) ? ft_putchar('+') : 0;
-		ft_putnbr(a);
+		ft_putnbr_ll(a);
 	}
+}
+
+void			ft_space_char(char c, t_env *env)
+{
+	ft_putchar(c);
+	env->nb_char++;
 }
