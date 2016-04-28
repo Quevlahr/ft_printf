@@ -55,7 +55,6 @@ void				ft_print_env(t_env *env);
 /*
 **	flags.c
 */
-void				ft_initdigit(const char *format, t_env *env, int *i);
 void				ft_initflag(const char *format, t_env *env, int *j);
 void				ft_initconv(int *i, t_env *env, va_list ap);
 
@@ -82,6 +81,14 @@ void				ft_null_str(t_env *env);
 void				flag_dz_str(t_env *env, char *str);
 void				ft_putarg_str(t_env *env, char *str);
 void				ft_putarg_ll(t_env *env, long long a);
+
+/*
+**	ft_init.c
+*/
+void				ft_initenv(t_env *env);
+void				ft_initdigit(t_env *env, int *i);
+void				ft_verifbase(t_env *env, int *i);
+void				ft_veriflh(t_env *env, int *i, int *tmpl, int *tmph);
 
 /*
 **	libft

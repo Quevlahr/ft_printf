@@ -12,14 +12,6 @@
 
 #include "ft_printf.h"
 
-void			ft_initdigit(const char *format, t_env *env, int *i)
-{
-	env->nb_sp = 0;
-	env->nb_sp = ft_atoi(format + *i);
-	if (env->nb_sp != 0)
-		(*i) += ft_nbrlen(env->nb_sp);
-}
-
 void			ft_initflag(const char *format, t_env *env, int *i)
 {
 	int			tmpl;
@@ -32,35 +24,11 @@ void			ft_initflag(const char *format, t_env *env, int *i)
 		format[*i] == '-' || format[*i] == '+' || format[*i] == ' ' ||
 		format[*i] == '.' || format[*i] == 'l' || format[*i] == 'l' ||
 		format[*i] == 'j' || format[*i] == 'h' || format[*i] == 'h' || 
-		format[*i] == 'z'))
+		format[*i] == 'z' || ft_isdigit(format[*i]) == 1))
 	{
-		(format[*i] == '#') ? env->flag_dz = 1 : 0;
-		(format[*i] == '0') ? env->flag_zr = 1 : 0;
-		(format[*i] == '-') ? env->flag_ms = 1 : 0;
-		(format[*i] == '+') ? env->flag_ps = 1 : 0;
-		(format[*i] == ' ') ? env->flag_sp = 1 : 0;
-		if (format[*i] == 'l' && tmpl == 0)
-		{
-			env->flag_l = 1;
-			tmpl = 1;
-		}
-		else if (format[*i] == 'l' && tmpl == 1 && format[*i - 1] == 'l')
-		{
-			env->flag_ll = 1;
-			env->flag_l = 0;
-		}
-		if (format[*i] == 'h' && tmph == 0)
-		{
-			env->flag_h = 1;
-			tmph = 1;
-		}
-		else if (format[*i] == 'h' && tmph == 1 && format[*i - 1] == 'h')
-		{
-			env->flag_hh = 1;
-			env->flag_h = 0;	
-		}
-		(format[*i] == 'j') ? env->flag_j = 1 : 0;
-		(format[*i] == 'z') ? env->flag_z = 1 : 0;
+		ft_isdigit(format[*i]ft_initdigit(env, i) ? ;
+		ft_verifbase(env, i);
+		ft_veriflh(env, i, &tmpl, &tmph);
 		if (format[*i] == '.')
 		{
 			(*i)++;
@@ -85,7 +53,7 @@ void			ft_initconv(int *i, t_env *env, va_list ap)
 		format[*i] == 'i' || format[*i] == 'o' || format[*i] == 'O' ||
 		format[*i] == 'u' || format[*i] == 'U' || format[*i] == 'x' ||
 		format[*i] == 'X' || format[*i] == 'c' || format[*i] == 'C' ||
-		format[*i] == '%')) // manque h hh l ll j z
+		format[*i] == '%'))
 	{
 		(format[*i] >= 'A' && format[*i] <= 'Z') ? env->maj = 1 : 0;
 		env->nb_arg++;

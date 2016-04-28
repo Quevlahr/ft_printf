@@ -22,7 +22,7 @@ void				ft_read(const char *format, int i, t_env *env, va_list ap)
 		{
 			i++;
 			ft_initflag(format, env, &i);
-			ft_initdigit(format, env, &i);
+			// ft_initdigit(env, &i);
 			ft_initconv(&i, env, ap);
 		}
 		else

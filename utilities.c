@@ -43,3 +43,13 @@ void			ft_print_env(t_env *env)
 	ft_putchar('\n');
 	ft_putchar('\n');
 }
+
+int				ft_verifchar(char c)
+{
+	if (format[*i] == 's' || format[*i] == 'S' || format[*i] == 'p' ||
+		format[*i] == 'd' || format[*i] == 'D' || format[*i] == 'i' ||
+		format[*i] == 'o' || format[*i] == 'O' || format[*i] == '%' ||
+		format[*i] == 'u' || format[*i] == 'U' || format[*i] == 'x' ||
+		format[*i] == 'X' || format[*i] == 'c' || format[*i] == 'C' ||)
+		return (1);
+}

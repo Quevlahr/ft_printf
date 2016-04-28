@@ -18,7 +18,7 @@ CC			= 	gcc
 # CFLAGS		= 	-Wall -Werror -Wextra -g
 
 SRC 		= 	ft_printf.c utilities.c flags.c va_list.c ft_space.c ft_null.c \
-				flags_application.c
+				flags_application.c ft_init.c
 
 SRCPRINTF	=	$(wildcard libft_ull/*.c)
 
