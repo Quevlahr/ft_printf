@@ -20,6 +20,7 @@ void			ft_space_str(char *str, t_env *env)
 	// 	env->nb_char++;
 	// 	(env->nb_sp > 0) ? env->nb_sp-- : 0;
 	// }
+	
 	if (env->flag_ms == 1)
 	{
 		flag_dz_str(env, str);

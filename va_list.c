@@ -76,7 +76,7 @@ void			ft_useva(t_env *env, va_list ap)
 	char		*c;
 
 	c = ft_strnew(1);
-	c[0] = '%';
+	c[0] = '%';	
 	(env->conv == 's') ? flag_str(env, ap) : 0;
 	(env->conv == 'd') ? flag_int(0, env, ap) : 0;
 	(env->conv == 'x') ? flag_hexa(0, env, ap) : 0;

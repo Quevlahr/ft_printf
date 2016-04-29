@@ -29,8 +29,11 @@ void			ft_initflag(const char *format, t_env *env, int *i)
 		if (format[*i] == '.')
 		{
 			(*i)++;
-			env->flag_pt = ft_atoi(format + (*i));
-			(*i) += ft_nbrlen(ft_atoi(format + (*i)));
+			if (ft_isdigit(format[*i]) == 1 || format[*i] == '-' || format[*i] == '+')
+			{
+				env->flag_pt = ft_atoi(format + (*i));
+				(*i) += ft_nbrlen(ft_atoi(format + (*i)));
+			}
 		}
 	}
 	(env->flag_ms == 1) ? env->flag_zr = 0 : 0;
@@ -44,7 +47,6 @@ void			ft_initconv(int *i, t_env *env, va_list ap)
 	format = env->str;
 	if (format[*i] && ft_verifchar(format[*i]) == 1)
 	{
-	ft_putstr("ICIC");
 		(format[*i] >= 'A' && format[*i] <= 'Z') ? env->maj = 1 : 0;
 		env->nb_arg++;
 		env->conv = format[*i];
