@@ -20,14 +20,13 @@ int				main(void)
 	int	i;
 	int	j;
 
-	// i = ft_printf("[yo%clo]\n", 0);
-	i = ft_printf("[%5%]\n");
+	// i = ft_printf("[% 10.5d]\n", 4242);
+	i = ft_printf("@moulitest: [%5.x], [%5.0x]\n", 0, 0);
 	ft_putchar('\n');
 	ft_putchar('\n');
 	ft_putchar('\n');
-	// j = printf("[yo%clo]\n", 0);
-	j = printf("[%5%]\n");
-	printf("\n%d vs %d\n", i, j);
+	// j = printf("[% 10.5d]\n", 4242);
+	printf("@moulitest: [%5.x], [%5.0x]\n", 0, 0);
 
 return (0);
 }

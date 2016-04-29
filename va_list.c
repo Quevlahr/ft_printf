@@ -63,6 +63,7 @@ static void		flag_str(t_env *env, va_list ap)
 {
 	char		*a;
 
+	env->flag_dz = 0;
 	a = va_arg(ap, char *);
 	if (a == NULL)
 		ft_null_str(env);

@@ -48,7 +48,8 @@ void			ft_putarg_ll(t_env *env, long long a)
 	i = 0;
 	surplus = (env->flag_dz == 1) ? 2 : 0;
 	surplus += (a < 0 || (env->flag_ps == 1 && a >= 0)) ? 1 : 0;
-	surplus += (env->flag_pt > 0) ? env->flag_pt : 0;
+	surplus += (env->flag_pt > 0 && env->flag_pt > ft_nbrlen_ll(a)) ?
+				env->flag_pt - ft_nbrlen_ll(a) : 0;
 	if (ft_nbrlen_ll(a) + surplus < env->nb_sp)
 		while (i < (env->nb_sp - (ft_nbrlen_ll(a) + surplus)))
 		{
