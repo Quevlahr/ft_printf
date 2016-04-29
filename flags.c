@@ -22,17 +22,22 @@ void			ft_initflag(const char *format, t_env *env, int *i)
 	ft_initenv(env);
 	while (format[*i] && (ft_verifchar(format[*i]) == 2 || ft_isdigit(format[*i]) == 1))
 	{
-		ft_verifbase(env, i);
-		ft_veriflh(env, i, &tmpl, &tmph);
-		if (ft_isdigit(format[*i]) == 1)
-			ft_initdigit(env, i);
-		if (format[*i] == '.')
+		if (ft_verifbase(env, i) == 1)
 		{
-			(*i)++;
-			if (ft_isdigit(format[*i]) == 1 || format[*i] == '-' || format[*i] == '+')
+			ft_veriflh(env, i, &tmpl, &tmph);
+			if (ft_isdigit(format[*i]) == 1)
+				ft_initdigit(env, i);
+			if (format[*i] == '.')
 			{
-				env->flag_pt = ft_atoi(format + (*i));
-				(*i) += ft_nbrlen(ft_atoi(format + (*i)));
+				(*i)++;
+				if (ft_isdigit(format[*i]) != 1)
+					env->flag_pt = -1;
+				if (ft_isdigit(format[*i]) == 1 || format[*i] == '-' || format[*i] == '+')
+				{
+					env->flag_pt = ft_atoi(format + (*i));
+					(*i) += ft_nbrlen(ft_atoi(format + (*i)));
+					(env->flag_pt == 0) ? env->flag_pt = -1 : 0;
+				}
 			}
 		}
 	}

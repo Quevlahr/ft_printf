@@ -38,7 +38,7 @@ void			ft_initdigit(t_env *env, int *i)
 		(*i) += ft_nbrlen(env->nb_sp);
 }
 
-void			ft_verifbase(t_env *env, int *i)
+int				ft_verifbase(t_env *env, int *i)
 {
 	int			tmp;
 
@@ -51,6 +51,7 @@ void			ft_verifbase(t_env *env, int *i)
 	(env->str[*i] == 'j') ? env->flag_j = 1 : tmp++;
 	(env->str[*i] == 'z') ? env->flag_z = 1 : tmp++;
 	(tmp < 7) ? (*i)++ : 0;
+	return (tmp < 7 ? 0 : 1);
 }
 
 void			ft_veriflh(t_env *env, int *i, int *tmpl, int *tmph)

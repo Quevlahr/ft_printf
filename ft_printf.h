@@ -72,9 +72,10 @@ void				ft_space_str(char *str, t_env *env);
 void				ft_space_char(char c, t_env *env);
 
 /*
-**	ft_null.c
+**	ft_forstr.c
 */
 void				ft_null_str(t_env *env);
+char				*ft_modifstr(char **str, t_env *env);
 
 /*
 **	flags_application.c
@@ -88,7 +89,7 @@ void				ft_putarg_ll(t_env *env, long long a);
 */
 void				ft_initenv(t_env *env);
 void				ft_initdigit(t_env *env, int *i);
-void				ft_verifbase(t_env *env, int *i);
+int					ft_verifbase(t_env *env, int *i);
 void				ft_veriflh(t_env *env, int *i, int *tmpl, int *tmph);
 
 /*

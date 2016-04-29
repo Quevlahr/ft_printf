@@ -21,12 +21,12 @@ int				main(void)
 	int	j;
 
 	// i = ft_printf("[% 10.5d]\n", 4242);
-	i = ft_printf("@moulitest: [%5.x], [%5.0x]\n", 0, 0);
+	i = ft_printf("[%03.2d]\n", 0);
 	ft_putchar('\n');
 	ft_putchar('\n');
 	ft_putchar('\n');
 	// j = printf("[% 10.5d]\n", 4242);
-	j = printf("@moulitest: [%5.x], [%5.0x]\n", 0, 0);
+	j = printf("[%03.2d]\n", 0);
 	ft_putchar('\n');
 	printf("%d vs %d\n", i, j);
 

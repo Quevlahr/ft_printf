@@ -34,6 +34,12 @@ static void		flag_hexa(long long a, t_env *env, va_list ap)
 		a = va_arg(ap, long long);
 	value = a < 0 ? 4294967296 + (long long)a : (long long)a;
 	str = ft_itoabase_ull(value, 16, env->maj);
+	if (env->flag_pt != 0 && ft_strcmp(str, "0") == 0)
+	{
+		env->flag_dz = 0;
+		ft_strdel(&str);
+		str = ft_strnew(0);
+	}
 	ft_space_str(str, env);
 	ft_strdel(&str);
 }
@@ -62,13 +68,24 @@ static void		flag_int(long long a, t_env *env, va_list ap)
 static void		flag_str(t_env *env, va_list ap)
 {
 	char		*a;
+	char		*tmp;
 
 	env->flag_dz = 0;
+	tmp = NULL;
 	a = va_arg(ap, char *);
 	if (a == NULL)
 		ft_null_str(env);
 	else
-		ft_space_str(a, env);
+	{
+		if (env->flag_pt > 0)
+		{
+			tmp = ft_modifstr(&a, env);
+			ft_space_str(tmp, env);
+			ft_strdel(&tmp);
+		}
+		else
+			ft_space_str(a, env);
+	}
 }
 
 void			ft_useva(t_env *env, va_list ap)
