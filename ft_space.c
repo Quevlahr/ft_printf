@@ -20,7 +20,16 @@ void			ft_space_str(char *str, t_env *env)
 	// 	env->nb_char++;
 	// 	(env->nb_sp > 0) ? env->nb_sp-- : 0;
 	// }
-
+	// if (env->flag_pt > 0)
+	// {
+	// 	int i = 0;
+	// 	while (i < (env->flag_pt - ft_strlen(str)))
+	// 	{
+	// 		ft_putchar('0');
+	// 		i++;
+	// 		env->nb_char++;
+	// 	}
+	// }
 	if (env->flag_ms == 1)
 	{
 		flag_dz_str(env, str);
@@ -43,13 +52,27 @@ void			ft_space_str(char *str, t_env *env)
 
 void			ft_space_int(long long a, t_env *env)
 {
+	int			i = 0;
+	if (env->flag_ms == 1)
+		while (i < (env->flag_pt - ft_nbrlen(a)))
+		{
+			ft_putchar('0');
+			i++;
+			env->nb_char++;
+		}
 	if (env->flag_sp == 1 && env->flag_ps == 0 && a > 0)
 	{
 		ft_putchar(' ');
 		env->nb_char++;
 		(env->nb_sp > 0) ? env->nb_sp-- : 0;
 	}
-	if (env->flag_zr == 1 && (env->flag_ps == 1 || a < 0))
+	if ((env->flag_ps == 1 || a < 0) && env->flag_pt > 0)
+	{
+		ft_putarg_ll(env, a);
+		a *= (a < 0) ? -1 : 1;
+		ft_putnbr_ll(a);
+	}
+	else if (env->flag_zr == 1 && (env->flag_ps == 1 || a < 0))
 	{
 		(a < 0) ? ft_putchar('-') : ft_putchar('+');
 		ft_putarg_ll(env, a);
@@ -72,6 +95,28 @@ void			ft_space_int(long long a, t_env *env)
 
 void			ft_space_char(char c, t_env *env)
 {
-	ft_putchar(c);
+	int			i;
+
+	i = 0;
+	if (env->flag_ms == 1)
+	{
+		ft_putchar(c);
+		while (i < env->nb_sp - 1)
+		{
+			ft_putchar(' ');
+			i++;
+			env->nb_char++;
+		}
+	}
+	else
+	{
+		while (i < env->nb_sp - 1)
+		{
+			ft_putchar(' ');
+			i++;
+			env->nb_char++;
+		}
+		ft_putchar(c);
+	}
 	env->nb_char++;
 }

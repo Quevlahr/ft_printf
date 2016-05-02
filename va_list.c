@@ -20,10 +20,30 @@ static void		flag_char(t_env *env, va_list ap)
 	ft_space_char(c, env);
 }
 
+static void		flag_octal(long long a, t_env *env, va_list ap)
+{
+	char		*str;
+
+	if (env->flag_l == 0 && env->flag_ll == 0)
+		a = va_arg(ap, int);
+	else if (env->flag_l == 1)
+		a = va_arg(ap, long);
+	else if (env->flag_ll == 1)
+		a = va_arg(ap, long long);
+	str = ft_itoabase_ull(a, 8, 0);
+	if (env->flag_pt != 0 && ft_strcmp(str, "0") == 0)
+	{
+		env->flag_dz = 0;
+		ft_strdel(&str);
+		str = ft_strnew(0);
+	}
+	ft_space_str(str, env);
+	ft_strdel(&str);
+}
+
 static void		flag_hexa(long long a, t_env *env, va_list ap)
 {
 	char		*str;
-	char		*tmp;
 	long long	value;
 
 	if (env->flag_l == 0 && env->flag_ll == 0)
@@ -99,6 +119,7 @@ void			ft_useva(t_env *env, va_list ap)
 	(env->conv == 'x') ? flag_hexa(0, env, ap) : 0;
 	(env->conv == 'X') ? flag_hexa(0, env, ap) : 0;
 	(env->conv == 'c') ? flag_char(env, ap) : 0;
+	(env->conv == 'o') ? flag_octal(0, env, ap) : 0;
 	if (env->conv == '%')
 		ft_space_str(c, env); // passe pas le moulitest avec &(env->conv)
 	ft_strdel(&c);
