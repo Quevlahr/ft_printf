@@ -33,20 +33,29 @@ void			ft_space_str(char *str, t_env *env)
 	if (env->flag_ms == 1)
 	{
 		flag_dz_str(env, str);
-		ft_putstr(str);
+		if (env->flag_pt != -1 || ft_strcmp(str, "0") != 0)
+			ft_putstr(str);
+		else
+			env->nb_char--;
 		ft_putarg_str(env, str);
 	}
 	else if (env->flag_dz == 1 && env->flag_zr == 0)
 	{
 		ft_putarg_str(env, str);
 		flag_dz_str(env, str);
-		ft_putstr(str);
+		if (env->flag_pt != -1 || ft_strcmp(str, "0") != 0)
+			ft_putstr(str);
+		else
+			env->nb_char--;
 	}
 	else
 	{
 		flag_dz_str(env, str);
 		ft_putarg_str(env, str);
-		ft_putstr(str);
+		if (env->flag_pt != -1 || ft_strcmp(str, "0") != 0)
+			ft_putstr(str);
+		else
+			env->nb_char--;
 	}
 }
 
@@ -98,7 +107,12 @@ void			ft_space_int(long long a, t_env *env)
 	{
 		ft_putarg_ll(env, a);
 		(env->flag_ps == 1 && a >= 0) ? ft_putchar('+') : 0;
-		(env->flag_pt != -1 && a != 0) ? ft_putnbr_ll(a) : 0;
+		if (env->flag_pt != -1 || a != 0)
+			ft_putnbr_ll(a);
+		else
+			env->nb_char--;
+		// (env->flag_pt != -1 && a != 0) ? ft_putnbr_ll(a) : 0;
+		// ft_putnbr_ll(a);
 	}
 }
 

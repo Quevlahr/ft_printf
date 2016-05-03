@@ -32,7 +32,7 @@ void			ft_initflag(const char *format, t_env *env, int *i)
 				(*i)++;
 				if (ft_isdigit(format[*i]) != 1)
 					env->flag_pt = -1;
-				if (ft_isdigit(format[*i]) == 1 || format[*i] == '-' || format[*i] == '+')
+				else if (ft_isdigit(format[*i]) == 1 || format[*i] == '-' || format[*i] == '+')
 				{
 					env->flag_pt = ft_atoi(format + (*i));
 					(*i) += ft_nbrlen(ft_atoi(format + (*i)));

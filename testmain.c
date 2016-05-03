@@ -21,14 +21,20 @@ int				main(void)
 	int	j;
 
 	// i = ft_printf("[% 10.5d]\n", 4242);
-	i = ft_printf("[%.d, %.0d]\n", 0, 0);
+	i = ft_printf("[%5.d, %5.0d]\n", 0, 0);
 	ft_putchar('\n');
 	ft_putchar('\n');
 	ft_putchar('\n');
 	// j = printf("[% 10.5d]\n", 4242);
-	j = printf("[%.d, %.0d]\n", 0, 0);
+	j = printf("[%5.d, %5.0d]\n", 0, 0);
 	ft_putchar('\n');
 	printf("%d vs %d\n", i, j);
 
 return (0);
 }
+
+
+// # 0094 (int)
+//   ft_printf("@moulitest: %5.o", %5.0o, 0, 0);
+//   1. (   22) -->@moulitest:     ,     <--
+//   2. (   24) -->@moulitest:      ,      <--

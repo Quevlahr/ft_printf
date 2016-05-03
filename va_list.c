@@ -31,7 +31,7 @@ static void		flag_octal(long long a, t_env *env, va_list ap)
 	else if (env->flag_ll == 1)
 		a = va_arg(ap, long long);
 	str = ft_itoabase_ull(a, 8, 0);
-	if (env->flag_pt != 0 && ft_strcmp(str, "0") == 0)
+	if (env->flag_pt > 0 && ft_strcmp(str, "0") == 0)
 	{
 		env->flag_dz = 0;
 		ft_strdel(&str);
