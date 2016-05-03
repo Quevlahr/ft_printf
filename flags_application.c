@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 17:33:00 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/03 16:09:06 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/03 20:04:22 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,7 @@ void			ft_putarg_str(t_env *env, char *str)
 		surplus = (env->flag_dz == 1) ? 1 : 0;
 		surplus += (env->flag_pt > 0 && env->flag_pt > ft_strlen(str)) ?
 					env->flag_pt - ft_strlen(str) : 0;
-		if (ft_strcmp(str, "0") == 0 && env->flag_pt == -1)
-			surplus
+		surplus -= (ft_strcmp(str, "0") == 0 && env->flag_pt == -1) ? 1 : 0;
 	}
 	else
 		surplus = (env->flag_dz == 1) ? 2 : 0;
@@ -66,14 +65,14 @@ void			ft_putarg_ll(t_env *env, long long a)
 	surplus += (env->flag_pt > 0 && env->flag_pt > ft_nbrlen_ll(a)) ?
 				env->flag_pt - ft_nbrlen_ll(a) : 0;
 	surplus += (env->flag_ps == -1) ? 1 : 0;
-	()
+	surplus -= (a == 0 && env->flag_pt == -1) ? 1 : 0;
 	if (ft_nbrlen_ll(a) + surplus < env->nb_sp)
 		while (i < (env->nb_sp - (ft_nbrlen_ll(a) + surplus)))
 		{
 			if (env->flag_pt > 0)
 				(env->flag_zr == 1 && env->nb_sp < (env->flag_pt - 1)) ? ft_putchar('0') : ft_putchar(' ');
 			else
-				(env->flag_zr == 1) ? ft_putchar('0') : ft_putchar('a');
+				(env->flag_zr == 1) ? ft_putchar('0') : ft_putchar(' ');
 			i++;
 			env->nb_char++;
 		}
