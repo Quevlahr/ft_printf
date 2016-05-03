@@ -98,8 +98,7 @@ void			ft_space_int(long long a, t_env *env)
 	{
 		ft_putarg_ll(env, a);
 		(env->flag_ps == 1 && a >= 0) ? ft_putchar('+') : 0;
-		// (env->flag_pt > 0) ? ft_putnbr_ll(a) : 0;
-		ft_putnbr_ll(a);
+		(env->flag_pt != -1 && a != 0) ? ft_putnbr_ll(a) : 0;
 	}
 }
 
