@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:15:45 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/03 20:03:41 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/03 20:09:03 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ int				main(void)
 	int	j;
 
 	// i = ft_printf("[% 10.5d]\n", 4242);
-	i = ft_printf("[%5.d, %5.0d]\n", 0, 0);
+	i = ft_printf("[%jd]\n", 9223372036854775803);
 	ft_putchar('\n');
 	ft_putchar('\n');
 	ft_putchar('\n');
 	// j = printf("[% 10.5d]\n", 4242);
-	j = printf("[%5.d, %5.0d]\n", 0, 0);
+	j = printf("[%jd]\n", 9223372036854775803);
 	ft_putchar('\n');
 	printf("%d vs %d\n", i, j);
 

@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 21:19:59 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/03 16:09:16 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/03 20:48:28 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,27 @@ static void		flag_char(t_env *env, va_list ap)
 
 	c = va_arg(ap, int);
 	ft_space_char(c, env);
+}
+
+static void		flag_unsigned(long long a, t_env *env, va_list ap)
+{
+	if (env->flag_l == 0 && env->flag_ll == 0 && env->flag_j == 0)
+	{
+		a = va_arg(ap, int);
+		ft_space_int(a, env);
+	}
+	else if (env->flag_l == 1)
+	{
+		a = va_arg(ap, long);
+		ft_space_int(a, env);
+	}
+	else if (env->flag_ll == 1 || env->flag_j == 1)
+	{
+		a = va_arg(ap, long long);
+		ft_space_int(a, env);
+	}
+	if (env->flag_ms == 0 && (a < 0 || (a >= 0 && env->flag_ps == 1)))
+		env->nb_char++;
 }
 
 static void		flag_octal(long long a, t_env *env, va_list ap)
@@ -66,7 +87,7 @@ static void		flag_hexa(long long a, t_env *env, va_list ap)
 
 static void		flag_int(long long a, t_env *env, va_list ap)
 {
-	if (env->flag_l == 0 && env->flag_ll == 0)
+	if (env->flag_l == 0 && env->flag_ll == 0 && env->flag_j == 0)
 	{
 		a = va_arg(ap, int);
 		ft_space_int(a, env);
@@ -76,7 +97,7 @@ static void		flag_int(long long a, t_env *env, va_list ap)
 		a = va_arg(ap, long);
 		ft_space_int(a, env);
 	}
-	else if (env->flag_ll == 1)
+	else if (env->flag_ll == 1 || env->flag_j == 1)
 	{
 		a = va_arg(ap, long long);
 		ft_space_int(a, env);
@@ -120,6 +141,7 @@ void			ft_useva(t_env *env, va_list ap)
 	(env->conv == 'X') ? flag_hexa(0, env, ap) : 0;
 	(env->conv == 'c') ? flag_char(env, ap) : 0;
 	(env->conv == 'o') ? flag_octal(0, env, ap) : 0;
+	(env->conv == 'u') ? flag_unsigned(0, env, ap) : 0;
 	if (env->conv == '%')
 	{
 		env->flag_sp = 0;
