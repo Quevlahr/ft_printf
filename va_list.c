@@ -81,7 +81,7 @@ static void		flag_int(long long a, t_env *env, va_list ap)
 		a = va_arg(ap, long long);
 		ft_space_int(a, env);
 	}
-	if (a < 0 || (a >= 0 && env->flag_ps == 1))
+	if (env->flag_ms == 0 && (a < 0 || (a >= 0 && env->flag_ps == 1)))
 		env->nb_char++;
 }
 
@@ -121,6 +121,9 @@ void			ft_useva(t_env *env, va_list ap)
 	(env->conv == 'c') ? flag_char(env, ap) : 0;
 	(env->conv == 'o') ? flag_octal(0, env, ap) : 0;
 	if (env->conv == '%')
+	{
+		env->flag_sp = 0;
 		ft_space_str(c, env); // passe pas le moulitest avec &(env->conv)
+	}
 	ft_strdel(&c);
 }

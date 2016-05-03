@@ -14,16 +14,21 @@
 
 void			ft_putnbr_ll(long long nb)
 {
-	if (nb < 0)
-	{
-		ft_putchar('-');
-		nb = -nb;
-	}
-	if (nb <= 9)
-		ft_putchar(nb + '0');
+	if (nb < -9223372036854775807)
+		ft_putstr("-9223372036854775808");
 	else
 	{
-		ft_putnbr_ll(nb / 10);
-		ft_putnbr_ll(nb % 10);
+		if (nb < 0)
+		{
+			ft_putchar('-');
+			nb = -nb;
+		}
+		if (nb <= 9)
+			ft_putchar(nb + '0');
+		else
+		{
+			ft_putnbr_ll(nb / 10);
+			ft_putnbr_ll(nb % 10);
+		}
 	}
 }
