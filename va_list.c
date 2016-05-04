@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 21:19:59 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/03 20:48:28 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/04 18:41:05 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,16 +65,28 @@ static void		flag_octal(long long a, t_env *env, va_list ap)
 static void		flag_hexa(long long a, t_env *env, va_list ap)
 {
 	char		*str;
+	char		*tmp;
 	long long	value;
 
-	if (env->flag_l == 0 && env->flag_ll == 0)
+	tmp = NULL;
+	if (env->flag_l == 0 && env->flag_ll == 0 && env->flag_j == 0)
 		a = va_arg(ap, int);
 	else if (env->flag_l == 1)
 		a = va_arg(ap, long);
-	else if (env->flag_ll == 1)
+	else if (env->flag_ll == 1 || env->flag_j == 1)
 		a = va_arg(ap, long long);
-	value = a < 0 ? 4294967296 + (long long)a : (long long)a;
+	if (a > -2147483648)
+		value = a < 0 ? 4294967296 + (long long)a : (long long)a;
+	// else
+		// value = 2 * 4294967296 + (long long) a;
+	printf("%lld\n", value);
 	str = ft_itoabase_ull(value, 16, env->maj);
+	// if (env->flag_j == 1 && a <= -2147483648)
+	// {
+	// 	tmp = ft_modifhexa(str, env);
+	// 	ft_strdel(&str);
+	// 	str = tmp;
+	// }
 	if (env->flag_pt != 0 && ft_strcmp(str, "0") == 0)
 	{
 		env->flag_dz = 0;
@@ -120,7 +132,7 @@ static void		flag_str(t_env *env, va_list ap)
 	{
 		if (env->flag_pt > 0)
 		{
-			tmp = ft_modifstr(&a, env);
+			tmp = ft_modifstr(a, env);
 			ft_space_str(tmp, env);
 			ft_strdel(&tmp);
 		}

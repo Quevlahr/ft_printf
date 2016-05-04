@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:19:17 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/03 16:09:08 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/04 15:58:37 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,8 @@ void				ft_space_char(char c, t_env *env);
 **	ft_forstr.c
 */
 void				ft_null_str(t_env *env);
-char				*ft_modifstr(char **str, t_env *env);
+char				*ft_modifstr(char *str, t_env *env);
+char				*ft_modifhexa(char *str, t_env *env);
 
 /*
 **	flags_application.c
