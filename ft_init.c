@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 15:48:29 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/03 16:09:07 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/05 17:19:14 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,7 @@ void			ft_veriflh(t_env *env, int *i, int *tmpl, int *tmph)
 		env->flag_l = 0;
 		(*i)++;
 	}
-	if (env->str[*i] == 'h' && *tmph == 0)
+	else if (env->str[*i] == 'h' && *tmph == 0)
 	{
 		env->flag_h = 1;
 		*tmph = 1;
@@ -80,4 +80,6 @@ void			ft_veriflh(t_env *env, int *i, int *tmpl, int *tmph)
 		env->flag_h = 0;
 		(*i)++;
 	}
+	else if ((env->str[*i] == 'l' && *tmpl == 1) || (env->str[*i] == 'h' && *tmph == 1))
+		(*i)++;
 }

@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/25 17:07:25 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/04 15:55:24 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/05 15:57:41 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,3 @@ char			*ft_itoabase_ull(ULL n, int base, int maj)
 		}
 	return (str);
 }
-

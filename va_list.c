@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 21:19:59 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/04 18:41:05 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/05 17:54:13 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,21 +22,16 @@ static void		flag_char(t_env *env, va_list ap)
 
 static void		flag_unsigned(long long a, t_env *env, va_list ap)
 {
+	env->flag_ps = 0;
+	env->flag_sp = 0;
 	if (env->flag_l == 0 && env->flag_ll == 0 && env->flag_j == 0)
-	{
 		a = va_arg(ap, int);
-		ft_space_int(a, env);
-	}
 	else if (env->flag_l == 1)
-	{
 		a = va_arg(ap, long);
-		ft_space_int(a, env);
-	}
 	else if (env->flag_ll == 1 || env->flag_j == 1)
-	{
 		a = va_arg(ap, long long);
-		ft_space_int(a, env);
-	}
+	(a < 0) ? a += 4294967296 : 0;
+	ft_space_int(a, env);
 	if (env->flag_ms == 0 && (a < 0 || (a >= 0 && env->flag_ps == 1)))
 		env->nb_char++;
 }
@@ -77,16 +72,9 @@ static void		flag_hexa(long long a, t_env *env, va_list ap)
 		a = va_arg(ap, long long);
 	if (a > -2147483648)
 		value = a < 0 ? 4294967296 + (long long)a : (long long)a;
-	// else
-		// value = 2 * 4294967296 + (long long) a;
-	printf("%lld\n", value);
+	else
+		value = a < 0 ? (4294967296 * 2147483648 * 2) + (long long)a : (long long)a;
 	str = ft_itoabase_ull(value, 16, env->maj);
-	// if (env->flag_j == 1 && a <= -2147483648)
-	// {
-	// 	tmp = ft_modifhexa(str, env);
-	// 	ft_strdel(&str);
-	// 	str = tmp;
-	// }
 	if (env->flag_pt != 0 && ft_strcmp(str, "0") == 0)
 	{
 		env->flag_dz = 0;
@@ -100,20 +88,12 @@ static void		flag_hexa(long long a, t_env *env, va_list ap)
 static void		flag_int(long long a, t_env *env, va_list ap)
 {
 	if (env->flag_l == 0 && env->flag_ll == 0 && env->flag_j == 0)
-	{
 		a = va_arg(ap, int);
-		ft_space_int(a, env);
-	}
 	else if (env->flag_l == 1)
-	{
 		a = va_arg(ap, long);
-		ft_space_int(a, env);
-	}
 	else if (env->flag_ll == 1 || env->flag_j == 1)
-	{
 		a = va_arg(ap, long long);
-		ft_space_int(a, env);
-	}
+	ft_space_int(a, env);
 	if (env->flag_ms == 0 && (a < 0 || (a >= 0 && env->flag_ps == 1)))
 		env->nb_char++;
 }
@@ -154,6 +134,7 @@ void			ft_useva(t_env *env, va_list ap)
 	(env->conv == 'c') ? flag_char(env, ap) : 0;
 	(env->conv == 'o') ? flag_octal(0, env, ap) : 0;
 	(env->conv == 'u') ? flag_unsigned(0, env, ap) : 0;
+	(env->conv == 'U') ? flag_unsigned(0, env, ap) : 0;
 	if (env->conv == '%')
 	{
 		env->flag_sp = 0;
