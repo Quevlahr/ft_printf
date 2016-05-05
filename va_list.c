@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 21:19:59 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/05 17:54:13 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/05 18:36:44 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ static void		flag_char(t_env *env, va_list ap)
 {
 	char		c;
 
+	env->flag_sp = 0;
 	c = va_arg(ap, int);
 	ft_space_char(c, env);
 }
@@ -24,9 +25,9 @@ static void		flag_unsigned(long long a, t_env *env, va_list ap)
 {
 	env->flag_ps = 0;
 	env->flag_sp = 0;
-	if (env->flag_l == 0 && env->flag_ll == 0 && env->flag_j == 0)
+	if (env->flag_l == 0 && env->flag_ll == 0 && env->flag_j == 0 && env->conv != 'U')
 		a = va_arg(ap, int);
-	else if (env->flag_l == 1)
+	else if (env->flag_l == 1 || env->conv == 'U')
 		a = va_arg(ap, long);
 	else if (env->flag_ll == 1 || env->flag_j == 1)
 		a = va_arg(ap, long long);
@@ -40,6 +41,7 @@ static void		flag_octal(long long a, t_env *env, va_list ap)
 {
 	char		*str;
 
+	env->flag_sp = 0;
 	if (env->flag_l == 0 && env->flag_ll == 0)
 		a = va_arg(ap, int);
 	else if (env->flag_l == 1)
@@ -64,6 +66,7 @@ static void		flag_hexa(long long a, t_env *env, va_list ap)
 	long long	value;
 
 	tmp = NULL;
+	env->flag_sp = 0;
 	if (env->flag_l == 0 && env->flag_ll == 0 && env->flag_j == 0)
 		a = va_arg(ap, int);
 	else if (env->flag_l == 1)
@@ -87,6 +90,7 @@ static void		flag_hexa(long long a, t_env *env, va_list ap)
 
 static void		flag_int(long long a, t_env *env, va_list ap)
 {
+	env->flag_dz = 0;
 	if (env->flag_l == 0 && env->flag_ll == 0 && env->flag_j == 0)
 		a = va_arg(ap, int);
 	else if (env->flag_l == 1)
@@ -104,6 +108,7 @@ static void		flag_str(t_env *env, va_list ap)
 	char		*tmp;
 
 	env->flag_dz = 0;
+	env->flag_sp = 0;
 	tmp = NULL;
 	a = va_arg(ap, char *);
 	if (a == NULL)
