@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:15:45 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/05 18:40:03 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/06 17:03:01 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,13 +20,11 @@ int				main(void)
 	int	i;
 	int	j;
 	
-	i = ft_printf("[%lu]\n", 4294967296);
-	i = ft_printf("[%lu]\n", -42);
+	i = ft_printf("[%hhd]\n", 128);
 	ft_putchar('\n');
 	ft_putchar('\n');
 	ft_putchar('\n');
-	j = printf("[%lu]\n", 4294967296);
-	j = printf("[%lu]\n", -42);
+	j = printf("[%hhd]\n", 128);
 	ft_putchar('\n');
 	printf("%d vs %d\n", i, j);
 	

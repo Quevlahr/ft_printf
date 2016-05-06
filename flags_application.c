@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 17:33:00 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/04 15:57:24 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/06 16:58:11 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,15 @@ void			ft_putarg_str(t_env *env, char *str)
 	if (env->conv == 'o')
 	{
 		surplus = (env->flag_dz == 1) ? 1 : 0;
-		surplus += (env->flag_pt > 0 && env->flag_pt > ft_strlen(str)) ?
+		surplus += (env->flag_pt > 0 && env->flag_pt > (int)ft_strlen(str)) ?
 					env->flag_pt - ft_strlen(str) : 0;
 		surplus -= (ft_strcmp(str, "0") == 0 && env->flag_pt == -1) ? 1 : 0;
 	}
 	else
 		surplus = (env->flag_dz == 1) ? 2 : 0;
-	if (ft_strlen(str) + surplus < env->nb_sp)
+	if ((int)ft_strlen(str) + surplus < env->nb_sp)
 	{
-		while (i < (env->nb_sp - (ft_strlen(str) + surplus)))// && env->flag_pt)
+		while (i < (env->nb_sp - ((int)ft_strlen(str) + surplus)))// && env->flag_pt)
 		{
 			(env->flag_zr == 1) ? ft_putchar('0') : ft_putchar(' ');
 			i++;
@@ -79,7 +79,7 @@ void			ft_putarg_ll(t_env *env, long long a)
 	if ((env->flag_ps == 1 || a < 0) && env->flag_pt > 0)
 		(a < 0) ? ft_putchar('-') : ft_putchar('+');
 	if (env->flag_ms == 0)
-		while (i < (env->flag_pt - ft_nbrlen(a)))
+		while (i < (env->flag_pt - ft_nbrlen_ll(a)))
 		{
 			ft_putchar('0');
 			i++;

@@ -6,7 +6,7 @@
 #    By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/31 15:34:11 by quroulon          #+#    #+#              #
-#    Updated: 2016/05/03 16:09:11 by quroulon         ###   ########.fr        #
+#    Updated: 2016/05/06 16:56:44 by quroulon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME 		= 	libftprintf.a
 CC			= 	gcc
 
 # CFLAGS		=	-g
-# CFLAGS		= 	-Wall -Werror -Wextra -g
+CFLAGS		= 	-Wall -Werror -Wextra
 
 SRC 		= 	ft_printf.c utilities.c flags.c va_list.c ft_space.c ft_forstr.c \
 				flags_application.c ft_init.c
