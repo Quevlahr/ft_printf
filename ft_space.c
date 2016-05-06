@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/22 15:24:40 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/05 17:53:09 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/06 19:26:24 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,16 +19,6 @@ void			ft_space_str(char *str, t_env *env)
 		ft_putchar(' ');
 		env->nb_char++;
 		(env->nb_sp > 0) ? env->nb_sp-- : 0;
-	}
-	if (env->flag_pt > 0 && env->conv != 's')
-	{
-		int i = 0;
-		while (i < (env->flag_pt - (int)ft_strlen(str)))
-		{
-			ft_putchar('0');
-			i++;
-			env->nb_char++;
-		}
 	}
 	if (env->flag_ms == 1)
 	{

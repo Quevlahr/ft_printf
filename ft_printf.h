@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:19:17 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/06 15:42:22 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/06 18:41:05 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,5 +101,6 @@ int					ft_nbrlen_ll(long long n);
 void				ft_putnbr_l(long nb);
 int					ft_nbrlen_l(long n);
 char				*ft_itoabase_ull(unsigned long long n, int base, int maj);
+char				*ft_itoabase_ui(unsigned int n, int base, int maj);
 
 #endif

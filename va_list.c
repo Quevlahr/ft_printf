@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 21:19:59 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/06 17:02:40 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/06 18:41:16 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,11 @@ static void		flag_unsigned(long long a, t_env *env, va_list ap)
 {
 	env->flag_ps = 0;
 	env->flag_sp = 0;
-	if (env->flag_l == 0 && env->flag_ll == 0 && env->flag_j == 0 && env->conv != 'U')
+	if (env->flag_hh == 1 && env->conv != 'U')
+		a = (unsigned char)va_arg(ap, unsigned int);
+	else if (env->flag_h == 1 && env->conv != 'U')
+		a = (unsigned short)va_arg(ap, unsigned int);
+	else if (env->flag_l == 0 && env->flag_ll == 0 && env->flag_j == 0 && env->conv != 'U')
 		a = va_arg(ap, unsigned int);
 	else if (env->flag_l == 1 || env->conv == 'U')
 		a = va_arg(ap, unsigned long);
@@ -50,7 +54,7 @@ static void		flag_octal(long long a, t_env *env, va_list ap)
 		a = va_arg(ap, long);
 	else if (env->flag_ll == 1)
 		a = va_arg(ap, long long);
-	str = ft_itoabase_ull(a, 8, 0);
+	str = ft_itoabase_ui(a, 8, 0);
 	if (env->flag_pt > 0 && ft_strcmp(str, "0") == 0)
 	{
 		env->flag_dz = 0;
