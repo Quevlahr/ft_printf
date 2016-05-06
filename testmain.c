@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:15:45 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/06 18:48:09 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/06 19:37:32 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ int				main(void)
 	int	i;
 	int	j;
 	
-	i = ft_printf("[% #15.20o]\n", -128);
+	i = ft_printf("[%- #15.20x]\n", -128);
 	ft_putchar('\n');
 	ft_putchar('\n');
 	ft_putchar('\n');
-	j = printf("[% #15.20o]\n", -128);
+	j = printf("[%- #15.20x]\n", -128);
 	ft_putchar('\n');
 	printf("%d vs %d\n", i, j);
 	

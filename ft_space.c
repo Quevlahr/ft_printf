@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/22 15:24:40 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/06 19:26:24 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/06 19:37:26 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ void			ft_space_str(char *str, t_env *env)
 	if (env->flag_ms == 1)
 	{
 		flag_dz_str(env, str);
+		flag_pt_xo(env, str);
 		if (env->flag_pt != -1 || ft_strcmp(str, "0") != 0)
 			ft_putstr(str);
 		else
@@ -33,6 +34,7 @@ void			ft_space_str(char *str, t_env *env)
 	{
 		ft_putarg_str(env, str);
 		flag_dz_str(env, str);
+		flag_pt_xo(env, str);
 		if (env->flag_pt != -1 || ft_strcmp(str, "0") != 0)
 			ft_putstr(str);
 		else
@@ -41,6 +43,7 @@ void			ft_space_str(char *str, t_env *env)
 	else
 	{
 		flag_dz_str(env, str);
+		flag_pt_xo(env, str);
 		ft_putarg_str(env, str);
 		if (env->flag_pt != -1 || ft_strcmp(str, "0") != 0)
 			ft_putstr(str);

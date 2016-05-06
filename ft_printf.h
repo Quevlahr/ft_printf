@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:19:17 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/06 18:41:05 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/06 19:32:08 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,9 @@ char				*ft_modifstr(char *str, t_env *env);
 void				flag_dz_str(t_env *env, char *str);
 void				ft_putarg_str(t_env *env, char *str);
 void				ft_putarg_ll(t_env *env, long long a);
+
+void				flag_pt_xo(t_env *env, char *str);
+
 
 /*
 **	ft_init.c
