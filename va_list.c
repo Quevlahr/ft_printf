@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 21:19:59 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/06 18:41:16 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/09 11:25:50 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ static void		flag_unsigned(long long a, t_env *env, va_list ap)
 	else if (env->flag_ll == 1 || env->flag_j == 1)
 		a = va_arg(ap, unsigned long long);
 	// (a < 0 && (env->flag_ll == 1 || env->flag_l == 1)) ? a -= (4294967296 * 2147483648) : 0;
-	// printf("%lld\n", a);
 	// (a < 0) ? a += ULONG_MAX + 1: 0;
 	ft_space_int(a, env);
 	if (env->flag_ms == 0 && (a < 0 || (a >= 0 && env->flag_ps == 1)))
