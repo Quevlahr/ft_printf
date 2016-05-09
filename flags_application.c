@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 17:33:00 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/09 11:48:00 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/09 12:51:14 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,17 +35,21 @@ void			ft_putarg_str(t_env *env, char *str)
 	if (env->conv == 'o')
 	{
 		surplus = (env->flag_dz == 1) ? 1 : 0;
-		surplus += (env->flag_pt > 0 && env->flag_pt > (int)ft_strlen(str)) ?
-					env->flag_pt - ft_strlen(str) : 0;
 		surplus -= (ft_strcmp(str, "0") == 0 && env->flag_pt == -1) ? 1 : 0;
 	}
 	else
 		surplus = (env->flag_dz == 1) ? 2 : 0;
+	if (env->conv == 'o' || env->conv == 'x')
+		surplus += (env->flag_pt > 0 && env->flag_pt > (int)ft_strlen(str)) ?
+					env->flag_pt - ft_strlen(str) : 0;
 	if ((int)ft_strlen(str) + surplus < env->nb_sp)
 	{
-		while (i < (env->nb_sp - ((int)ft_strlen(str) + surplus)))// && env->flag_pt)
+		while (i < (env->nb_sp - ((int)ft_strlen(str) + surplus)))
 		{
-			(env->flag_zr == 1) ? ft_putchar('0') : ft_putchar(' ');
+			if (env->flag_pt != 0)
+				(env->flag_zr == 1 && env->nb_sp < env->flag_pt) ? ft_putchar('0') : ft_putchar(' ');
+			else
+				(env->flag_zr == 1) ? ft_putchar('0') : ft_putchar(' ');
 			i++;
 			env->nb_char++;
 		}
