@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:15:45 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/09 13:13:47 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/10 13:38:03 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,19 +20,13 @@ int				main(void)
 	int	i;
 	int	j;
 	
-	i = ft_printf("[%# 30.15o]\n", -128);
+	i = ft_printf("[%lu]\n", "-42");
 	ft_putchar('\n');
 	ft_putchar('\n');
 	ft_putchar('\n');
-	j = printf("[%# 30.15o]\n", -128);
+	j = printf("[%lu]\n", "-42");
 	ft_putchar('\n');
 	printf("%d vs %d\n", i, j);
 	
 	return (0);
 }
-
-
-// # 0094 (int)
-//   ft_printf("@moulitest: %5.o", %5.0o, 0, 0);
-//   1. (   22) -->@moulitest:     ,     <--
-//   2. (   24) -->@moulitest:      ,      <--

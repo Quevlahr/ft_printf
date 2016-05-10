@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 17:33:00 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/09 13:10:57 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/10 12:30:56 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,11 @@ void			flag_dz_str(t_env *env, char *str)
 		(env->maj == 1) ? ft_putstr("0X") : ft_putstr("0x");
 		env->nb_char += 2;
 	}
-	else if (env->flag_dz == 1 && env->conv == 'o')
-	{
-		ft_putchar('0');
-		env->nb_char++;
-	}
+	// else if (env->flag_dz == 1 && env->conv == 'o')
+	// {
+	// 	ft_putchar('0');
+	// 	env->nb_char++;
+	// }
 }
 
 void			ft_putarg_str(t_env *env, char *str)
@@ -32,9 +32,10 @@ void			ft_putarg_str(t_env *env, char *str)
 	int			surplus;
 
 	i = 0;
+	surplus = 0;
 	if (env->conv == 'o')
 	{
-		surplus = (env->flag_dz == 1) ? 1 : 0;
+		// surplus = (env->flag_dz == 1) ? 1 : 0;
 		surplus -= (ft_strcmp(str, "0") == 0 && env->flag_pt == -1) ? 1 : 0;
 	}
 	else

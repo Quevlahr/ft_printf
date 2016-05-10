@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/22 15:24:40 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/09 13:12:09 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/10 13:40:02 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,7 @@ void			ft_space_str(char *str, t_env *env)
 void			ft_space_int(long long a, t_env *env)
 {
 	int			i = 0;
+	
 	if (env->flag_ms == 1)
 	{
 		if (a < 0 || env->flag_ps == 1)
