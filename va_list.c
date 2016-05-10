@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 21:19:59 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/10 14:21:15 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/10 16:20:03 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ static void		flag_char(t_env *env, va_list ap)
 
 static void		flag_unsigned(unsigned long long a, t_env *env, va_list ap)
 {
-	un
 	env->flag_ps = 0;
 	env->flag_sp = 0;
 	if (env->flag_hh == 1 && env->conv != 'U')
@@ -33,16 +32,9 @@ static void		flag_unsigned(unsigned long long a, t_env *env, va_list ap)
 	else if (env->flag_l == 0 && env->flag_ll == 0 && env->flag_j == 0 && env->conv != 'U')
 		a = va_arg(ap, unsigned int);
 	else if (env->flag_l == 1 || env->conv == 'U')
-	{
 		a = va_arg(ap, unsigned long);
-		a += 4294967296 * 2147483648;
-		// (a < 0) ? a -= LONG_MIN : 0;
-		ft_putnbr_l(a);
-	}
 	else if (env->flag_ll == 1 || env->flag_j == 1)
 		a = va_arg(ap, unsigned long long);
-	// (a < 0 && (env->flag_ll == 1 || env->flag_l == 1)) ? a -= (4294967296 * 2147483648) : 0;
-	// (a < 0) ? a += ULONG_MAX + 1: 0;
 	ft_space_int(a, env);
 	if (env->flag_ms == 0 &&  env->flag_ps == 1)
 		env->nb_char++;

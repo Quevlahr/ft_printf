@@ -1,32 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   testmain.c                                         :+:      :+:    :+:   */
+/*   ft_putnbr_ul.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/31 15:15:45 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/10 16:22:23 by quroulon         ###   ########.fr       */
+/*   Created: 2016/05/10 15:22:17 by quroulon          #+#    #+#             */
+/*   Updated: 2016/05/10 15:32:44 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
+#include "../ft_printf.h"
 
-int				main(void)
+void			ft_putnbr_ul(unsigned long nb)
 {
-	setlocale(LC_ALL, "en_US.UTF-8");
-	
-	int	i;
-	int	j;
-	
-	i = ft_printf("[%lu]\n", "-42");
-	ft_putchar('\n');
-	ft_putchar('\n');
-	ft_putchar('\n');
-	j = printf("[%lu]\n", "-42");
-	ft_putchar('\n');
-	printf("%d vs %d\n", i, j);
-	
-	return (0);
+	if (nb <= 9)
+		ft_putchar(nb + '0');
+	else
+	{
+		ft_putnbr_ul(nb / 10);
+		ft_putnbr_ul(nb % 10);
+	}
 }

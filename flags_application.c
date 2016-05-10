@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 17:33:00 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/10 12:30:56 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/10 16:28:45 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,6 @@ void			flag_dz_str(t_env *env, char *str)
 		(env->maj == 1) ? ft_putstr("0X") : ft_putstr("0x");
 		env->nb_char += 2;
 	}
-	// else if (env->flag_dz == 1 && env->conv == 'o')
-	// {
-	// 	ft_putchar('0');
-	// 	env->nb_char++;
-	// }
 }
 
 void			ft_putarg_str(t_env *env, char *str)
@@ -34,10 +29,7 @@ void			ft_putarg_str(t_env *env, char *str)
 	i = 0;
 	surplus = 0;
 	if (env->conv == 'o')
-	{
-		// surplus = (env->flag_dz == 1) ? 1 : 0;
 		surplus -= (ft_strcmp(str, "0") == 0 && env->flag_pt == -1) ? 1 : 0;
-	}
 	else
 		surplus = (env->flag_dz == 1) ? 2 : 0;
 	if (env->conv == 'o' || env->conv == 'x')
@@ -90,5 +82,8 @@ void			ft_putarg_ll(t_env *env, long long a)
 			i++;
 			env->nb_char++;
 		}
-	env->nb_char += ft_nbrlen_ll(a);
+	if ((env->flag_l == 1 && env->conv == 'u') || env->conv == 'U')
+		env->nb_char += ft_nbrlen_ull(a);
+	else
+		env->nb_char += ft_nbrlen_ll(a);
 }

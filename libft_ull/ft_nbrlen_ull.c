@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   testmain.c                                         :+:      :+:    :+:   */
+/*   ft_nbrlen_ull.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/03/31 15:15:45 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/10 16:22:23 by quroulon         ###   ########.fr       */
+/*   Created: 2016/05/10 16:23:48 by quroulon          #+#    #+#             */
+/*   Updated: 2016/05/10 16:29:04 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
-#include <stdio.h>
+#include "../ft_printf.h"
 
-int				main(void)
+int				ft_nbrlen_ull(unsigned long long n)
 {
-	setlocale(LC_ALL, "en_US.UTF-8");
-	
-	int	i;
-	int	j;
-	
-	i = ft_printf("[%lu]\n", "-42");
-	ft_putchar('\n');
-	ft_putchar('\n');
-	ft_putchar('\n');
-	j = printf("[%lu]\n", "-42");
-	ft_putchar('\n');
-	printf("%d vs %d\n", i, j);
-	
-	return (0);
+	int		i;
+
+	i = 0;
+	if (n == 0)
+		return (1);
+	while (n != 0)
+	{
+		n /= 10;
+		i++;
+	}
+	return (i);
 }
