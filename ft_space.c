@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/22 15:24:40 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/10 16:20:31 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/10 20:32:03 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,8 @@ void			ft_space_int(long long a, t_env *env)
 		a *= (a < 0) ? -1 : 1;
 		if ((env->flag_l == 1 && env->conv == 'u') || env->conv == 'U')
 			ft_putnbr_ull(a);
+		else if (env->flag_z == 1)
+			ft_putnbr_ui(a);
 		else
 			ft_putnbr_ll(a);
 	}
@@ -104,6 +106,8 @@ void			ft_space_int(long long a, t_env *env)
 		(a < 0) ? a *= -1 : 0;
 		if ((env->flag_l == 1 && env->conv == 'u') || env->conv == 'U')
 			ft_putnbr_ull(a);
+		else if (env->flag_z == 1)
+			ft_putnbr_ui(a);
 		else
 			ft_putnbr_ll(a);
 	}
@@ -112,6 +116,8 @@ void			ft_space_int(long long a, t_env *env)
 		(env->flag_ps == 1 && a >= 0) ? ft_putchar('+') : 0;
 		if ((env->flag_l == 1 && env->conv == 'u') || env->conv == 'U')
 			ft_putnbr_ull(a);
+		else if (env->flag_z == 1)
+			ft_putnbr_ui(a);
 		else
 			ft_putnbr_ll(a);
 		ft_putarg_ll(env, a);
@@ -124,6 +130,8 @@ void			ft_space_int(long long a, t_env *env)
 		{
 			if ((env->flag_l == 1 && env->conv == 'u') || env->conv == 'U')
 				ft_putnbr_ull(a);
+			else if (env->flag_z == 1)
+				ft_putnbr_ui(a);
 			else
 				ft_putnbr_ll(a);
 		}

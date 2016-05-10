@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 17:33:00 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/10 16:28:45 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/10 20:36:33 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,8 @@ void			ft_putarg_ll(t_env *env, long long a)
 		}
 	if ((env->flag_l == 1 && env->conv == 'u') || env->conv == 'U')
 		env->nb_char += ft_nbrlen_ull(a);
+	else if (env->flag_z == 1)
+		env->nb_char += ft_nbrlen_ui(a);
 	else
 		env->nb_char += ft_nbrlen_ll(a);
 }

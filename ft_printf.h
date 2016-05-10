@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:19:17 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/10 16:27:03 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/10 20:35:33 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,12 +101,16 @@ void				ft_veriflh(t_env *env, int *i, int *tmpl, int *tmph);
 */
 void				ft_putnbr_ull(unsigned long long nb);
 void				ft_putnbr_ul(unsigned long nb);
+void				ft_putnbr_ui(unsigned int nb);
 void				ft_putnbr_ll(long long nb);
-int					ft_nbrlen_ll(long long n);
 void				ft_putnbr_l(long nb);
-int					ft_nbrlen_l(long n);
-int					ft_nbrlen_ul(unsigned long n);
+
 int					ft_nbrlen_ull(unsigned long long n);
+int					ft_nbrlen_ul(unsigned long n);
+int					ft_nbrlen_ui(unsigned int n);
+int					ft_nbrlen_ll(long long n);
+int					ft_nbrlen_l(long n);
+
 char				*ft_itoabase_ull(unsigned long long n, int base, int maj);
 char				*ft_itoabase_ui(unsigned int n, int base, int maj);
 
