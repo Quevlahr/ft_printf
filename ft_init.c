@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 15:48:29 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/11 17:08:32 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/11 18:44:07 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,19 @@ void			ft_initenv(t_env *env)
 	env->nb_sp = 0;
 	env->maj = 0;
 	env->conv = '\0';
+}
+
+int				ft_verifchar(char c)
+{
+	if (c == 's' || c == 'S' || c == 'p' || c == 'u' || c == 'U' || c == 'x' ||
+		c == 'd' || c == 'D' || c == 'i' || c == 'o' || c == 'O' || c == '%' ||
+		c == 'X' || c == 'c' || c == 'C')
+		return (1);
+	else if (c == '#' || c == '0' || c == '-' || c == '+' || c == ' ' ||
+		c == '.' || c == 'l' || c == 'l' || c == 'j' || c == 'h' || c == 'h' ||
+		c == 'z')
+		return (2);
+	return (0);
 }
 
 void			ft_initdigit(t_env *env, int *i)

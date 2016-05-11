@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:19:17 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/11 18:18:17 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/11 18:44:16 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,6 @@ int					ft_printf(const char *format, ...);
 */
 void				ft_error(t_env *env);
 void				ft_print_env(t_env *env);
-int					ft_verifchar(char c);
 
 /*
 **	flags.c
@@ -94,6 +93,7 @@ void				ft_initenv(t_env *env);
 void				ft_initdigit(t_env *env, int *i);
 int					ft_verifbase(t_env *env, int *i);
 void				ft_veriflh(t_env *env, int *i, int *tmpl, int *tmph);
+int					ft_verifchar(char c);
 
 /*
 ** ft_gestion.c

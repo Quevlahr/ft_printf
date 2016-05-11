@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/04 14:14:46 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/10 13:39:42 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/11 18:43:56 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,17 +56,4 @@ void			ft_print_env(t_env *env)
 	ft_putchar(env->conv);
 	ft_putchar('\n');
 	ft_putchar('\n');
-}
-
-int				ft_verifchar(char c)
-{
-	if (c == 's' || c == 'S' || c == 'p' || c == 'u' || c == 'U' || c == 'x' ||
-		c == 'd' || c == 'D' || c == 'i' || c == 'o' || c == 'O' || c == '%' ||
-		c == 'X' || c == 'c' || c == 'C')
-		return (1);
-	else if (c == '#' || c == '0' || c == '-' || c == '+' || c == ' ' ||
-		c == '.' || c == 'l' || c == 'l' || c == 'j' || c == 'h' || c == 'h' ||
-		c == 'z')
-		return (2);
-	return (0);
 }
