@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/04 19:52:18 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/06 15:01:05 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/11 18:16:00 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ void			ft_initflag(const char *format, t_env *env, int *i)
 	tmpl = 0;
 	tmph = 0;
 	ft_initenv(env);
-	while (format[*i] && (ft_verifchar(format[*i]) == 2 || ft_isdigit(format[*i]) == 1))
+	while (format[*i] && (ft_verifchar(format[*i]) == 2 ||
+			ft_isdigit(format[*i]) == 1))
 	{
 		if (ft_verifbase(env, i) == 1)
 		{
@@ -32,7 +33,8 @@ void			ft_initflag(const char *format, t_env *env, int *i)
 				(*i)++;
 				if (ft_isdigit(format[*i]) != 1)
 					env->flag_pt = -1;
-				else if (ft_isdigit(format[*i]) == 1 || format[*i] == '-' || format[*i] == '+')
+				else if (ft_isdigit(format[*i]) == 1 || format[*i] == '-' ||
+						format[*i] == '+')
 				{
 					env->flag_pt = ft_atoi(format + (*i));
 					(*i) += ft_nbrlen(ft_atoi(format + (*i)));
@@ -52,9 +54,10 @@ void			ft_initconv(int *i, t_env *env, va_list ap)
 	format = env->str;
 	if (format[*i] && ft_verifchar(format[*i]) == 1)
 	{
+		env->conv = format[*i];
+		ft_maxtype(env);
 		(format[*i] >= 'A' && format[*i] <= 'Z') ? env->maj = 1 : 0;
 		env->nb_arg++;
-		env->conv = format[*i];
 		ft_useva(env, ap);
 		(*i)++;
 	}

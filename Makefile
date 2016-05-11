@@ -6,7 +6,7 @@
 #    By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/31 15:34:11 by quroulon          #+#    #+#              #
-#    Updated: 2016/05/10 13:29:42 by quroulon         ###   ########.fr        #
+#    Updated: 2016/05/11 18:18:46 by quroulon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ CC			= 	gcc
 # CFLAGS		= 	-Wall -Werror -Wextra
 
 SRC 		= 	ft_printf.c utilities.c flags.c va_list.c ft_space.c ft_forstr.c \
-				flags_application.c flags_application2.c ft_init.c
+				flags_application.c flags_application2.c ft_init.c ft_gestion.c
 
 SRCPRINTF	=	$(wildcard libft_ull/*.c)
 

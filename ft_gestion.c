@@ -1,29 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flags_application2.c                               :+:      :+:    :+:   */
+/*   ft_gestion.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/05/06 19:24:14 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/11 17:08:35 by quroulon         ###   ########.fr       */
+/*   Created: 2016/05/11 18:13:02 by quroulon          #+#    #+#             */
+/*   Updated: 2016/05/11 18:19:16 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void			flag_pt_xo(t_env *env, char *str)
+void			ft_maxtype(t_env *e)
 {
-	int			i;
-
-	i = 0;
-	if (env->flag_pt > 0 && env->conv != 's')
+	if (e->flag_ll == 1 || e->flag_l == 1 || e->flag_j == 1 || e->flag_z == 1
+		|| e->conv == 'U')
 	{
-		while (i < (env->flag_pt - (int)ft_strlen(str)))
-		{
-			ft_putchar('0');
-			i++;
-			env->nb_char++;
-		}
+		e->flag_h = 0;
+		e->flag_hh = 0;
 	}
+	else if (e->flag_z == 1)
+	{
+		e->flag_ll = 0;
+		e->flag_l = 0;
+		e->flag_j = 0;
+	}
+	else if (e->flag_h == 1)
+		e->flag_hh = 0;
 }

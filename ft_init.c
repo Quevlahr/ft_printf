@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 15:48:29 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/05 17:19:14 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/11 17:08:32 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,32 +54,32 @@ int				ft_verifbase(t_env *env, int *i)
 	return (tmp < 7 ? 0 : 1);
 }
 
-void			ft_veriflh(t_env *env, int *i, int *tmpl, int *tmph)
+void			ft_veriflh(t_env *e, int *i, int *l, int *h)
 {
-	if (env->str[*i] == 'l' && *tmpl == 0)
+	if (e->str[*i] == 'l' && *l == 0)
 	{
-		env->flag_l = 1;
-		*tmpl = 1;
+		e->flag_l = 1;
+		*l = 1;
 		(*i)++;
 	}
-	else if (env->str[*i] == 'l' && *tmpl == 1 && env->str[*i - 1] == 'l')
+	else if (e->str[*i] == 'l' && *l == 1 && e->str[*i - 1] == 'l')
 	{
-		env->flag_ll = 1;
-		env->flag_l = 0;
+		e->flag_ll = 1;
+		e->flag_l = 0;
 		(*i)++;
 	}
-	else if (env->str[*i] == 'h' && *tmph == 0)
+	else if (e->str[*i] == 'h' && *h == 0)
 	{
-		env->flag_h = 1;
-		*tmph = 1;
+		e->flag_h = 1;
+		*h = 1;
 		(*i)++;
 	}
-	else if (env->str[*i] == 'h' && *tmph == 1 && env->str[*i - 1] == 'h')
+	else if (e->str[*i] == 'h' && *h == 1 && e->str[*i - 1] == 'h')
 	{
-		env->flag_hh = 1;
-		env->flag_h = 0;
+		e->flag_hh = 1;
+		e->flag_h = 0;
 		(*i)++;
 	}
-	else if ((env->str[*i] == 'l' && *tmpl == 1) || (env->str[*i] == 'h' && *tmph == 1))
+	else if ((e->str[*i] == 'l' && *l == 1) || (e->str[*i] == 'h' && *h == 1))
 		(*i)++;
 }

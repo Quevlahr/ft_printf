@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:37:04 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/03 16:09:07 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/11 17:01:47 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ void				ft_read(const char *format, int i, t_env *env, va_list ap)
 		{
 			i++;
 			ft_initflag(format, env, &i);
-			// ft_initdigit(env, &i);
 			ft_initconv(&i, env, ap);
 		}
 		else

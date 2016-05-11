@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 21:19:59 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/10 20:30:20 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/11 17:32:06 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,14 +29,15 @@ static void		flag_unsigned(unsigned long long a, t_env *env, va_list ap)
 		a = (unsigned char)va_arg(ap, unsigned int);
 	else if (env->flag_h == 1 && env->conv != 'U')
 		a = (unsigned short)va_arg(ap, unsigned int);
-	else if (env->flag_l == 0 && env->flag_ll == 0 && env->flag_j == 0 && env->conv != 'U')
+	else if (env->flag_l == 0 && env->flag_ll == 0 && env->flag_j == 0 &&
+			env->conv != 'U')
 		a = va_arg(ap, unsigned int);
 	else if (env->flag_l == 1 || env->conv == 'U')
 		a = va_arg(ap, unsigned long);
 	else if (env->flag_ll == 1 || env->flag_j == 1)
 		a = va_arg(ap, unsigned long long);
 	ft_space_int(a, env);
-	if (env->flag_ms == 0 &&  env->flag_ps == 1)
+	if (env->flag_ms == 0 && env->flag_ps == 1)
 		env->nb_char++;
 }
 
@@ -105,12 +106,12 @@ static void		flag_int(long long a, t_env *env, va_list ap)
 		a = (char)va_arg(ap, int);
 	else if (env->flag_h == 1)
 		a = (short)va_arg(ap, int);
-	else if (env->flag_l == 0 && env->flag_ll == 0 && env->flag_j == 0)
-		a = va_arg(ap, int);
 	else if (env->flag_l == 1)
 		a = va_arg(ap, long);
-	else if (env->flag_ll == 1 || env->flag_j == 1)
+	else if (env->flag_ll == 1 || env->flag_j == 1 || env->flag_z == 1)
 		a = va_arg(ap, long long);
+	else
+		a = va_arg(ap, int);
 	ft_space_int(a, env);
 	if (env->flag_ms == 0 && (a < 0 || (a >= 0 && env->flag_ps == 1)))
 		env->nb_char++;
