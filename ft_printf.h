@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:19:17 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/12 15:53:17 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/12 16:17:09 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct		s_env
 	int				flag_j;
 	int				flag_z;
 	int				flag_pt;
-	int				flag_D;
+	int				flag_d;
 
 	int				flag_dz;
 	int				flag_zr;

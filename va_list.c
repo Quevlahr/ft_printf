@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 21:19:59 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/12 15:53:50 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/12 16:20:02 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,16 @@ static void		flag_octal(long long a, t_env *env, va_list ap)
 	char		*str;
 
 	env->flag_sp = 0;
-	if (env->flag_l == 0 && env->flag_ll == 0)
+	if (env->flag_l == 0 && env->flag_ll == 0 && env->conv != 'O')
 		a = va_arg(ap, int);
-	else if (env->flag_l == 1)
+	else if (env->flag_l == 1 || env->conv == 'O')
 		a = va_arg(ap, long);
 	else if (env->flag_ll == 1)
 		a = va_arg(ap, long long);
-	str = ft_itoabase_ui(a, 8, 0);
+	if (env->conv == 'O' && a > -2147483648 && a < 0)
+		str = ft_itoabase_ui(a, 8, 0);
+	else
+		str = ft_itoabase_ull(a, 8, 0);
 	if (env->flag_pt > 0 && ft_strcmp(str, "0") == 0)
 	{
 		env->flag_dz = 0;
@@ -123,7 +126,7 @@ static void		flag_int(long long a, t_env *env, va_list ap)
 		a = va_arg(ap, int);
 	i += a;
 	if (a == i && env->conv == 'D')
-		env->flag_D = 1;
+		env->flag_d = 1;
 	ft_space_int(a, env);
 	if (env->flag_ms == 0 && (a < 0 || (a >= 0 && env->flag_ps == 1)))
 		env->nb_char++;
@@ -166,7 +169,7 @@ void			ft_useva(t_env *env, va_list ap)
 	(env->conv == 'D') ? flag_int(0, env, ap) : 0;
 	(env->conv == 'i') ? flag_int(0, env, ap) : 0;
 	(env->conv == 'o') ? flag_octal(0, env, ap) : 0;
-	// O
+	(env->conv == 'O') ? flag_octal(0, env, ap) : 0;
 	(env->conv == 'u') ? flag_unsigned(0, env, ap) : 0;
 	(env->conv == 'U') ? flag_unsigned(0, env, ap) : 0;
 	(env->conv == 'x') ? flag_hexa(0, env, ap) : 0;

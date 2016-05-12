@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/22 15:24:40 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/12 15:54:36 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/12 16:18:56 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ void			ft_space_int(long long a, t_env *env)
 		{
 			if (((env->flag_ll == 1 || env->flag_l == 1) && env->conv == 'u') || env->conv == 'U')
 				ft_putnbr_ull(a);
-			else if (((env->conv == 'D' && env->flag_D == 0) || env->flag_z == 1) && a < 0 && a > -2147483648)
+			else if (((env->conv == 'D' && env->flag_d == 0) || env->flag_z == 1) && a < 0 && a > -2147483648)
 				ft_putnbr_ui(a);
 			else
 				ft_putnbr_ll(a);
