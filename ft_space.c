@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/22 15:24:40 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/11 18:37:16 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/12 15:54:36 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,9 +94,9 @@ void			ft_space_int(long long a, t_env *env)
 	{
 		ft_putarg_ll(env, a);
 		a *= (a < 0) ? -1 : 1;
-		if ((env->flag_l == 1 && env->conv == 'u') || env->conv == 'U')
+		if (((env->flag_ll == 1 || env->flag_l == 1) && env->conv == 'u') || env->conv == 'U')
 			ft_putnbr_ull(a);
-		else if (env->flag_z == 1 && a < 0 && a > -2147483648)
+		else if ((env->conv == 'D' || env->flag_z == 1) && a < 0 && a > -2147483648)
 			ft_putnbr_ui(a);
 		else
 			ft_putnbr_ll(a);
@@ -106,9 +106,9 @@ void			ft_space_int(long long a, t_env *env)
 		(a < 0) ? ft_putchar('-') : ft_putchar('+');
 		ft_putarg_ll(env, a);
 		(a < 0) ? a *= -1 : 0;
-		if ((env->flag_l == 1 && env->conv == 'u') || env->conv == 'U')
+		if (((env->flag_ll == 1 || env->flag_l == 1) && env->conv == 'u') || env->conv == 'U')
 			ft_putnbr_ull(a);
-		else if (env->flag_z == 1 && a < 0 && a > -2147483648)
+		else if ((env->conv == 'D' || env->flag_z == 1) && a < 0 && a > -2147483648)
 			ft_putnbr_ui(a);
 		else
 			ft_putnbr_ll(a);
@@ -116,9 +116,9 @@ void			ft_space_int(long long a, t_env *env)
 	else if (env->flag_ms == 1)
 	{
 		(env->flag_ps == 1 && a >= 0) ? ft_putchar('+') : 0;
-		if ((env->flag_l == 1 && env->conv == 'u') || env->conv == 'U')
+		if (((env->flag_ll == 1 || env->flag_l == 1) && env->conv == 'u') || env->conv == 'U')
 			ft_putnbr_ull(a);
-		else if (env->flag_z == 1 && a < 0 && a > -2147483648)
+		else if ((env->conv == 'D' || env->flag_z == 1) && a < 0 && a > -2147483648)
 			ft_putnbr_ui(a);
 		else
 			ft_putnbr_ll(a);
@@ -130,9 +130,9 @@ void			ft_space_int(long long a, t_env *env)
 		(env->flag_ps == 1 && a >= 0) ? ft_putchar('+') : 0;
 		if (env->flag_pt != -1 || a != 0)
 		{
-			if ((env->flag_l == 1 && env->conv == 'u') || env->conv == 'U')
+			if (((env->flag_ll == 1 || env->flag_l == 1) && env->conv == 'u') || env->conv == 'U')
 				ft_putnbr_ull(a);
-			else if (env->flag_z == 1 && a < 0 && a > -2147483648)
+			else if (((env->conv == 'D' && env->flag_D == 0) || env->flag_z == 1) && a < 0 && a > -2147483648)
 				ft_putnbr_ui(a);
 			else
 				ft_putnbr_ll(a);

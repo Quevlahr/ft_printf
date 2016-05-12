@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 15:48:29 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/11 18:44:07 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/12 15:53:36 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void			ft_initenv(t_env *env)
 	env->flag_j = 0;
 	env->flag_z = 0;
 	env->flag_pt = 0;
+	env->flag_D = 0;
 	env->nb_sp = 0;
 	env->maj = 0;
 	env->conv = '\0';

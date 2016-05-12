@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 21:19:59 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/11 17:32:06 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/12 15:53:50 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,12 @@ static void		flag_hexa(long long a, t_env *env, va_list ap)
 
 	tmp = NULL;
 	env->flag_sp = 0;
-	if (env->flag_l == 0 && env->flag_ll == 0 && env->flag_j == 0)
+	if (env->conv == 'p')
+	{
+		env->flag_dz = 1;
+		a = (long long)va_arg(ap, void*);
+	}
+	else if (env->flag_l == 0 && env->flag_ll == 0 && env->flag_j == 0)
 		a = va_arg(ap, int);
 	else if (env->flag_l == 1)
 		a = va_arg(ap, long);
@@ -101,6 +106,9 @@ static void		flag_hexa(long long a, t_env *env, va_list ap)
 
 static void		flag_int(long long a, t_env *env, va_list ap)
 {
+	int			i;
+
+	i = 0L;
 	env->flag_dz = 0;
 	if (env->flag_hh == 1)
 		a = (char)va_arg(ap, int);
@@ -108,10 +116,14 @@ static void		flag_int(long long a, t_env *env, va_list ap)
 		a = (short)va_arg(ap, int);
 	else if (env->flag_l == 1)
 		a = va_arg(ap, long);
-	else if (env->flag_ll == 1 || env->flag_j == 1 || env->flag_z == 1)
+	else if (env->flag_ll == 1 || env->flag_j == 1 || env->flag_z == 1 ||
+			env->conv == 'D')
 		a = va_arg(ap, long long);
 	else
 		a = va_arg(ap, int);
+	i += a;
+	if (a == i && env->conv == 'D')
+		env->flag_D = 1;
 	ft_space_int(a, env);
 	if (env->flag_ms == 0 && (a < 0 || (a >= 0 && env->flag_ps == 1)))
 		env->nb_char++;
@@ -148,13 +160,19 @@ void			ft_useva(t_env *env, va_list ap)
 	c = ft_strnew(1);
 	c[0] = '%';
 	(env->conv == 's') ? flag_str(env, ap) : 0;
+	// S
+	(env->conv == 'p') ? flag_hexa(0, env, ap) : 0;
 	(env->conv == 'd') ? flag_int(0, env, ap) : 0;
+	(env->conv == 'D') ? flag_int(0, env, ap) : 0;
+	(env->conv == 'i') ? flag_int(0, env, ap) : 0;
+	(env->conv == 'o') ? flag_octal(0, env, ap) : 0;
+	// O
+	(env->conv == 'u') ? flag_unsigned(0, env, ap) : 0;
+	(env->conv == 'U') ? flag_unsigned(0, env, ap) : 0;
 	(env->conv == 'x') ? flag_hexa(0, env, ap) : 0;
 	(env->conv == 'X') ? flag_hexa(0, env, ap) : 0;
 	(env->conv == 'c') ? flag_char(env, ap) : 0;
-	(env->conv == 'o') ? flag_octal(0, env, ap) : 0;
-	(env->conv == 'u') ? flag_unsigned(0, env, ap) : 0;
-	(env->conv == 'U') ? flag_unsigned(0, env, ap) : 0;
+	// C
 	if (env->conv == '%')
 	{
 		env->flag_sp = 0;
