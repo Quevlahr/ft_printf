@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 21:19:59 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/12 16:20:02 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/12 20:33:20 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,18 @@ static void		flag_char(t_env *env, va_list ap)
 	env->flag_sp = 0;
 	c = va_arg(ap, int);
 	ft_space_char(c, env);
+}
+
+static void		flag_wchar(int a, t_env *env, va_list ap)
+{
+	char		*str;
+
+	str = NULL;
+	a = va_arg(ap, int);
+	str = ft_itoabase(a, 2, 0);
+	ft_space_wchar(str, env);		
+	ft_putstr(str);
+	ft_strdel(&str);
 }
 
 static void		flag_unsigned(unsigned long long a, t_env *env, va_list ap)
@@ -175,7 +187,7 @@ void			ft_useva(t_env *env, va_list ap)
 	(env->conv == 'x') ? flag_hexa(0, env, ap) : 0;
 	(env->conv == 'X') ? flag_hexa(0, env, ap) : 0;
 	(env->conv == 'c') ? flag_char(env, ap) : 0;
-	// C
+	(env->conv == 'C') ? flag_wchar(0, env, ap) : 0;
 	if (env->conv == '%')
 	{
 		env->flag_sp = 0;

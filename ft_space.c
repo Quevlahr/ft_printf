@@ -6,11 +6,42 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/22 15:24:40 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/12 16:18:56 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/12 20:41:06 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+void			ft_space_wchar(char *str, t_env *env)
+{
+	int			i;
+	int			max;
+	int			*tab;
+
+	i = 0;
+	max = ft_strlen(str);
+	tab = (int*)malloc(sizeof (int) * 4);
+	if (ft_strlen(str) <= 7)
+	{
+		while (i < ft_strlen(str))
+		{
+			if ()
+			i++;
+		}
+	}
+	else if (ft_strlen(str) <= 11)
+	{
+
+	}
+	else if (ft_strlen(str) <= 16)
+	{
+	
+	}
+	else
+	{
+
+	}
+}
 
 void			ft_space_str(char *str, t_env *env)
 {
