@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:19:17 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/12 16:17:09 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/13 20:30:46 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ void				ft_useva(t_env *env, va_list ap);
 void				ft_space_int(long long a, t_env *env);
 void				ft_space_str(char *str, t_env *env);
 void				ft_space_char(char c, t_env *env);
+void				ft_space_wchar(char *str, t_env *env);
 
 /*
 **	ft_forstr.c

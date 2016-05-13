@@ -6,42 +6,86 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/22 15:24:40 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/12 20:41:06 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/13 22:00:47 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void			ft_space_wchar(char *str, t_env *env)
-{
-	int			i;
-	int			max;
-	int			*tab;
+// static int			ft_verif(char *str, int *i, int sign)
+// {
+// 	while (str[*i] == ' ' || str[*i] == '\n' || str[*i] == '\t' ||
+// 			str[*i] == '\v' || str[*i] == '\f' || str[*i] == '\r')
+// 		(*i)++;
+// 	if (str[*i] == '-')
+// 		sign = -1;
+// 	else if (str[*i] == '+')
+// 		sign = 1;
+// 	return (sign);
+// }
 
-	i = 0;
-	max = ft_strlen(str);
-	tab = (int*)malloc(sizeof (int) * 4);
-	if (ft_strlen(str) <= 7)
-	{
-		while (i < ft_strlen(str))
-		{
-			if ()
-			i++;
-		}
-	}
-	else if (ft_strlen(str) <= 11)
-	{
+// static long			ft_atoibase(char *str, int base)
+// {
+// 	int				i;
+// 	long			res;
+// 	int				sign;
 
-	}
-	else if (ft_strlen(str) <= 16)
-	{
+// 	i = 0;
+// 	res = 0;
+// 	sign = ft_verif(str, &i, 1);
+// 	while (ft_isdigit(str[i]) == 1 || (str[i] <= 'f' && str[i] >= 'a') ||
+// 			(str[i] <= 'F' && str[i] >= 'A'))
+// 	{
+// 		if (str[i] == '\0')
+// 			return (res);
+// 		res *= base;
+// 		if (ft_isdigit(str[i]) == 1)
+// 			res += (str[i] - '0') * base;
+// 		else if (str[i] <= 'f' && str[i] >= 'a')
+// 			res += (str[i] - 'a' + 10) * base;
+// 		else if (str[i] <= 'F' && str[i] >= 'A')
+// 			res += (str[i] - 'A' + 10) * base;
+// 		i++;
+// 	}
+// 	return (sign * (res /= base));
+// }
+
+
+// void			ft_space_wchar(char *str, t_env *env)
+// {
+// 	int			i;
+// 	int			max;
+// 	int			*tab;
+
+// 	i = 0;
+// 	max = ft_strlen(str);
+// 	tab = (int*)malloc(sizeof (int) * 4);
+// 	i = ft_atoibase(str, 2);
+// 	ft_putnbrdl(i);
+// 	if (ft_strlen(str) <= 7)
+// 	{
+// 		tab[0] = ft_atoibase(str, 2);
+// 		ft_putchar(&tab[0]);
+// 	}
+// 	else if (ft_strlen(str) <= 11)
+// 	{
+// 		while (i < ft_strlen(str))
+// 		{
+// 			if (str[max] == '0')
+// 				int[0] = 
+// 			i++;
+// 			max--;
+// 		}
+// 	}
+// 	else if (ft_strlen(str) <= 16)
+// 	{
 	
-	}
-	else
-	{
+// 	}
+// 	else
+// 	{
 
-	}
-}
+// 	}
+// }
 
 void			ft_space_str(char *str, t_env *env)
 {
