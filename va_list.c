@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 21:19:59 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/13 20:30:22 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/16 15:56:14 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ static void		flag_wchar(int a, t_env *env, va_list ap)
 	str = NULL;
 	a = va_arg(ap, int);
 	str = ft_itoabase(a, 2, 0);
-	ft_space_wchar(str, env);		
-	ft_putstr(str);
+	ft_space_wchar(a, env);
 	ft_strdel(&str);
 }
 

@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:19:17 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/13 20:30:46 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/16 15:12:23 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include <stdarg.h>
 # include <locale.h>
 # include <limits.h>
+
+# define UI unsigned int
 
 typedef struct		s_env
 {
@@ -71,7 +73,7 @@ void				ft_useva(t_env *env, va_list ap);
 void				ft_space_int(long long a, t_env *env);
 void				ft_space_str(char *str, t_env *env);
 void				ft_space_char(char c, t_env *env);
-void				ft_space_wchar(char *str, t_env *env);
+void				ft_space_wchar(int a, t_env *env);
 
 /*
 **	ft_forstr.c
