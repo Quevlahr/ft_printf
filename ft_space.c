@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/22 15:24:40 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/16 15:59:27 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/16 19:24:27 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int				ft_replacebit(UI *bit, int a, int cpt, t_env *env)
 	while (cpt - 6 * seis > 0)
 	{
 		i = (cpt - 6 * seis < 6) ? cpt - 6 * seis : 6;
+		(bit[0] == 0) ? i = 7 : 0;
 		while (i > 0)
 		{
 			bit[seis] = bit[seis] << 1;
@@ -48,8 +49,9 @@ void			ft_space_wchar(int a, t_env *env)
 	bit[3] = 2;
 	if (a < 256)
 	{
-		ft_putchar(a);
-		env->nb_char++;
+		bit[0] = 0;
+		ft_replacebit(bit, a, 7, env);
+		// env->nb_char++;
 	}
 	else if (a < 2048)
 	{

@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/04 19:52:18 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/11 18:38:36 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/16 19:15:24 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,15 @@ void			ft_initconv(int *i, t_env *env, va_list ap)
 
 	format = env->str;
 	if (format[*i] && ft_verifchar(format[*i]) == 1)
+	{
+		env->conv = format[*i];
+		ft_maxtype(env);
+		(format[*i] >= 'A' && format[*i] <= 'Z') ? env->maj = 1 : 0;
+		env->nb_arg++;
+		ft_useva(env, ap);
+		(*i)++;
+	}
+	else if ((format[*i] >= 'A' && format[*i] <= 'Z') || (format[*i] >= 'a' && format[*i] <= 'z'))
 	{
 		env->conv = format[*i];
 		ft_maxtype(env);

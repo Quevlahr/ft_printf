@@ -6,11 +6,38 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 21:19:59 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/16 15:56:14 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/16 19:21:11 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+static void		flag_rien(t_env *env)
+{
+	env->nb_sp--;
+	env->nb_char++;
+	(env->flag_ms == 1) ? ft_putchar(env->conv) : 0;
+	while (env->nb_sp > 0)
+	{
+		(env->flag_zr == 1) ? ft_putchar('0') : ft_putchar(' ');
+		env->nb_sp--;
+		env->nb_char++;
+	}
+	(env->flag_ms == 0) ? ft_putchar(env->conv) : 0;
+}
+
+static void		flag_pourcent(t_env *env, va_list ap)
+{
+	char		*c;
+
+	c = ft_strnew(1);
+	c[0] = '%';
+	env->flag_sp = 0;
+	env->flag_dz = 0;
+	env->flag_pt = 0;
+	ft_space_str(c, env);
+	ft_strdel(&c);
+}
 
 static void		flag_char(t_env *env, va_list ap)
 {
@@ -27,9 +54,24 @@ static void		flag_wchar(int a, t_env *env, va_list ap)
 
 	str = NULL;
 	a = va_arg(ap, int);
-	str = ft_itoabase(a, 2, 0);
 	ft_space_wchar(a, env);
-	ft_strdel(&str);
+}
+
+static void		flag_wstr(t_env *env, va_list ap)
+{
+	wchar_t		*a;
+	int			i;
+
+	i = 0;
+	a = (wchar_t *)va_arg(ap, char *);
+	if (a == NULL)
+		ft_null_str(env);
+	else
+		while (a[i])
+		{
+			ft_space_wchar(a[i], env);
+			i++;
+		}
 }
 
 static void		flag_unsigned(unsigned long long a, t_env *env, va_list ap)
@@ -108,7 +150,7 @@ static void		flag_hexa(long long a, t_env *env, va_list ap)
 	else
 		value = a < 0 ? ULONG_MAX + 1 + (long long)a : (long long)a;
 	str = ft_itoabase_ull(value, 16, env->maj);
-	if (env->flag_pt != 0 && ft_strcmp(str, "0") == 0)
+	if (env->flag_pt != 0 && ft_strcmp(str, "0") == 0 && env->conv != 'p')
 	{
 		env->flag_dz = 0;
 		ft_strdel(&str);
@@ -152,8 +194,17 @@ static void		flag_str(t_env *env, va_list ap)
 	env->flag_sp = 0;
 	tmp = NULL;
 	a = va_arg(ap, char *);
-	if (a == NULL)
+	if (a == NULL && env->flag_pt != -1)
 		ft_null_str(env);
+	else if (env->flag_pt == -1)
+	{
+		while (env->nb_sp > 0)
+		{
+			(env->flag_zr == 1) ? ft_putchar('0') : ft_putchar(' ');
+			env->nb_sp--;
+			env->nb_char++;
+		}
+	}
 	else
 	{
 		if (env->flag_pt > 0)
@@ -169,30 +220,24 @@ static void		flag_str(t_env *env, va_list ap)
 
 void			ft_useva(t_env *env, va_list ap)
 {
-	char		*c;
-
-	c = ft_strnew(1);
-	c[0] = '%';
-	(env->conv == 's') ? flag_str(env, ap) : 0;
-	// S
-	(env->conv == 'p') ? flag_hexa(0, env, ap) : 0;
-	(env->conv == 'd') ? flag_int(0, env, ap) : 0;
-	(env->conv == 'D') ? flag_int(0, env, ap) : 0;
-	(env->conv == 'i') ? flag_int(0, env, ap) : 0;
-	(env->conv == 'o') ? flag_octal(0, env, ap) : 0;
-	(env->conv == 'O') ? flag_octal(0, env, ap) : 0;
-	(env->conv == 'u') ? flag_unsigned(0, env, ap) : 0;
-	(env->conv == 'U') ? flag_unsigned(0, env, ap) : 0;
-	(env->conv == 'x') ? flag_hexa(0, env, ap) : 0;
-	(env->conv == 'X') ? flag_hexa(0, env, ap) : 0;
-	(env->conv == 'c') ? flag_char(env, ap) : 0;
-	(env->conv == 'C') ? flag_wchar(0, env, ap) : 0;
-	if (env->conv == '%')
-	{
-		env->flag_sp = 0;
-		env->flag_dz = 0;
-		env->flag_pt = 0;
-		ft_space_str(c, env);
-	}
-	ft_strdel(&c);
+	if (env->conv == 's')
+		flag_str(env, ap);
+	else if (env->conv == 'S')
+		flag_wstr(env, ap);
+	else if (env->conv == 'p' || env->conv == 'x' || env->conv == 'X')
+		flag_hexa(0, env, ap);
+	else if (env->conv == 'd' || env->conv == 'D' || env->conv == 'i')
+		flag_int(0, env, ap);
+	else if (env->conv == 'o' || env->conv == 'O')
+		flag_octal(0, env, ap);
+	else if (env->conv == 'u' || env->conv == 'U')
+		flag_unsigned(0, env, ap);
+	else if (env->conv == 'c')
+		flag_char(env, ap);
+	else if (env->conv == 'C')
+		flag_wchar(0, env, ap);
+	else if (env->conv == '%')
+		flag_pourcent(env, ap);
+	else
+		flag_rien(env);
 }
