@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/22 15:24:40 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/16 19:24:27 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/17 20:09:31 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,10 @@ void			ft_space_wchar(int a, t_env *env)
 	bit[1] = 2;
 	bit[2] = 2;
 	bit[3] = 2;
-	if (a < 256)
+	if (a < 128)
 	{
-		bit[0] = 0;
-		ft_replacebit(bit, a, 7, env);
-		// env->nb_char++;
+		ft_putchar(a);
+		env->nb_char++;
 	}
 	else if (a < 2048)
 	{

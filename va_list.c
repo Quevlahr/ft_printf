@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 21:19:59 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/16 19:21:11 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/17 20:16:58 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,11 +67,14 @@ static void		flag_wstr(t_env *env, va_list ap)
 	if (a == NULL)
 		ft_null_str(env);
 	else
+	{
+		ft_putarg_wstr(env, a);
 		while (a[i])
 		{
 			ft_space_wchar(a[i], env);
 			i++;
 		}
+	}
 }
 
 static void		flag_unsigned(unsigned long long a, t_env *env, va_list ap)

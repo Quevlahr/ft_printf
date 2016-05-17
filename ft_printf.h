@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:19:17 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/16 15:12:23 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/17 20:16:16 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ void				ft_space_int(long long a, t_env *env);
 void				ft_space_str(char *str, t_env *env);
 void				ft_space_char(char c, t_env *env);
 void				ft_space_wchar(int a, t_env *env);
+void				ft_putarg_wstr(t_env *env, wchar_t *str);
 
 /*
 **	ft_forstr.c
@@ -122,5 +123,7 @@ int					ft_nbrlen_l(long n);
 
 char				*ft_itoabase_ull(unsigned long long n, int base, int maj);
 char				*ft_itoabase_ui(unsigned int n, int base, int maj);
+
+int					ft_wstrlen(wchar_t *str);
 
 #endif
