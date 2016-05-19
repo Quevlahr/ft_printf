@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:15:45 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/18 18:36:34 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/19 16:25:53 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,14 @@ int				main(void)
 	// }
 
 	// i = ft_printf("[%S]\n", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B");
-	i = ft_printf("[%ju, %ju]\n", 0, 9223372036854775808);
+	i = ft_printf("[%s %C %d %p %x %% %S]\n",  "bonjour ", L'該', 42, &free, 42, L"لحم خنزير");
+	// i = ft_printf("[%jx, %jx]\n", 0, 18446744073709551615);
 	ft_putchar('\n');
 	ft_putchar('\n');
 	ft_putchar('\n');
 	// j = printf("[%S]\n", L"ÊM-M-^QÊM-^XØ‰∏M-ÂM-^O™ÁM-^L´„M-M-^B");
-	j = printf("[%ju, %ju]\n", 0, 9223372036854775808);
+	j = printf("[%s %C %d %p %x %% %S]\n",  "bonjour ", L'該', 42, &free, 42, L"لحم خنزير");
+	// j = printf("[%jx, %jx]\n", 0, 18446744073709551615);
 	ft_putchar('\n');
 	printf("%d vs %d\n", i, j);
 

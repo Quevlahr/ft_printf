@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/22 15:24:40 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/18 18:06:33 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/19 16:20:00 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,17 +36,19 @@ int				ft_replacebit(UI *bit, int a, int cpt, t_env *env)
 		env->nb_char++;
 		seis++;
 	}
-	return(0);
+	return(seis);
 }
 
 void			ft_space_wchar(int a, t_env *env)
 {
 	UI			bit[4];
+	int			seis;
 
 	bit[0] = 2;
 	bit[1] = 2;
 	bit[2] = 2;
 	bit[3] = 2;
+	seis = 0;
 	if (a < 128)
 	{
 		ft_putchar(a);
@@ -55,22 +57,23 @@ void			ft_space_wchar(int a, t_env *env)
 	else if (a < 2048)
 	{
 		bit[1] = 6;
-		ft_replacebit(bit, a, 11, env);
+		seis = ft_replacebit(bit, a, 11, env);
 	}
 	else if (a < 65536)
 	{
 		bit[2] = 14;
-		ft_replacebit(bit, a, 16, env);
+		seis = ft_replacebit(bit, a, 16, env);
 	}
 	else if (a < 2097152)
 	{
 		bit[3] = 30;
-		ft_replacebit(bit, a, 21, env);
+		seis = ft_replacebit(bit, a, 21, env);
 	}
-	ft_putchar(bit[3]);
-	ft_putchar(bit[2]);
-	ft_putchar(bit[1]);
-	ft_putchar(bit[0]);
+	while (seis >= 0)
+	{
+		ft_putchar(bit[seis]);
+		seis--;
+	}
 }
 
 void			ft_space_str(char *str, t_env *env)
@@ -155,7 +158,8 @@ void			ft_space_int(long long a, t_env *env)
 	{
 		ft_putarg_ll(env, a);
 		a *= (a < 0) ? -1 : 1;
-		if (((env->flag_ll == 1 || env->flag_l == 1) && env->conv == 'u') || env->conv == 'U')
+		if (((env->flag_ll == 1 || env->flag_l == 1 || env->flag_j == 1) && env->conv == 'u')
+			|| env->conv == 'U')
 			ft_putnbr_ull(a);
 		else if ((env->conv == 'D' || env->flag_z == 1) && a < 0 && a > -2147483648)
 			ft_putnbr_ui(a);
@@ -167,7 +171,8 @@ void			ft_space_int(long long a, t_env *env)
 		(a < 0) ? ft_putchar('-') : ft_putchar('+');
 		ft_putarg_ll(env, a);
 		(a < 0) ? a *= -1 : 0;
-		if (((env->flag_ll == 1 || env->flag_l == 1) && env->conv == 'u') || env->conv == 'U')
+		if (((env->flag_ll == 1 || env->flag_l == 1 || env->flag_j == 1) && env->conv == 'u')
+			|| env->conv == 'U')
 			ft_putnbr_ull(a);
 		else if ((env->conv == 'D' || env->flag_z == 1) && a < 0 && a > -2147483648)
 			ft_putnbr_ui(a);
@@ -177,7 +182,8 @@ void			ft_space_int(long long a, t_env *env)
 	else if (env->flag_ms == 1)
 	{
 		(env->flag_ps == 1 && a >= 0) ? ft_putchar('+') : 0;
-		if (((env->flag_ll == 1 || env->flag_l == 1) && env->conv == 'u') || env->conv == 'U')
+		if (((env->flag_ll == 1 || env->flag_l == 1 || env->flag_j == 1) && env->conv == 'u')
+			|| env->conv == 'U')
 			ft_putnbr_ull(a);
 		else if ((env->conv == 'D' || env->flag_z == 1) && a < 0 && a > -2147483648)
 			ft_putnbr_ui(a);
@@ -191,7 +197,8 @@ void			ft_space_int(long long a, t_env *env)
 		(env->flag_ps == 1 && a >= 0) ? ft_putchar('+') : 0;
 		if (env->flag_pt != -1 || a != 0)
 		{
-			if (((env->flag_ll == 1 || env->flag_l == 1) && env->conv == 'u') || env->conv == 'U')
+			if (((env->flag_ll == 1 || env->flag_l == 1 || env->flag_j == 1) && env->conv == 'u')
+				|| env->conv == 'U')
 				ft_putnbr_ull(a);
 			else if (((env->conv == 'D' && env->flag_d == 0) || env->flag_z == 1) && a < 0 &&
 						a > -2147483648)
