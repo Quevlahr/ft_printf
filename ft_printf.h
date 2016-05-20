@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:19:17 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/17 20:16:16 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/20 20:36:10 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,6 +90,7 @@ void				ft_putarg_str(t_env *env, char *str);
 void				ft_putarg_ll(t_env *env, long long a);
 
 void				flag_pt_xo(t_env *env, char *str);
+void				flag_wstr_pt_xo(t_env *env, wchar_t *str);
 
 /*
 **	ft_init.c
@@ -104,7 +105,6 @@ int					ft_verifchar(char c);
 ** ft_gestion.c
 */
 void				ft_maxtype(t_env *e);
-
 
 /*
 **	libft
