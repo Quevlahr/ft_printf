@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/22 15:24:40 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/19 16:20:00 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/20 15:23:34 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,9 +69,9 @@ void			ft_space_wchar(int a, t_env *env)
 		bit[3] = 30;
 		seis = ft_replacebit(bit, a, 21, env);
 	}
-	while (seis >= 0)
+	while (seis > 0)
 	{
-		ft_putchar(bit[seis]);
+		ft_putchar(bit[seis - 1]);
 		seis--;
 	}
 }

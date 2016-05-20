@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 21:19:59 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/19 16:25:51 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/20 16:14:09 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,14 +66,16 @@ static void		flag_wstr(t_env *env, va_list ap)
 	a = (wchar_t *)va_arg(ap, char *);
 	if (a == NULL)
 		ft_null_str(env);
+	// else if (env->flag)
 	else
 	{
-		ft_putarg_wstr(env, a);
+		(env->flag_ms == 0) ? ft_putarg_wstr(env, a) : 0;
 		while (a[i])
 		{
 			ft_space_wchar(a[i], env);
 			i++;
 		}
+		(env->flag_ms == 1) ? ft_putarg_wstr(env, a) : 0;
 	}
 }
 
@@ -146,9 +148,11 @@ static void		flag_hexa(long long a, t_env *env, va_list ap)
 		a = va_arg(ap, int);
 	else if (env->flag_l == 1)
 		a = va_arg(ap, long);
-	else if (env->flag_ll == 1 || env->flag_j == 1)
+	else if (env->flag_ll == 1)
 		a = va_arg(ap, long long);
-	if (a > -2147483648)
+	else if (env->flag_j == 1)
+		a = va_arg(ap, unsigned long long);
+	if (a > -2147483648 && env->flag_j == 0)
 		value = a < 0 ? 4294967296 + (long long)a : (long long)a;
 	else
 		value = a < 0 ? ULONG_MAX + 1 + (long long)a : (long long)a;
