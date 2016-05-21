@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/22 15:24:40 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/20 20:22:12 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/21 19:54:17 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 UI				ft_givebit(UI pos, UI n)
 {
-    return ((1 << pos) & n) >> pos;
+	return (((1 << pos) & n) >> pos);
 }
 
 int				ft_replacebit(UI *bit, int a, int cpt, t_env *env)
@@ -36,7 +36,7 @@ int				ft_replacebit(UI *bit, int a, int cpt, t_env *env)
 		env->nb_char++;
 		seis++;
 	}
-	return(seis);
+	return (seis);
 }
 
 void			ft_space_wchar(int a, t_env *env)
