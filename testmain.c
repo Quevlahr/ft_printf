@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:15:45 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/21 19:50:40 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/21 20:25:18 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,14 @@ int				main(void)
 	// 	printf("Locale set to %s\n", l);
 	// }
 
-	i = ft_printf("[%D]\n", -1L);
-	// i = ft_printf("[%15.7S]\n",  L"42 c est cool");
+	// i = ft_printf("[%D]\n", -1L);
+	i = ft_printf("[%015.7S]\n", NULL);
 	// i = ft_printf("[%jx, %jx]\n", 0, -2147483648);
 	ft_putchar('\n');
 	ft_putchar('\n');
 	ft_putchar('\n');
-	j = printf("[%D]\n", -1L);
-	// j = printf("[%15.7S]\n",  L"42 c est cool");
+	// j = printf("[%D]\n", -1L);
+	j = printf("[%015.7S]\n", NULL);
 	// j = printf("[%jx, %jx]\n", 0, -2147483648);
 	ft_putchar('\n');
 	printf("%d vs %d\n", i, j);
