@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 17:33:00 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/21 19:59:51 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/23 16:04:22 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void			ft_putarg_wstr(t_env *env, wchar_t *str)
 		while (i < surplus)
 		{
 			if (env->flag_pt != 0)
-				(env->flag_zr == 1 && env->nb_sp < env->flag_pt) ?
+				(env->flag_zr == 1 && (env->nb_sp < env->flag_pt || env->nb_sp > ft_wstrlen(str))) ?
 				ft_putchar('0') : ft_putchar(' ');
 			else
 				(env->flag_zr == 1) ? ft_putchar('0') : ft_putchar(' ');
@@ -69,8 +69,8 @@ void			ft_putarg_str(t_env *env, char *str)
 		while (i < (env->nb_sp - ((int)ft_strlen(str) + surplus)))
 		{
 			if (env->flag_pt != 0)
-				(env->flag_zr == 1 && env->nb_sp < env->flag_pt) ?
-				ft_putchar('0') : ft_putchar(' ');
+				(env->flag_zr == 1 && (env->nb_sp < env->flag_pt ||
+				env->nb_sp > ft_strlen(str))) ? ft_putchar('0') : ft_putchar(' ');
 			else
 				(env->flag_zr == 1) ? ft_putchar('0') : ft_putchar(' ');
 			i++;

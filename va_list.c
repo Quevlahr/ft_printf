@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 21:19:59 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/21 20:25:04 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/23 16:19:06 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,20 +60,56 @@ static void		flag_wchar(int a, t_env *env, va_list ap)
 static void		flag_wstr(t_env *env, va_list ap)
 {
 	wchar_t		*a;
+	wchar_t		*tmp;
+	int			nul;
 	int			i;
 
 	i = 0;
+	nul = 0;
 	a = (wchar_t *)va_arg(ap, char *);
-	if (a == NULL)
+	tmp = NULL;
+	if (a == NULL && ++nul)
 		ft_null_wstr(&a, env);
-	(env->flag_ms == 0) ? ft_putarg_wstr(env, a) : 0;
-	flag_wstr_pt_xo(env, a);
-	while (a[i])
+	if (env->flag_pt == -1)
+		while (env->nb_sp > 0)
+		{
+			(env->flag_zr == 1) ? ft_putchar('0') : ft_putchar(' ');
+			env->nb_sp--;
+			env->nb_char++;
+		}
+	else
 	{
-		ft_space_wchar(a[i], env);
-		i++;
+		if (env->flag_pt > 0)
+		{
+			tmp = ft_modifwstr(a, env);
+			(env->flag_ms == 0) ? ft_putarg_wstr(env, tmp) : 0;
+			flag_wstr_pt_xo(env, tmp);
+			while (tmp[i])
+			{
+				ft_space_wchar(tmp[i], env);
+				i++;
+			}
+			(env->flag_ms == 1) ? ft_putarg_wstr(env, tmp) : 0;
+			free(tmp);
+			tmp = NULL;
+		}
+		else
+		{
+			(env->flag_ms == 0) ? ft_putarg_wstr(env, a) : 0;
+			flag_wstr_pt_xo(env, a);
+			while (a[i])
+			{
+				ft_space_wchar(a[i], env);
+				i++;
+			}
+			(env->flag_ms == 1) ? ft_putarg_wstr(env, a) : 0;
+		}
 	}
-	(env->flag_ms == 1) ? ft_putarg_wstr(env, a) : 0;
+	if (nul > 0)
+	{
+		free(a);
+		a = NULL;
+	}
 }
 
 static void		flag_unsigned(unsigned long long a, t_env *env, va_list ap)
@@ -191,14 +227,16 @@ static void		flag_int(long long a, t_env *env, va_list ap)
 
 static void		flag_str(t_env *env, va_list ap)
 {
+	int			nul;
 	char		*a;
 	char		*tmp;
 
+	nul = 0;
 	env->flag_dz = 0;
 	env->flag_sp = 0;
 	tmp = NULL;
 	a = va_arg(ap, char *);
-	if (a == NULL && env->flag_pt != -1)
+	if (a == NULL && env->flag_pt != -1 && ++nul)
 		ft_null_str(&a, env);
 	if (env->flag_pt == -1)
 	{
@@ -220,6 +258,8 @@ static void		flag_str(t_env *env, va_list ap)
 		else
 			ft_space_str(a, env);
 	}
+	if (nul > 0)
+		ft_strdel(&a);
 }
 
 void			ft_useva(t_env *env, va_list ap)

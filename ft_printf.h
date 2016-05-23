@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:19:17 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/21 20:09:56 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/23 16:07:41 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ void				ft_putarg_wstr(t_env *env, wchar_t *str);
 void				ft_null_str(char **str, t_env *env);
 void				ft_null_wstr(wchar_t **str, t_env *env);
 char				*ft_modifstr(char *str, t_env *env);
+wchar_t				*ft_modifwstr(wchar_t *str, t_env *env);
 
 /*
 **	flags_application.c

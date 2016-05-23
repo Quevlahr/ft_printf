@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:15:45 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/21 20:25:18 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/23 16:20:16 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,14 +30,12 @@ int				main(void)
 	// 	printf("Locale set to %s\n", l);
 	// }
 
-	// i = ft_printf("[%D]\n", -1L);
-	i = ft_printf("[%015.7S]\n", NULL);
+	i = ft_printf("[%.4S]\n", L"我是一只猫。");
 	// i = ft_printf("[%jx, %jx]\n", 0, -2147483648);
 	ft_putchar('\n');
 	ft_putchar('\n');
 	ft_putchar('\n');
-	// j = printf("[%D]\n", -1L);
-	j = printf("[%015.7S]\n", NULL);
+	j = printf("[%.4S]\n", L"我是一只猫。");
 	// j = printf("[%jx, %jx]\n", 0, -2147483648);
 	ft_putchar('\n');
 	printf("%d vs %d\n", i, j);
