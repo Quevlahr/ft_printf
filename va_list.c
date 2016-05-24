@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 21:19:59 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/23 16:19:06 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/24 12:10:47 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ static void		flag_wstr(t_env *env, va_list ap)
 		{
 			tmp = ft_modifwstr(a, env);
 			(env->flag_ms == 0) ? ft_putarg_wstr(env, tmp) : 0;
-			flag_wstr_pt_xo(env, tmp);
+			// flag_wstr_pt_xo(env, tmp);
 			while (tmp[i])
 			{
 				ft_space_wchar(tmp[i], env);
@@ -96,7 +96,7 @@ static void		flag_wstr(t_env *env, va_list ap)
 		else
 		{
 			(env->flag_ms == 0) ? ft_putarg_wstr(env, a) : 0;
-			flag_wstr_pt_xo(env, a);
+			// flag_wstr_pt_xo(env, a);
 			while (a[i])
 			{
 				ft_space_wchar(a[i], env);

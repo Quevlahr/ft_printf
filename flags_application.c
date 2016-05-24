@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 17:33:00 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/23 16:04:22 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/24 12:50:21 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ void			ft_putarg_wstr(t_env *env, wchar_t *str)
 	if ((int)ft_wstrlen(str) + surplus < env->nb_sp)
 	{
 		surplus += env->nb_sp - (int)ft_wstrlen(str);
+		ft_putnbrdl(surplus);
 		while (i < surplus)
 		{
 			if (env->flag_pt != 0)

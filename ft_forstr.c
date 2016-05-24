@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 11:34:00 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/23 16:31:46 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/24 12:23:08 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,9 +39,10 @@ wchar_t			*ft_modifwstr(wchar_t *str, t_env *env)
 	i = 0;
 	place = 0;
 	tmp = (wchar_t*)malloc(sizeof(wchar_t) * (ft_wstrlen(str) + 1));
-	while (str[place])
+	while (str[place] && i < env->flag_pt)
 	{
-		if ((str[i] < 128 && i + < env->flag_pt) || i < env->flag_pt)
+		if ((str[i] < 128 && i + 1 < env->flag_pt) || (str[i] < 2048 && i + 2 < env->flag_pt) || 
+			(str[i] < 65536 && i + 3 < env->flag_pt) || (i + 4 < env->flag_pt))
 		{
 			tmp[place] = str[place];
 			if (str[i] < 128)
@@ -52,9 +53,11 @@ wchar_t			*ft_modifwstr(wchar_t *str, t_env *env)
 				i += 3;
 			else
 				i += 4;
-			place++;
 		}
+		place++;
 	}
+	tmp[0] = str[0];
+
 	return (tmp);
 }
 
