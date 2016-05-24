@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 21:19:59 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/24 12:10:47 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/24 16:19:23 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,8 +90,7 @@ static void		flag_wstr(t_env *env, va_list ap)
 				i++;
 			}
 			(env->flag_ms == 1) ? ft_putarg_wstr(env, tmp) : 0;
-			free(tmp);
-			tmp = NULL;
+
 		}
 		else
 		{
@@ -104,6 +103,8 @@ static void		flag_wstr(t_env *env, va_list ap)
 			}
 			(env->flag_ms == 1) ? ft_putarg_wstr(env, a) : 0;
 		}
+		free(tmp);
+		tmp = NULL;
 	}
 	if (nul > 0)
 	{

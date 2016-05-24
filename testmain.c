@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:15:45 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/24 12:49:08 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/24 16:26:04 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,24 @@ int				main(void)
 	// 	printf("Locale set to %s\n", l);
 	// }
 
-	i = ft_printf("[%15.4S]\n", L"我是一只猫。");
+	i = ft_printf("[%.4S] \n", L"我是一只猫。");
+	i = ft_printf("[%15.4S] \n", L"我是一只猫。");
+	i = ft_printf("[%4.15S] \n", L"我是一只猫。");
+	i = ft_printf("[%4.1S] \n", L"我是一只猫。");
+	i = ft_printf("[%4.S] \n", L"Jambon");
 	// i = ft_printf("[%jx, %jx]\n", 0, -2147483648);
 	ft_putchar('\n');
 	ft_putchar('\n');
 	ft_putchar('\n');
-	j = printf("[%15.4S]\n", L"我是一只猫。");
+	j = printf("[%.4S] \n", L"我是一只猫。");
+	j = printf("[%15.4S] \n", L"我是一只猫。");
+	j = printf("[%4.15S] \n", L"我是一只猫。");
+	j = printf("[%4.1S] \n", L"我是一只猫。");
+	j = printf("[%4.S] \n", L"Jambon");
 	// j = printf("[%jx, %jx]\n", 0, -2147483648);
 	ft_putchar('\n');
 	printf("%d vs %d\n", i, j);
+
 
 
 	// printf("4567 |%-010]5d| plip\n", 12);
