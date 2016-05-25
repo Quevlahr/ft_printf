@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 21:19:59 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/24 16:19:23 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/25 18:41:16 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,6 @@ static void		flag_wstr(t_env *env, va_list ap)
 		{
 			tmp = ft_modifwstr(a, env);
 			(env->flag_ms == 0) ? ft_putarg_wstr(env, tmp) : 0;
-			// flag_wstr_pt_xo(env, tmp);
 			while (tmp[i])
 			{
 				ft_space_wchar(tmp[i], env);
@@ -95,7 +94,6 @@ static void		flag_wstr(t_env *env, va_list ap)
 		else
 		{
 			(env->flag_ms == 0) ? ft_putarg_wstr(env, a) : 0;
-			// flag_wstr_pt_xo(env, a);
 			while (a[i])
 			{
 				ft_space_wchar(a[i], env);
@@ -138,14 +136,22 @@ static void		flag_octal(long long a, t_env *env, va_list ap)
 	char		*str;
 
 	env->flag_sp = 0;
-	if (env->flag_l == 0 && env->flag_ll == 0 && env->conv != 'O')
-		a = va_arg(ap, int);
-	else if (env->flag_l == 1 || env->conv == 'O')
+	// if (env->flag_hh == 1)
+	// 	a = (char)va_arg(ap, int);
+	// else if (env->flag_h == 1)
+	// 	a = (short)va_arg(ap, int);
+	if (env->flag_l == 1 || env->conv == 'O')
 		a = va_arg(ap, long);
 	else if (env->flag_ll == 1)
 		a = va_arg(ap, long long);
+	else
+		a = va_arg(ap, int);
 	if (env->conv == 'O' && a > -2147483648 && a < 0)
 		str = ft_itoabase_ui(a, 8, 0);
+	else if (env->flag_hh == 1 && env->conv != 'O')
+		str = ft_itoabase_uc(a, 8, 0);
+	else if (env->flag_h == 1 && env->conv != 'O')
+		str = ft_itoabase_us(a, 8, 0);
 	else
 		str = ft_itoabase_ull(a, 8, 0);
 	if (env->flag_pt > 0 && ft_strcmp(str, "0") == 0)
@@ -178,19 +184,25 @@ static void		flag_hexa(long long a, t_env *env, va_list ap)
 		env->flag_dz = 1;
 		a = (long long)va_arg(ap, void*);
 	}
-	else if (env->flag_l == 0 && env->flag_ll == 0 && env->flag_j == 0)
-		a = va_arg(ap, int);
 	else if (env->flag_l == 1)
 		a = va_arg(ap, long);
 	else if (env->flag_ll == 1)
 		a = va_arg(ap, long long);
 	else if (env->flag_j == 1)
 		a = va_arg(ap, unsigned long long);
+	else
+		a = va_arg(ap, int);
 	if (a > -2147483648 && env->flag_j == 0)
 		value = a < 0 ? 4294967296 + (long long)a : (long long)a;
 	else
 		value = a < 0 ? ULONG_MAX + 1 + (long long)a : (long long)a;
-	str = ft_itoabase_ull(value, 16, env->maj);
+	if (env->flag_hh == 1)
+		str = ft_itoabase_uc(value, 16, env->maj);
+	else if (env->flag_h == 1)
+		str = ft_itoabase_us(value, 16, env->maj);
+	else
+		str = ft_itoabase_ull(value, 16, env->maj);
+
 	if (env->flag_pt != 0 && ft_strcmp(str, "0") == 0 && env->conv != 'p')
 	{
 		env->flag_dz = 0;
@@ -207,9 +219,9 @@ static void		flag_int(long long a, t_env *env, va_list ap)
 
 	i = 0L;
 	env->flag_dz = 0;
-	if (env->flag_hh == 1)
+	if (env->flag_hh == 1 && env->conv != 'D')
 		a = (char)va_arg(ap, int);
-	else if (env->flag_h == 1)
+	else if (env->flag_h == 1 && env->conv != 'D')
 		a = (short)va_arg(ap, int);
 	else if (env->flag_l == 1)
 		a = va_arg(ap, long);

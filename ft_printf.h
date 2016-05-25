@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:19:17 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/23 16:07:41 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/25 16:55:23 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,6 @@ void				ft_putarg_str(t_env *env, char *str);
 void				ft_putarg_ll(t_env *env, long long a);
 
 void				flag_pt_xo(t_env *env, char *str);
-void				flag_wstr_pt_xo(t_env *env, wchar_t *str);
 
 /*
 **	ft_init.c
@@ -125,7 +124,8 @@ int					ft_nbrlen_l(long n);
 
 char				*ft_itoabase_ull(unsigned long long n, int base, int maj);
 char				*ft_itoabase_ui(unsigned int n, int base, int maj);
-
+char				*ft_itoabase_uc(unsigned char n, int base, int maj);
+char				*ft_itoabase_us(unsigned short n, int base, int maj);
 int					ft_wstrlen(wchar_t *str);
 
 #endif
