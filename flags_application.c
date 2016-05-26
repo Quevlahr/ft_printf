@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 17:33:00 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/24 15:28:48 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/26 15:57:56 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,57 +27,57 @@ void			flag_dz_str(t_env *env, char *str)
 	}
 }
 
-void			ft_putarg_wstr(t_env *env, wchar_t *str)
+void			ft_putarg_wstr(t_env *e, wchar_t *str)
 {
 	int			i;
 	int			surplus;
 
 	i = 0;
-	surplus = (env->flag_dz == 1) ? 2 : 0;
-	if ((int)ft_wstrlen(str) + surplus < env->nb_sp)
+	surplus = (e->flag_dz == 1) ? 2 : 0;
+	if ((int)ft_wstrlen(str) + surplus < e->nb_sp)
 	{
-		surplus += env->nb_sp - (int)ft_wstrlen(str);
+		surplus += e->nb_sp - (int)ft_wstrlen(str);
 		while (i < surplus)
 		{
-			if (env->flag_pt != 0)
-				(env->flag_zr == 1 && (env->nb_sp < env->flag_pt || env->nb_sp > ft_wstrlen(str))) ?
-				ft_putchar('0') : ft_putchar(' ');
+			if (e->flag_pt != 0)
+				(e->flag_zr == 1 && (e->nb_sp < e->flag_pt || e->nb_sp >
+				ft_wstrlen(str))) ? ft_putchar('0') : ft_putchar(' ');
 			else
-				(env->flag_zr == 1) ? ft_putchar('0') : ft_putchar(' ');
+				(e->flag_zr == 1) ? ft_putchar('0') : ft_putchar(' ');
 			i++;
-			env->nb_char++;
+			e->nb_char++;
 		}
 	}
 }
 
-void			ft_putarg_str(t_env *env, char *str)
+void			ft_putarg_str(t_env *e, char *s)
 {
 	int			i;
 	int			surplus;
 
 	i = 0;
 	surplus = 0;
-	if (env->conv == 'o')
-		surplus -= (ft_strcmp(str, "0") == 0 && env->flag_pt == -1) ? 1 : 0;
+	if (e->conv == 'o' || e->conv == 'O')
+		surplus -= (ft_strcmp(s, "0") == 0 && e->flag_pt == -1) ? 1 : 0;
 	else
-		surplus = (env->flag_dz == 1) ? 2 : 0;
-	if (env->conv == 'o' || env->conv == 'x')
-		surplus += (env->flag_pt > 0 && env->flag_pt > (int)ft_strlen(str)) ?
-					env->flag_pt - ft_strlen(str) : 0;
-	if ((int)ft_strlen(str) + surplus < env->nb_sp)
+		surplus = (e->flag_dz == 1) ? 2 : 0;
+	if (e->conv == 'o' || e->conv == 'x' || e->conv == 'O' || e->conv == 'X')
+		surplus += (e->flag_pt > 0 && e->flag_pt > (int)ft_strlen(s)) ?
+					e->flag_pt - ft_strlen(s) : 0;
+	if ((int)ft_strlen(s) + surplus < e->nb_sp)
 	{
-		while (i < (env->nb_sp - ((int)ft_strlen(str) + surplus)))
+		while (i < (e->nb_sp - ((int)ft_strlen(s) + surplus)))
 		{
-			if (env->flag_pt != 0)
-				(env->flag_zr == 1 && (env->nb_sp < env->flag_pt ||
-				env->nb_sp > ft_strlen(str))) ? ft_putchar('0') : ft_putchar(' ');
+			if (e->flag_pt != 0)
+				(e->flag_zr == 1 && (e->nb_sp < e->flag_pt ||
+				e->nb_sp > ft_strlen(s))) ? ft_putchar('0') : ft_putchar(' ');
 			else
-				(env->flag_zr == 1) ? ft_putchar('0') : ft_putchar(' ');
+				(e->flag_zr == 1) ? ft_putchar('0') : ft_putchar(' ');
 			i++;
-			env->nb_char++;
+			e->nb_char++;
 		}
 	}
-	env->nb_char += ft_strlen(str);
+	e->nb_char += ft_strlen(s);
 }
 
 void			ft_putarg_ll(t_env *env, long long a)
@@ -114,8 +114,8 @@ void			ft_putarg_ll(t_env *env, long long a)
 			i++;
 			env->nb_char++;
 		}
-	if (((env->flag_ll == 1 || env->flag_l == 1 || env->flag_j == 1) &&
-			env->conv == 'u') || env->conv == 'U')
+	if (((env->flag_ll == 1 || env->flag_l == 1 || env->flag_j == 1 ||
+			env->flag_z == 1) && env->conv == 'u') || env->conv == 'U')
 		env->nb_char += ft_nbrlen_ull(a);
 	else if (env->flag_z == 1 && a < 0 && a > -2147483648)
 		env->nb_char += ft_nbrlen_ui(a);

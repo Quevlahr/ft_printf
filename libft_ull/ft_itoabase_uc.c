@@ -6,13 +6,13 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/25 16:52:06 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/25 16:58:11 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/26 16:00:06 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../ft_printf.h"
 
-static void		ft_convert(unsigned char n, char *str, unsigned int base, int *i)
+static void		ft_convert(UC n, char *str, UI base, int *i)
 {
 	if (n < base)
 	{
@@ -26,7 +26,7 @@ static void		ft_convert(unsigned char n, char *str, unsigned int base, int *i)
 	}
 }
 
-static int		ft_len_itoa(unsigned char n, int base)
+static int		ft_len_itoa(UC n, int base)
 {
 	int			len;
 
@@ -39,7 +39,7 @@ static int		ft_len_itoa(unsigned char n, int base)
 	return (len);
 }
 
-char			*ft_itoabase_uc(unsigned char n, int base, int maj)
+char			*ft_itoabase_uc(UC n, int base, int maj)
 {
 	char		*str;
 	int			i;
@@ -53,6 +53,6 @@ char			*ft_itoabase_uc(unsigned char n, int base, int maj)
 		{
 			(str[i] > '9' ? str[i] += 'W' - '7' : 0);
 			i++;
-		}		
+		}
 	return (str);
 }

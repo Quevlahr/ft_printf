@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:19:17 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/25 16:55:23 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/26 15:59:46 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@
 # include <limits.h>
 
 # define UI unsigned int
+# define US unsigned short
+# define UC unsigned char
 
 typedef struct		s_env
 {

@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 21:19:59 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/25 18:41:16 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/26 15:58:44 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,22 +39,27 @@ static void		flag_pourcent(t_env *env, va_list ap)
 	ft_strdel(&c);
 }
 
+static void		flag_wchar(t_env *env, va_list ap)
+{
+	int			a;
+
+	a = 0;
+	a = va_arg(ap, int);
+	ft_space_wchar(a, env);
+}
+
 static void		flag_char(t_env *env, va_list ap)
 {
 	char		c;
 
 	env->flag_sp = 0;
-	c = va_arg(ap, int);
-	ft_space_char(c, env);
-}
-
-static void		flag_wchar(int a, t_env *env, va_list ap)
-{
-	char		*str;
-
-	str = NULL;
-	a = va_arg(ap, int);
-	ft_space_wchar(a, env);
+	if (env->flag_l == 1)
+		flag_wchar(env, ap);
+	else
+	{
+		c = va_arg(ap, int);
+		ft_space_char(c, env);
+	}
 }
 
 static void		flag_wstr(t_env *env, va_list ap)
@@ -89,7 +94,6 @@ static void		flag_wstr(t_env *env, va_list ap)
 				i++;
 			}
 			(env->flag_ms == 1) ? ft_putarg_wstr(env, tmp) : 0;
-
 		}
 		else
 		{
@@ -119,13 +123,12 @@ static void		flag_unsigned(unsigned long long a, t_env *env, va_list ap)
 		a = (unsigned char)va_arg(ap, unsigned int);
 	else if (env->flag_h == 1 && env->conv != 'U')
 		a = (unsigned short)va_arg(ap, unsigned int);
-	else if (env->flag_l == 0 && env->flag_ll == 0 && env->flag_j == 0 &&
-			env->conv != 'U')
-		a = va_arg(ap, unsigned int);
 	else if (env->flag_l == 1 || env->conv == 'U')
 		a = va_arg(ap, unsigned long);
-	else if (env->flag_ll == 1 || env->flag_j == 1)
+	else if (env->flag_ll == 1 || env->flag_j == 1 || env->flag_z == 1)
 		a = va_arg(ap, unsigned long long);
+	else
+		a = va_arg(ap, unsigned int);
 	ft_space_int(a, env);
 	if (env->flag_ms == 0 && env->flag_ps == 1)
 		env->nb_char++;
@@ -136,22 +139,21 @@ static void		flag_octal(long long a, t_env *env, va_list ap)
 	char		*str;
 
 	env->flag_sp = 0;
-	// if (env->flag_hh == 1)
-	// 	a = (char)va_arg(ap, int);
-	// else if (env->flag_h == 1)
-	// 	a = (short)va_arg(ap, int);
 	if (env->flag_l == 1 || env->conv == 'O')
 		a = va_arg(ap, long);
 	else if (env->flag_ll == 1)
 		a = va_arg(ap, long long);
 	else
 		a = va_arg(ap, int);
-	if (env->conv == 'O' && a > -2147483648 && a < 0)
-		str = ft_itoabase_ui(a, 8, 0);
-	else if (env->flag_hh == 1 && env->conv != 'O')
+	if (env->flag_hh == 1 && env->conv != 'O')
 		str = ft_itoabase_uc(a, 8, 0);
 	else if (env->flag_h == 1 && env->conv != 'O')
 		str = ft_itoabase_us(a, 8, 0);
+	else if (env->conv == 'O' && a > -2147483648 && a < 0)
+		str = ft_itoabase_ui(a, 8, 0);
+	else if (env->flag_l == 0 && env->flag_ll == 0 && env->flag_j == 0 &&
+			env->flag_z == 0 && env->conv == 'o')
+		str = ft_itoabase_ui(a, 8, 0);
 	else
 		str = ft_itoabase_ull(a, 8, 0);
 	if (env->flag_pt > 0 && ft_strcmp(str, "0") == 0)
@@ -192,7 +194,8 @@ static void		flag_hexa(long long a, t_env *env, va_list ap)
 		a = va_arg(ap, unsigned long long);
 	else
 		a = va_arg(ap, int);
-	if (a > -2147483648 && env->flag_j == 0)
+	if (a > -2147483648 && env->flag_j == 0 && env->flag_l == 0 &&
+			env->flag_ll == 0 && env->flag_z == 0)
 		value = a < 0 ? 4294967296 + (long long)a : (long long)a;
 	else
 		value = a < 0 ? ULONG_MAX + 1 + (long long)a : (long long)a;
@@ -202,7 +205,6 @@ static void		flag_hexa(long long a, t_env *env, va_list ap)
 		str = ft_itoabase_us(value, 16, env->maj);
 	else
 		str = ft_itoabase_ull(value, 16, env->maj);
-
 	if (env->flag_pt != 0 && ft_strcmp(str, "0") == 0 && env->conv != 'p')
 	{
 		env->flag_dz = 0;
@@ -277,9 +279,9 @@ static void		flag_str(t_env *env, va_list ap)
 
 void			ft_useva(t_env *env, va_list ap)
 {
-	if (env->conv == 's')
+	if (env->conv == 's' && env->flag_l == 0)
 		flag_str(env, ap);
-	else if (env->conv == 'S')
+	else if (env->conv == 'S' || (env->conv == 's' && env->flag_l == 1))
 		flag_wstr(env, ap);
 	else if (env->conv == 'p' || env->conv == 'x' || env->conv == 'X')
 		flag_hexa(0, env, ap);
@@ -292,7 +294,7 @@ void			ft_useva(t_env *env, va_list ap)
 	else if (env->conv == 'c')
 		flag_char(env, ap);
 	else if (env->conv == 'C')
-		flag_wchar(0, env, ap);
+		flag_wchar(env, ap);
 	else if (env->conv == '%')
 		flag_pourcent(env, ap);
 	else

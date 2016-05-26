@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 11:34:00 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/24 16:28:43 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/05/26 15:54:27 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,9 @@ wchar_t			*ft_modifwstr(wchar_t *str, t_env *env)
 	tmp = (wchar_t*)malloc(sizeof(wchar_t) * (ft_wstrlen(str) + 1));
 	while (str[place] && i < env->flag_pt)
 	{
-		if ((str[place] < 128 && i + 1 <= env->flag_pt) || (str[place] < 2048 && i + 2 <= env->flag_pt) || 
-			(str[place] < 65536 && i + 3 <= env->flag_pt) || (i + 4 <= env->flag_pt))
+		if ((str[place] < 128 && i + 1 <= env->flag_pt) || (str[place] < 2048
+			&& i + 2 <= env->flag_pt) || (str[place] < 65536
+			&& i + 3 <= env->flag_pt) || (i + 4 <= env->flag_pt))
 		{
 			tmp[place] = str[place];
 			if (str[place] < 128)
@@ -57,14 +58,10 @@ wchar_t			*ft_modifwstr(wchar_t *str, t_env *env)
 		}
 		else
 			break ;
-		// ft_space_wchar(tmp[place - 1], env);
-		// ft_putnbrdl(i);
 	}
-		// ft_putnbr(env->flag_pt);
 	tmp[place] = '\0';
 	return (tmp);
 }
-
 
 char			*ft_modifstr(char *str, t_env *env)
 {
