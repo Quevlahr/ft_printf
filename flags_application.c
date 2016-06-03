@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 17:33:00 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/26 15:57:56 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/06/03 16:29:01 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,13 +50,8 @@ void			ft_putarg_wstr(t_env *e, wchar_t *str)
 	}
 }
 
-void			ft_putarg_str(t_env *e, char *s)
+void			ft_putarg_str(t_env *e, char *s, int i, int surplus)
 {
-	int			i;
-	int			surplus;
-
-	i = 0;
-	surplus = 0;
 	if (e->conv == 'o' || e->conv == 'O')
 		surplus -= (ft_strcmp(s, "0") == 0 && e->flag_pt == -1) ? 1 : 0;
 	else
@@ -70,7 +65,8 @@ void			ft_putarg_str(t_env *e, char *s)
 		{
 			if (e->flag_pt != 0)
 				(e->flag_zr == 1 && (e->nb_sp < e->flag_pt ||
-				e->nb_sp > ft_strlen(s))) ? ft_putchar('0') : ft_putchar(' ');
+				e->nb_sp > (int)ft_strlen(s)) && e->flag_pt != -1) ?
+				ft_putchar('0') : ft_putchar(' ');
 			else
 				(e->flag_zr == 1) ? ft_putchar('0') : ft_putchar(' ');
 			i++;
@@ -78,6 +74,26 @@ void			ft_putarg_str(t_env *e, char *s)
 		}
 	}
 	e->nb_char += ft_strlen(s);
+}
+
+static void		ft_putarg_ll2(t_env *env, long long a, int i)
+{
+	if ((env->flag_ps == 1 || a < 0) && env->flag_pt > 0)
+		(a < 0) ? ft_putchar('-') : ft_putchar('+');
+	if (env->flag_ms == 0)
+		while (i < (env->flag_pt - ft_nbrlen_ll(a)))
+		{
+			ft_putchar('0');
+			i++;
+			env->nb_char++;
+		}
+	if (((env->flag_ll == 1 || env->flag_l == 1 || env->flag_j == 1 ||
+			env->flag_z == 1) && env->conv == 'u') || env->conv == 'U')
+		env->nb_char += ft_nbrlen_ull(a);
+	else if (env->flag_z == 1 && a < 0 && a > -2147483648)
+		env->nb_char += ft_nbrlen_ui(a);
+	else
+		env->nb_char += ft_nbrlen_ll(a);
 }
 
 void			ft_putarg_ll(t_env *env, long long a)
@@ -104,21 +120,5 @@ void			ft_putarg_ll(t_env *env, long long a)
 			i++;
 			env->nb_char++;
 		}
-	i = 0;
-	if ((env->flag_ps == 1 || a < 0) && env->flag_pt > 0)
-		(a < 0) ? ft_putchar('-') : ft_putchar('+');
-	if (env->flag_ms == 0)
-		while (i < (env->flag_pt - ft_nbrlen_ll(a)))
-		{
-			ft_putchar('0');
-			i++;
-			env->nb_char++;
-		}
-	if (((env->flag_ll == 1 || env->flag_l == 1 || env->flag_j == 1 ||
-			env->flag_z == 1) && env->conv == 'u') || env->conv == 'U')
-		env->nb_char += ft_nbrlen_ull(a);
-	else if (env->flag_z == 1 && a < 0 && a > -2147483648)
-		env->nb_char += ft_nbrlen_ui(a);
-	else
-		env->nb_char += ft_nbrlen_ll(a);
+	ft_putarg_ll2(env, a, 0);
 }

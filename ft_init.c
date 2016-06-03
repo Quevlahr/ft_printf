@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/28 15:48:29 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/12 16:17:18 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/06/03 16:30:21 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,30 +70,28 @@ int				ft_verifbase(t_env *env, int *i)
 
 void			ft_veriflh(t_env *e, int *i, int *l, int *h)
 {
-	if (e->str[*i] == 'l' && *l == 0)
+	if (e->str[*i] == 'l' && *l == 0 && (*i)++)
 	{
+		e->flag_ll = 0;
 		e->flag_l = 1;
 		*l = 1;
-		(*i)++;
 	}
-	else if (e->str[*i] == 'l' && *l == 1 && e->str[*i - 1] == 'l')
+	else if (e->str[*i] == 'l' && *l == 1 && (*i)++)
 	{
 		e->flag_ll = 1;
 		e->flag_l = 0;
-		(*i)++;
+		*l = 0;
 	}
-	else if (e->str[*i] == 'h' && *h == 0)
+	else if (e->str[*i] == 'h' && *h == 0 && (*i)++)
 	{
+		e->flag_ll = 0;
 		e->flag_h = 1;
 		*h = 1;
-		(*i)++;
 	}
-	else if (e->str[*i] == 'h' && *h == 1 && e->str[*i - 1] == 'h')
+	else if (e->str[*i] == 'h' && *h == 1 && (*i)++)
 	{
 		e->flag_hh = 1;
 		e->flag_h = 0;
-		(*i)++;
+		*h = 0;
 	}
-	else if ((e->str[*i] == 'l' && *l == 1) || (e->str[*i] == 'h' && *h == 1))
-		(*i)++;
 }

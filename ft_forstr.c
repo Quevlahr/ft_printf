@@ -6,19 +6,19 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 11:34:00 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/26 15:54:27 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/06/03 16:29:51 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-void			ft_null_str(char **str, t_env *env)
+void			ft_null_str(char **str)
 {
 	*str = ft_strnew(7);
 	*str = ft_strcpy(*str, "(null)");
 }
 
-void			ft_null_wstr(wchar_t **str, t_env *env)
+void			ft_null_wstr(wchar_t **str)
 {
 	*str = (wchar_t*)malloc(sizeof(wchar_t) * 7);
 	(*str)[0] = '(';
@@ -30,14 +30,10 @@ void			ft_null_wstr(wchar_t **str, t_env *env)
 	(*str)[6] = '\0';
 }
 
-wchar_t			*ft_modifwstr(wchar_t *str, t_env *env)
+wchar_t			*ft_modifwstr(wchar_t *str, t_env *env, int i, int place)
 {
-	int			i;
-	int			place;
 	wchar_t		*tmp;
 
-	i = 0;
-	place = 0;
 	tmp = (wchar_t*)malloc(sizeof(wchar_t) * (ft_wstrlen(str) + 1));
 	while (str[place] && i < env->flag_pt)
 	{

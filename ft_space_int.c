@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/05/20 20:21:50 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/26 15:42:32 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/06/03 16:31:08 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,19 @@ static void		ft_flag_ms_int(long long *a, t_env *env)
 
 static void		ft_affichage_int(long long a, t_env *env)
 {
-	if (((env->flag_ll == 1 || env->flag_l == 1 || env->flag_j == 1 ||
-		env->flag_z == 1) && env->conv == 'u') || env->conv == 'U')
-		ft_putnbr_ull(a);
-	else if (((env->conv == 'D' && env->flag_d == 0) || env->flag_z == 1) &&
-		a < 0 && a > -2147483648)
-		ft_putnbr_ui(a);
+	if (env->flag_pt != -1 || a != 0)
+	{
+		if (((env->flag_ll == 1 || env->flag_l == 1 || env->flag_j == 1 ||
+			env->flag_z == 1) && env->conv == 'u') || env->conv == 'U')
+			ft_putnbr_ull(a);
+		else if ((env->conv == 'D' && env->flag_d == 0) &&
+			a < 0 && a > -2147483648)
+			ft_putnbr_ui(a);
+		else
+			ft_putnbr_ll(a);
+	}
 	else
-		ft_putnbr_ll(a);
+		env->nb_char--;
 }
 
 static void		ft_space_int2(long long a, t_env *env)

@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:37:04 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/23 13:44:08 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/06/03 16:30:37 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,20 @@ void				ft_read(const char *format, int i, t_env *env, va_list ap)
 	env->nb_char = 0;
 	while (format[i])
 	{
-		if (format[i] == '%')
+		if (format[i] == '%' && env->nb_char >= 0)
 		{
 			i++;
 			ft_initflag(format, env, &i);
 			ft_initconv(&i, env, ap);
 		}
-		else
+		else if (env->nb_char >= 0)
 		{
 			env->nb_char++;
 			ft_putchar(format[i]);
 			i++;
 		}
+		else
+			i++;
 	}
 }
 

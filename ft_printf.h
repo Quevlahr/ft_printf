@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/03/31 15:19:17 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/26 15:59:46 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/06/03 16:30:50 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int					ft_printf(const char *format, ...);
 **	utilities.c
 */
 void				ft_error(t_env *env);
-void				ft_print_env(t_env *env);
 
 /*
 **	flags.c
@@ -68,6 +67,13 @@ void				ft_initconv(int *i, t_env *env, va_list ap);
 **	va_list.c
 */
 void				ft_useva(t_env *env, va_list ap);
+void				flag_rien(t_env *env);
+void				flag_pourcent(t_env *env);
+void				flag_wchar(t_env *env, va_list ap);
+void				flag_char(t_env *env, va_list ap);
+void				flag_unsigned(unsigned long long a, t_env *env, va_list ap);
+void				flag_str(t_env *env, va_list ap, int nul, char *tmp);
+void				flag_wstr(t_env *env, va_list ap, int nul, int i);
 
 /*
 **	ft_space.c
@@ -75,22 +81,25 @@ void				ft_useva(t_env *env, va_list ap);
 void				ft_space_int(long long a, t_env *env);
 void				ft_space_str(char *str, t_env *env);
 void				ft_space_char(char c, t_env *env);
-void				ft_space_wchar(int a, t_env *env);
+void				ft_space_wchar(int a, t_env *env, int seis, UI *bit);
 void				ft_putarg_wstr(t_env *env, wchar_t *str);
+void				flag_octal(long long a, t_env *env, va_list ap);
+void				flag_octal2(long long a, t_env *env, char **str);
+void				flag_hexa(long long a, t_env *env, va_list ap);
 
 /*
 **	ft_forstr.c
 */
-void				ft_null_str(char **str, t_env *env);
-void				ft_null_wstr(wchar_t **str, t_env *env);
+void				ft_null_str(char **str);
+void				ft_null_wstr(wchar_t **str);
 char				*ft_modifstr(char *str, t_env *env);
-wchar_t				*ft_modifwstr(wchar_t *str, t_env *env);
+wchar_t				*ft_modifwstr(wchar_t *str, t_env *env, int i, int place);
 
 /*
 **	flags_application.c
 */
 void				flag_dz_str(t_env *env, char *str);
-void				ft_putarg_str(t_env *env, char *str);
+void				ft_putarg_str(t_env *env, char *str, int i, int surplus);
 void				ft_putarg_ll(t_env *env, long long a);
 
 void				flag_pt_xo(t_env *env, char *str);
@@ -110,7 +119,7 @@ int					ft_verifchar(char c);
 void				ft_maxtype(t_env *e);
 
 /*
-**	libft
+**	libft_ull
 */
 void				ft_putnbr_ull(unsigned long long nb);
 void				ft_putnbr_ul(unsigned long nb);

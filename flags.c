@@ -6,11 +6,25 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/04 19:52:18 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/26 15:09:47 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/06/03 16:28:41 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
+
+static void		ft_initflag2(const char *format, t_env *env, int *i)
+{
+	(*i)++;
+	if (ft_isdigit(format[*i]) != 1)
+		env->flag_pt = -1;
+	else if (ft_isdigit(format[*i]) == 1 || format[*i] == '-' ||
+			format[*i] == '+')
+	{
+		env->flag_pt = ft_atoi(format + (*i));
+		(*i) += ft_nbrlen(ft_atoi(format + (*i)));
+		(env->flag_pt == 0) ? env->flag_pt = -1 : 0;
+	}
+}
 
 void			ft_initflag(const char *format, t_env *env, int *i)
 {
@@ -29,18 +43,7 @@ void			ft_initflag(const char *format, t_env *env, int *i)
 			if (ft_isdigit(format[*i]) == 1)
 				ft_initdigit(env, i);
 			if (format[*i] == '.')
-			{
-				(*i)++;
-				if (ft_isdigit(format[*i]) != 1)
-					env->flag_pt = -1;
-				else if (ft_isdigit(format[*i]) == 1 || format[*i] == '-' ||
-						format[*i] == '+')
-				{
-					env->flag_pt = ft_atoi(format + (*i));
-					(*i) += ft_nbrlen(ft_atoi(format + (*i)));
-					(env->flag_pt == 0) ? env->flag_pt = -1 : 0;
-				}
-			}
+				ft_initflag2(format, env, i);
 		}
 	}
 	(env->flag_ms == 1) ? env->flag_zr = 0 : 0;

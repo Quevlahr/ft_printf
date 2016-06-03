@@ -6,7 +6,7 @@
 #    By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/03/31 15:34:11 by quroulon          #+#    #+#              #
-#    Updated: 2016/05/23 15:21:16 by quroulon         ###   ########.fr        #
+#    Updated: 2016/06/03 16:32:05 by quroulon         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,12 +14,9 @@ NAME 		= 	libftprintf.a
 
 CC			= 	gcc
 
-# CFLAGS		=	-g
-# CFLAGS		= 	-Wall -Werror -Wextra
+CFLAGS		= 	-Wall -Werror -Wextra
 
-SRC 		= 	ft_printf.c utilities.c flags.c va_list.c ft_space.c ft_forstr.c \
-				flags_application.c flags_application2.c ft_init.c ft_gestion.c \
-				ft_space_str.c ft_space_int.c
+SRC			=	$(wildcard *.c)
 
 SRCPRINTF	=	$(wildcard libft_ull/*.c)
 
@@ -29,29 +26,28 @@ LIB			=	-Llibft -lft
 
 OBJ			=	$(SRC:.c=.o) $(notdir $(SRCLIBFT:.c=.o)) $(notdir $(SRCPRINTF:.c=.o))
 
-HEADER 		=	libft/libft.h
+HEADER 		=	ft_printf.h libft/libft.h
 
 
 all: $(NAME)
 
 .SILENT : $(NAME)
 $(NAME):
-	# @make -sC libft/
+	@make -sC libft/
 	@$(CC) $(CFLAGS) -c -I $(HEADER) $(SRC) $(SRCPRINTF) $(SRCLIBFT)
 	@ar rc $(NAME) $(OBJ)
 	@ranlib $(NAME)
-	# @$(CC) -o $(NAME) $(OBJ) $(LIB)
 	@echo "COMPILATION DONE"
 
 .SILENT : clean
 clean:
-	# @make clean -sC libft/
+	@make clean -sC libft/
 	@rm -f $(OBJ)
 	@echo "CLEAN DONE"
 
 .SILENT : fclean
 fclean: clean
-	# @make fclean -sC libft/
+	@make fclean -sC libft/
 	@rm -f $(NAME)
 	@echo "FCLEAN DONE"
 

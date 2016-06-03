@@ -6,18 +6,18 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/22 15:24:40 by quroulon          #+#    #+#             */
-/*   Updated: 2016/05/26 15:21:19 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/06/03 16:31:00 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-UI				ft_givebit(UI pos, UI n)
+static UI		ft_givebit(UI pos, UI n)
 {
 	return (((1 << pos) & n) >> pos);
 }
 
-int				ft_replacebit(UI *bit, int a, int cpt, t_env *env)
+static int		ft_replacebit(UI *bit, int a, int cpt, t_env *env)
 {
 	int			i;
 	int			seis;
@@ -39,41 +39,47 @@ int				ft_replacebit(UI *bit, int a, int cpt, t_env *env)
 	return (seis);
 }
 
-void			ft_space_wchar(int a, t_env *env)
+static UI		*ft_initbit(int a, t_env *env, UI *bit)
 {
-	UI			bit[4];
-	int			seis;
-
+	bit = (UI*)malloc(sizeof(int) * 4);
 	bit[0] = 2;
 	bit[1] = 2;
 	bit[2] = 2;
 	bit[3] = 2;
-	seis = 0;
 	if (a < 128)
 	{
 		ft_putchar(a);
 		env->nb_char++;
 	}
-	else if (a < 2048)
+	return (bit);
+}
+
+void			ft_space_wchar(int a, t_env *env, int seis, UI *bit)
+{
+	bit = ft_initbit(a, env, bit);
+	if ((a > 55296 && a < 65536) || a > 1114111 || a < 0)
+		env->nb_char = -1;
+	else
 	{
-		bit[1] = 6;
-		seis = ft_replacebit(bit, a, 11, env);
+		if (a < 2048 && a > 128)
+		{
+			bit[1] = 6;
+			seis = ft_replacebit(bit, a, 11, env);
+		}
+		else if (a < 65536 && a > 2048)
+		{
+			bit[2] = 14;
+			seis = ft_replacebit(bit, a, 16, env);
+		}
+		else if (a < 2097152 && a > 65536)
+		{
+			bit[3] = 30;
+			seis = ft_replacebit(bit, a, 21, env);
+		}
+		while (seis > 0)
+			ft_putchar(bit[--seis]);
 	}
-	else if (a < 65536)
-	{
-		bit[2] = 14;
-		seis = ft_replacebit(bit, a, 16, env);
-	}
-	else if (a < 2097152)
-	{
-		bit[3] = 30;
-		seis = ft_replacebit(bit, a, 21, env);
-	}
-	while (seis > 0)
-	{
-		ft_putchar(bit[seis - 1]);
-		seis--;
-	}
+	free(bit);
 }
 
 void			ft_space_char(char c, t_env *env)
