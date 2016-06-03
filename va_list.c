@@ -6,13 +6,13 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/08 21:19:59 by quroulon          #+#    #+#             */
-/*   Updated: 2016/06/03 16:32:42 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/06/03 17:00:49 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 
-static void		flag_hexa3(long long *a, t_env *env, va_list ap)
+static void		flag_hexa2(long long *a, t_env *env, va_list ap)
 {
 	if (env->conv == 'p')
 	{
@@ -29,7 +29,7 @@ static void		flag_hexa3(long long *a, t_env *env, va_list ap)
 		*a = va_arg(ap, int);
 }
 
-static void		flag_hexa2(long long *a, t_env *env, char **str, long long *val)
+static void		flag_hexa3(long long *a, t_env *env, char **str, long long *val)
 {
 	if (*a > -2147483648 && env->flag_j == 0 && env->flag_l == 0 &&
 			env->flag_ll == 0 && env->flag_z == 0)
@@ -53,8 +53,8 @@ void			flag_hexa(long long a, t_env *env, va_list ap)
 	tmp = NULL;
 	str = NULL;
 	env->flag_sp = 0;
-	flag_hexa3(&a, env, ap);
-	flag_hexa2(&a, env, &str, &value);
+	flag_hexa2(&a, env, ap);
+	flag_hexa3(&a, env, &str, &value);
 	if (env->flag_pt != 0 && ft_strcmp(str, "0") == 0 && env->conv != 'p')
 	{
 		env->flag_dz = 0;

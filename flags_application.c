@@ -6,7 +6,7 @@
 /*   By: quroulon <quroulon@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/04/26 17:33:00 by quroulon          #+#    #+#             */
-/*   Updated: 2016/06/03 16:29:01 by quroulon         ###   ########.fr       */
+/*   Updated: 2016/06/03 17:03:40 by quroulon         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ void			ft_putarg_str(t_env *e, char *s, int i, int surplus)
 		surplus -= (ft_strcmp(s, "0") == 0 && e->flag_pt == -1) ? 1 : 0;
 	else
 		surplus = (e->flag_dz == 1) ? 2 : 0;
-	if (e->conv == 'o' || e->conv == 'x' || e->conv == 'O' || e->conv == 'X')
+	if (e->conv == 'o' || e->conv == 'x' || e->conv == 'O' || e->conv == 'X' ||
+		e->conv == 'p')
 		surplus += (e->flag_pt > 0 && e->flag_pt > (int)ft_strlen(s)) ?
 					e->flag_pt - ft_strlen(s) : 0;
 	if ((int)ft_strlen(s) + surplus < e->nb_sp)
